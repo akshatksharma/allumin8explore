@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		02F4E63F2568D64B00022133 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02F4E63E2568D64B00022133 /* GoogleService-Info.plist */; };
 		02F4E6402568D64B00022133 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02F4E63E2568D64B00022133 /* GoogleService-Info.plist */; };
 		02F4E6412568D64B00022133 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02F4E63E2568D64B00022133 /* GoogleService-Info.plist */; };
+		02F4E6432571CA4D00022133 /* myCasesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E6422571CA4D00022133 /* myCasesVC.swift */; };
+		02F4E6452571DAE000022133 /* models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E6442571DAE000022133 /* models.swift */; };
+		02F4E6472571E26900022133 /* caseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E6462571E26900022133 /* caseCell.swift */; };
 		4F225D5560D8540FD7C6873B /* Pods_exploreAllumin8_exploreAllumin8UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */; };
 		5B248717CCAF01831890F762 /* Pods_exploreAllumin8Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341EC8E75A417CDADE4F6A9A /* Pods_exploreAllumin8Tests.framework */; };
 		8A9BD36D61300A9D0B4A1296 /* Pods_exploreAllumin8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD2DE7ADD3DA804DD7002E8 /* Pods_exploreAllumin8.framework */; };
@@ -58,6 +61,9 @@
 		02F4E6302568C6C000022133 /* exploreAllumin8UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exploreAllumin8UITests.swift; sourceTree = "<group>"; };
 		02F4E6322568C6C000022133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02F4E63E2568D64B00022133 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		02F4E6422571CA4D00022133 /* myCasesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCasesVC.swift; sourceTree = "<group>"; };
+		02F4E6442571DAE000022133 /* models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = models.swift; path = model/models.swift; sourceTree = "<group>"; };
+		02F4E6462571E26900022133 /* caseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caseCell.swift; sourceTree = "<group>"; };
 		341EC8E75A417CDADE4F6A9A /* Pods_exploreAllumin8Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exploreAllumin8Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD2DE7ADD3DA804DD7002E8 /* Pods_exploreAllumin8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exploreAllumin8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4676B2BEED2F605C1DA4E3AE /* Pods-exploreAllumin8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8.debug.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8/Pods-exploreAllumin8.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,11 +132,14 @@
 				02F4E60D2568C6BE00022133 /* SceneDelegate.swift */,
 				02F4E60F2568C6BE00022133 /* ViewController.swift */,
 				02F4E6112568C6BE00022133 /* Main.storyboard */,
+				02F4E6422571CA4D00022133 /* myCasesVC.swift */,
+				02F4E6462571E26900022133 /* caseCell.swift */,
 				02F4E6172568C6C000022133 /* Assets.xcassets */,
 				02F4E6192568C6C000022133 /* LaunchScreen.storyboard */,
 				02F4E61C2568C6C000022133 /* Info.plist */,
 				02F4E63E2568D64B00022133 /* GoogleService-Info.plist */,
 				02F4E6142568C6BE00022133 /* exploreAllumin8.xcdatamodeld */,
+				02F4E6442571DAE000022133 /* models.swift */,
 			);
 			path = exploreAllumin8;
 			sourceTree = "<group>";
@@ -163,7 +172,6 @@
 				7EAF5EF05DE22A006D71A30F /* Pods-exploreAllumin8Tests.debug.xcconfig */,
 				C9BB3E0C3C84AE1C8FE7803E /* Pods-exploreAllumin8Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -422,6 +430,9 @@
 				02F4E6102568C6BE00022133 /* ViewController.swift in Sources */,
 				02F4E6162568C6BE00022133 /* exploreAllumin8.xcdatamodeld in Sources */,
 				02F4E60C2568C6BE00022133 /* AppDelegate.swift in Sources */,
+				02F4E6452571DAE000022133 /* models.swift in Sources */,
+				02F4E6432571CA4D00022133 /* myCasesVC.swift in Sources */,
+				02F4E6472571E26900022133 /* caseCell.swift in Sources */,
 				02F4E60E2568C6BE00022133 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,15 +8,19 @@
 
 import UIKit
 
-class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     var detailedCase:Surgery?
-    @IBOutlet weak var surgeryName: UILabel!
+
+    
     @IBOutlet weak var surgeryCaseId: UILabel!
-    @IBOutlet weak var surgeryPatientId: UILabel!
+    @IBOutlet weak var surgeryName: UILabel!
     @IBOutlet weak var surgeon: UILabel!
-    @IBOutlet weak var implantsTable: UITableView!
+    @IBOutlet weak var surgeryPatientId: UILabel!
     @IBOutlet weak var instrumentsTable: UITableView!
+    @IBOutlet weak var implantsTable: UITableView!
+    @IBOutlet weak var pageScrollView: UIScrollView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +30,14 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         implantsTable.dataSource = self
         instrumentsTable.delegate = self
         instrumentsTable.dataSource = self
+        pageScrollView.delegate = self
         
-        print(detailedCase)
         setupView()
-//        self.title = detailedCase.name
-        // Do any additional setup after loading the view.
+        
+        instrumentsTable.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(tableViewSwiped)))
+        implantsTable.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(tableViewSwiped)))
+        pageScrollView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(scrollViewSwiped)))
+        
     }
     
     func setupView() {
@@ -77,6 +84,23 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             return cell;
         }
     }
+    
+    @objc func tableViewSwiped(){
+        pageScrollView.isScrollEnabled = false
+        instrumentsTable.isScrollEnabled = true
+        implantsTable.isScrollEnabled = true
+        
+        print("swiping table")
+    }
+
+    @objc func scrollViewSwiped(){
+        pageScrollView.isScrollEnabled = true
+        instrumentsTable.isScrollEnabled = false
+        implantsTable.isScrollEnabled = false
+        
+        print("swiping scroll")
+    }
+    
     
 
     /*

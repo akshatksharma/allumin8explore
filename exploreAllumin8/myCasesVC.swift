@@ -86,6 +86,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         caseTable.delegate = self
         caseTable.dataSource = self
+        self.title = "My Cases"
         
         loadData()
     

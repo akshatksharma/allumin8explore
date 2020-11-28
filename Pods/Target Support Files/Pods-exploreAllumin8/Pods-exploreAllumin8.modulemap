@@ -1,0 +1,6 @@
+framework module Pods_exploreAllumin8 {
+  umbrella header "Pods-exploreAllumin8-umbrella.h"
+
+  export *
+  module * { export * }
+}

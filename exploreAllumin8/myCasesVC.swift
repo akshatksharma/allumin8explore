@@ -12,22 +12,25 @@ import Firebase
 class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var db:Firestore?
-    var caseData: [Surgery?]?
+    var caseData: [Surgery]?
     
     
     @IBOutlet weak var caseTable: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let caseData = caseData else { return 0 }
+        guard let caseData = caseData else { return 0 }
         
-        return 10
+        return caseData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = caseTable.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! caseCell
         
-        cell.caseTitle.text = "meow"
+        guard let caseData = caseData else { return cell }
+
+        
+        cell.caseTitle.text = caseData[indexPath.row].name
         
         
         return cell;
@@ -44,17 +47,26 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
               return
             }
             
-            for document in documents {
-                print("\(document.documentID) => \(document.data())")
-            }
+//            for document in documents {
+//                print("\(document.documentID) => \(document.data())")
+//            }
 
             
             self.caseData = documents.compactMap { queryDocumentSnapshot -> Surgery? in
+                
+//                print(queryDocumentSnapshot.data())
                 return try? queryDocumentSnapshot.data(as: Surgery.self)
+            }
+            
+            
+             print(self.caseData)
+            
+            DispatchQueue.main.async {
+                self.caseTable.reloadData()
             }
         }
         
-        print(self.caseData)
+      
     }
     
     

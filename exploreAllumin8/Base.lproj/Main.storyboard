@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E7z-gh-yOj">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -230,10 +230,24 @@
                     <view key="view" contentMode="scaleToFill" id="51A-Yb-VRa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCHEDULE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="662-Kr-beL">
+                                <rect key="frame" x="24" y="76" width="162.66666666666666" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="662-Kr-beL" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" constant="24" id="MBA-yD-0vX"/>
+                            <constraint firstItem="662-Kr-beL" firstAttribute="top" secondItem="fcS-Wh-ojA" secondAttribute="top" constant="32" id="YPE-4Q-iaO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fcS-Wh-ojA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Schedule" selectedImage="calendar.badge.plus" catalog="system" id="srp-GX-JX5"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="calendar.badge.plus" catalog="system" selectedImage="calendar.badge.plus" id="srp-GX-JX5">
+                        <color key="badgeColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zE-7Q-wVw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,40 +260,90 @@
                     <view key="view" contentMode="scaleToFill" id="9xm-If-GMN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRACK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceT-qf-Nuy">
+                                <rect key="frame" x="24" y="76" width="101" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ceT-qf-Nuy" firstAttribute="top" secondItem="oKh-uO-HEe" secondAttribute="top" constant="32" id="6W3-fM-DKh"/>
+                            <constraint firstItem="ceT-qf-Nuy" firstAttribute="leading" secondItem="oKh-uO-HEe" secondAttribute="leading" constant="24" id="eDY-Kl-g6x"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oKh-uO-HEe"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Track" selectedImage="qrcode" catalog="system" id="uLY-Lk-6Uu"/>
+                    <tabBarItem key="tabBarItem" title="Track" image="qrcode" catalog="system" selectedImage="qrcode" id="uLY-Lk-6Uu">
+                        <color key="badgeColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knL-pn-KK7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3724" y="1312"/>
+            <point key="canvasLocation" x="3724" y="1311.576354679803"/>
         </scene>
         <!--My Cases-->
         <scene sceneID="ES4-S3-9e8">
             <objects>
-                <viewController id="VRI-L1-ev3" sceneMemberID="viewController">
+                <viewController id="VRI-L1-ev3" customClass="myCasesVC" customModule="exploreAllumin8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oaM-aj-3u1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VDS-dS-0PT">
-                                <rect key="frame" x="16" y="128" width="343" height="601"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VDS-dS-0PT">
+                                <rect key="frame" x="0.0" y="138.33333333333331" width="375" height="590.66666666666674"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" id="Pfn-8f-UcP" customClass="caseCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pfn-8f-UcP" id="s5f-Bh-xUo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="owo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-pT-I0j">
+                                                    <rect key="frame" x="24" y="64" width="32" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZkY-pT-I0j" firstAttribute="leading" secondItem="s5f-Bh-xUo" secondAttribute="leading" constant="24" id="OYP-4z-erY"/>
+                                                <constraint firstItem="ZkY-pT-I0j" firstAttribute="top" secondItem="s5f-Bh-xUo" secondAttribute="top" constant="64" id="Xlz-wb-VjZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="caseTitle" destination="ZkY-pT-I0j" id="L26-SB-EZl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MY CASES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-Uy-1iD">
-                                <rect key="frame" x="132" y="75" width="111" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY CASES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-Uy-1iD">
+                                <rect key="frame" x="24" y="76" width="153.66666666666666" height="38.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QfS-Uy-1iD" firstAttribute="top" secondItem="MQB-5N-srT" secondAttribute="top" constant="32" id="D2o-rH-P6V"/>
+                            <constraint firstItem="VDS-dS-0PT" firstAttribute="leading" secondItem="MQB-5N-srT" secondAttribute="leading" id="Nkb-tq-CzN"/>
+                            <constraint firstItem="VDS-dS-0PT" firstAttribute="top" secondItem="QfS-Uy-1iD" secondAttribute="bottom" constant="24" id="d4c-K2-RIf"/>
+                            <constraint firstItem="MQB-5N-srT" firstAttribute="bottom" secondItem="VDS-dS-0PT" secondAttribute="bottom" id="waU-xK-Li1"/>
+                            <constraint firstItem="MQB-5N-srT" firstAttribute="trailing" secondItem="VDS-dS-0PT" secondAttribute="trailing" id="wdZ-MX-8jl"/>
+                            <constraint firstItem="QfS-Uy-1iD" firstAttribute="leading" secondItem="MQB-5N-srT" secondAttribute="leading" constant="24" id="z7H-6j-Dpr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MQB-5N-srT"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Cases" selectedImage="star.fill" catalog="system" id="LcH-FH-rxP"/>
+                    <tabBarItem key="tabBarItem" title="My Cases" image="star" catalog="system" selectedImage="star.fill" id="LcH-FH-rxP"/>
+                    <connections>
+                        <outlet property="caseTable" destination="VDS-dS-0PT" id="rnc-LG-bDa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fN7-2F-6nZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -292,7 +356,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6ge-N4-Rp7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="VRI-L1-ev3" kind="relationship" relationship="viewControllers" id="4go-Mr-Ddg"/>
@@ -310,6 +374,7 @@
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="101"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>

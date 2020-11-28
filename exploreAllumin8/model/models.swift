@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
 struct Surgery: Identifiable, Codable {
     @DocumentID var id: String?
+    @ServerTimestamp var date: Timestamp?
     
-    let date: Date?
     let hospital: String?
     let name: String?
     let patient_id: Double?
     let surgeon: String?
-    let instruments: [String: String]?
-    let implants: [String: String]?
+    let instruments: [Product]?
+    let implants: [Product]?
 }
 
 

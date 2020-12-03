@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		026CBD802579714600398A3C /* trackScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD7F2579714600398A3C /* trackScreen.storyboard */; };
+		026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD812579718700398A3C /* scheduleScreen.storyboard */; };
+		026CBD85257971A900398A3C /* myCasesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD84257971A900398A3C /* myCasesScreen.storyboard */; };
 		02F4E60C2568C6BE00022133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E60B2568C6BE00022133 /* AppDelegate.swift */; };
 		02F4E60E2568C6BE00022133 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E60D2568C6BE00022133 /* SceneDelegate.swift */; };
 		02F4E6102568C6BE00022133 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E60F2568C6BE00022133 /* ViewController.swift */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		026CBD7F2579714600398A3C /* trackScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = trackScreen.storyboard; sourceTree = "<group>"; };
+		026CBD822579718700398A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/scheduleScreen.storyboard; sourceTree = "<group>"; };
+		026CBD84257971A900398A3C /* myCasesScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = myCasesScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		02F4E6082568C6BE00022133 /* exploreAllumin8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exploreAllumin8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F4E60B2568C6BE00022133 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02F4E60D2568C6BE00022133 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +111,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		026CBD7E257970DF00398A3C /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				026CBD84257971A900398A3C /* myCasesScreen.storyboard */,
+				026CBD812579718700398A3C /* scheduleScreen.storyboard */,
+				026CBD7F2579714600398A3C /* trackScreen.storyboard */,
+			);
+			name = storyboards;
+			sourceTree = "<group>";
+		};
 		02F4E5FF2568C6BE00022133 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +146,7 @@
 		02F4E60A2568C6BE00022133 /* exploreAllumin8 */ = {
 			isa = PBXGroup;
 			children = (
+				026CBD7E257970DF00398A3C /* storyboards */,
 				02F4E60B2568C6BE00022133 /* AppDelegate.swift */,
 				02F4E60D2568C6BE00022133 /* SceneDelegate.swift */,
 				02F4E60F2568C6BE00022133 /* ViewController.swift */,
@@ -299,8 +316,11 @@
 			files = (
 				02F4E61B2568C6C000022133 /* LaunchScreen.storyboard in Resources */,
 				02F4E63F2568D64B00022133 /* GoogleService-Info.plist in Resources */,
+				026CBD802579714600398A3C /* trackScreen.storyboard in Resources */,
+				026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */,
 				02F4E6182568C6C000022133 /* Assets.xcassets in Resources */,
 				02F4E6132568C6BE00022133 /* Main.storyboard in Resources */,
+				026CBD85257971A900398A3C /* myCasesScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +493,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		026CBD812579718700398A3C /* scheduleScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				026CBD822579718700398A3C /* Base */,
+			);
+			name = scheduleScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		02F4E6112568C6BE00022133 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

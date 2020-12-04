@@ -29,6 +29,17 @@
 		4F225D5560D8540FD7C6873B /* Pods_exploreAllumin8_exploreAllumin8UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */; };
 		5B248717CCAF01831890F762 /* Pods_exploreAllumin8Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341EC8E75A417CDADE4F6A9A /* Pods_exploreAllumin8Tests.framework */; };
 		8A9BD36D61300A9D0B4A1296 /* Pods_exploreAllumin8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD2DE7ADD3DA804DD7002E8 /* Pods_exploreAllumin8.framework */; };
+		A8829E22257997DF00BC44E1 /* LocalSurgeryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E15257997DF00BC44E1 /* LocalSurgeryInfo.swift */; };
+		A8829E23257997DF00BC44E1 /* SurgeryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E16257997DF00BC44E1 /* SurgeryInfo.swift */; };
+		A8829E24257997DF00BC44E1 /* CatalogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E17257997DF00BC44E1 /* CatalogItem.swift */; };
+		A8829E25257997DF00BC44E1 /* CVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E19257997DF00BC44E1 /* CVDataSource.swift */; };
+		A8829E26257997DF00BC44E1 /* SchedulingItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1A257997DF00BC44E1 /* SchedulingItemVC.swift */; };
+		A8829E27257997DF00BC44E1 /* CatalogItemDetailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1B257997DF00BC44E1 /* CatalogItemDetailedVC.swift */; };
+		A8829E28257997DF00BC44E1 /* ConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1C257997DF00BC44E1 /* ConfirmationVC.swift */; };
+		A8829E29257997DF00BC44E1 /* SchedulingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1D257997DF00BC44E1 /* SchedulingPageController.swift */; };
+		A8829E2A257997DF00BC44E1 /* SchedulingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1E257997DF00BC44E1 /* SchedulingVC.swift */; };
+		A8829E2B257997DF00BC44E1 /* SurgeryInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1F257997DF00BC44E1 /* SurgeryInfoVC.swift */; };
+		A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +89,17 @@
 		536005C91AFDE5D56147C5FB /* Pods-exploreAllumin8-exploreAllumin8UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8-exploreAllumin8UITests.release.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8-exploreAllumin8UITests/Pods-exploreAllumin8-exploreAllumin8UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6874D0683DF8DA836137B0F0 /* Pods-exploreAllumin8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8.release.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8/Pods-exploreAllumin8.release.xcconfig"; sourceTree = "<group>"; };
 		7EAF5EF05DE22A006D71A30F /* Pods-exploreAllumin8Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8Tests.debug.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8Tests/Pods-exploreAllumin8Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		A8829E15257997DF00BC44E1 /* LocalSurgeryInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalSurgeryInfo.swift; sourceTree = "<group>"; };
+		A8829E16257997DF00BC44E1 /* SurgeryInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryInfo.swift; sourceTree = "<group>"; };
+		A8829E17257997DF00BC44E1 /* CatalogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogItem.swift; sourceTree = "<group>"; };
+		A8829E19257997DF00BC44E1 /* CVDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVDataSource.swift; sourceTree = "<group>"; };
+		A8829E1A257997DF00BC44E1 /* SchedulingItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingItemVC.swift; sourceTree = "<group>"; };
+		A8829E1B257997DF00BC44E1 /* CatalogItemDetailedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogItemDetailedVC.swift; sourceTree = "<group>"; };
+		A8829E1C257997DF00BC44E1 /* ConfirmationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationVC.swift; sourceTree = "<group>"; };
+		A8829E1D257997DF00BC44E1 /* SchedulingPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingPageController.swift; sourceTree = "<group>"; };
+		A8829E1E257997DF00BC44E1 /* SchedulingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingVC.swift; sourceTree = "<group>"; };
+		A8829E1F257997DF00BC44E1 /* SurgeryInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryInfoVC.swift; sourceTree = "<group>"; };
+		A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogSearchVC.swift; sourceTree = "<group>"; };
 		B23FBF183A7FD72475FBB8ED /* Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8-exploreAllumin8UITests/Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9BB3E0C3C84AE1C8FE7803E /* Pods-exploreAllumin8Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8Tests.release.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8Tests/Pods-exploreAllumin8Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exploreAllumin8_exploreAllumin8UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +170,7 @@
 			children = (
 				026CBD7E257970DF00398A3C /* storyboards */,
 				02F4E60B2568C6BE00022133 /* AppDelegate.swift */,
+				A8829E13257997DF00BC44E1 /* Scheduling */,
 				02F4E60D2568C6BE00022133 /* SceneDelegate.swift */,
 				02F4E60F2568C6BE00022133 /* ViewController.swift */,
 				02F4E6112568C6BE00022133 /* Main.storyboard */,
@@ -180,6 +203,48 @@
 				02F4E6322568C6C000022133 /* Info.plist */,
 			);
 			path = exploreAllumin8UITests;
+			sourceTree = "<group>";
+		};
+		A8829E13257997DF00BC44E1 /* Scheduling */ = {
+			isa = PBXGroup;
+			children = (
+				A8829E14257997DF00BC44E1 /* Models */,
+				A8829E18257997DF00BC44E1 /* Controllers */,
+				A8829E21257997DF00BC44E1 /* Views */,
+			);
+			path = Scheduling;
+			sourceTree = "<group>";
+		};
+		A8829E14257997DF00BC44E1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8829E15257997DF00BC44E1 /* LocalSurgeryInfo.swift */,
+				A8829E16257997DF00BC44E1 /* SurgeryInfo.swift */,
+				A8829E17257997DF00BC44E1 /* CatalogItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A8829E18257997DF00BC44E1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8829E19257997DF00BC44E1 /* CVDataSource.swift */,
+				A8829E1A257997DF00BC44E1 /* SchedulingItemVC.swift */,
+				A8829E1B257997DF00BC44E1 /* CatalogItemDetailedVC.swift */,
+				A8829E1C257997DF00BC44E1 /* ConfirmationVC.swift */,
+				A8829E1D257997DF00BC44E1 /* SchedulingPageController.swift */,
+				A8829E1E257997DF00BC44E1 /* SchedulingVC.swift */,
+				A8829E1F257997DF00BC44E1 /* SurgeryInfoVC.swift */,
+				A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A8829E21257997DF00BC44E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AE45DB6CA9A8FA2084ABCAD0 /* Pods */ = {
@@ -450,14 +515,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8829E29257997DF00BC44E1 /* SchedulingPageController.swift in Sources */,
+				A8829E28257997DF00BC44E1 /* ConfirmationVC.swift in Sources */,
 				02F4E6492572271800022133 /* detailedCaseVC.swift in Sources */,
 				02F4E6102568C6BE00022133 /* ViewController.swift in Sources */,
+				A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */,
 				02F4E6162568C6BE00022133 /* exploreAllumin8.xcdatamodeld in Sources */,
 				02F4E60C2568C6BE00022133 /* AppDelegate.swift in Sources */,
 				02F4E6452571DAE000022133 /* models.swift in Sources */,
 				02F4E6432571CA4D00022133 /* myCasesVC.swift in Sources */,
 				02F4E6472571E26900022133 /* caseCell.swift in Sources */,
+				A8829E23257997DF00BC44E1 /* SurgeryInfo.swift in Sources */,
 				02F4E60E2568C6BE00022133 /* SceneDelegate.swift in Sources */,
+				A8829E27257997DF00BC44E1 /* CatalogItemDetailedVC.swift in Sources */,
+				A8829E2B257997DF00BC44E1 /* SurgeryInfoVC.swift in Sources */,
+				A8829E25257997DF00BC44E1 /* CVDataSource.swift in Sources */,
+				A8829E22257997DF00BC44E1 /* LocalSurgeryInfo.swift in Sources */,
+				A8829E26257997DF00BC44E1 /* SchedulingItemVC.swift in Sources */,
+				A8829E2A257997DF00BC44E1 /* SchedulingVC.swift in Sources */,
+				A8829E24257997DF00BC44E1 /* CatalogItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

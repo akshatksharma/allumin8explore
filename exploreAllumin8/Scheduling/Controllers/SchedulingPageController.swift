@@ -60,11 +60,11 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     */
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newViewController("SurgeryDate"),
-            self.newViewController("PatientID"),
+        return [
             self.newViewController("Hospital"),
+            self.newViewController("PatientID"),
             self.newViewController("Procedure"),
-            self.newViewController("Instruments"),
+            self.newViewController("SurgeryDate"),
 //            self.newViewController("Implants"),
 //            self.newViewController("Requests"),
 //            self.newViewController("Notes"),

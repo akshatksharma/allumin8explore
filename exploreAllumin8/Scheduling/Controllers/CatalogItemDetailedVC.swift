@@ -12,9 +12,11 @@ class CatalogItemDetailedVC: UIViewController {
 
     var catalogItem:CatalogItem?
     
-    @IBOutlet weak var titleLabel:UILabel!
-    @IBOutlet weak var itemView:UIView!
+    @IBOutlet weak var itemLabel: UILabel!
     
+
+    @IBAction func addItemToKit(_ sender: Any) {
+    }
     init(catalogItem:CatalogItem){
         self.catalogItem = catalogItem
         super.init(nibName: nil, bundle: nil)
@@ -30,26 +32,7 @@ class CatalogItemDetailedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let itemInfo = catalogItem else {
-            fatalError("No item defined")
-        }
-        titleLabel.text = itemInfo.name
-        
-        var nextY = itemView.bounds.minY
-        var textFrame = CGRect(x: 0, y: nextY, width: itemView.bounds.width, height: 20)
-        
-        let manufacturerLabel = UILabel(frame: textFrame)
-        nextY += 30
-        textFrame.origin = CGPoint(x: 0, y: nextY)
-        let costLabel = UILabel(frame: textFrame)
-        
-        manufacturerLabel.text = "Manufacturer: \(itemInfo.manufacturer)"
-        costLabel.text = "Cost: \(itemInfo.cost)"
-        
-        itemView.addSubview(manufacturerLabel)
-        itemView.addSubview(costLabel)
-        
-        
+
         
         
         // Do any additional setup after loading the view.

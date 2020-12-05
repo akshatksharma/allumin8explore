@@ -11,28 +11,33 @@ import UIKit
 class DetailedItemsVC: UIViewController, UITableViewDataSource {
 
     
-    var instruments:[Product]?
+    var kitInfo: KitInfo?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var kitName: UILabel!
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let instruments = instruments else { return 0 }
         
+        guard let instruments = kitInfo?.products else { return 0 }
+        
+        print(instruments)
         return instruments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let instruments = instruments else { return UITableViewCell() }
+        guard let instruments = kitInfo?.products else { return UITableViewCell() }
         
         let instrument = instruments[indexPath.row]
         
-        guard let instrumentName = instrument.description, let instrumentCatNum = instrument.catalog_number, let instrumentNum = instrument.quantity else {return UITableViewCell()}
+        guard let instrumentName = instrument.description, let instrumentCatNum = instrument.catalog_number, let instrumentNum = instrument.quantity?.toInt() else {return UITableViewCell()}
+        
+        
         
         let instrumentItem = InstrumentItem( InstrumentName: instrumentName, catalogNum: instrumentCatNum, InstrumentNum: "\(instrumentNum)")
         
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? InstrumentTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "instrumentInfo", for: indexPath) as? InstrumentTableViewCell {
             
             cell.caseInfo = instrumentItem
             
@@ -42,9 +47,18 @@ class DetailedItemsVC: UIViewController, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Instruments"
+
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        
+        kitName.text = kitInfo?.name
+        
 
         // Do any additional setup after loading the view.
     }

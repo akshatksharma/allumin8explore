@@ -59,3 +59,9 @@ struct productTrackInfo: Codable {
     let status: String?
     let trackingInfo: Double?
 }
+
+
+struct KitInfo {
+    var name: String?
+    var products: [Product]
+}

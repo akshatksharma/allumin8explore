@@ -40,18 +40,38 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return cell
             }
         case .statusInfo:
-             if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
                 cell.caseInfo = item
                 return cell
             }
         case .instrumentInfo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
-                        cell.caseInfo = item
-                        return cell
-                    }
+                cell.caseInfo = item
+                return cell
+            }
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let item = items[indexPath.section]
+
+        switch item.type {
+        case .caseInfo:
+            return
+        case .itemInfo:
+            guard let item = item as? SurgeryKitItem else { return }
+            let kitInfo = KitInfo(name: item.kitName, products: item.surgeryItems)
+    
+            performSegue(withIdentifier: "showItems", sender: kitInfo )
+        case .statusInfo:
+            return
+        case .instrumentInfo:
+            return
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -90,7 +110,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         loadItems()
         guard let detailedCase = detailedCase else {return}
         
-//        dump(detailedCase)
+        //        dump(detailedCase)
         
         //        implantsTable.delegate = self
         //        implantsTable.dataSource = self
@@ -169,16 +189,22 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        
+        let instrumentsVC = segue.destination as! DetailedItemsVC
+        
+        instrumentsVC.kitInfo = sender as? KitInfo
+        
      }
-     */
+     
     
 }
+
 
 

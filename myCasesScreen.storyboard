@@ -233,35 +233,41 @@
                                 <rect key="frame" x="0.0" y="113" width="414" height="695"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="instrumentInfo" rowHeight="100" id="YBQ-nU-KtL" customClass="InstrumentTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="instrumentInfo" rowHeight="75" id="YBQ-nU-KtL" customClass="InstrumentTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YBQ-nU-KtL" id="Sk1-Ez-wTd">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="catalog num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAP-ef-7Xl">
-                                                    <rect key="frame" x="20" y="11" width="75" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="catalog num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAP-ef-7Xl">
+                                                    <rect key="frame" x="20" y="10" width="75" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nK-3k-5gk">
-                                                    <rect key="frame" x="313" y="39" width="41" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nK-3k-5gk">
+                                                    <rect key="frame" x="313" y="45.5" width="41" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR8-me-gDO">
-                                                    <rect key="frame" x="20" y="50" width="82" height="39"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR8-me-gDO">
+                                                    <rect key="frame" x="20" y="38" width="61.5" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SAP-ef-7Xl" firstAttribute="leading" secondItem="Sk1-Ez-wTd" secondAttribute="leading" constant="20" id="9MP-FI-y78"/>
+                                                <constraint firstItem="tR8-me-gDO" firstAttribute="leading" secondItem="Sk1-Ez-wTd" secondAttribute="leading" constant="20" id="MB4-CR-r6L"/>
+                                                <constraint firstAttribute="bottom" secondItem="3nK-3k-5gk" secondAttribute="bottom" constant="8" id="RJX-KP-hcc"/>
+                                                <constraint firstItem="SAP-ef-7Xl" firstAttribute="top" secondItem="Sk1-Ez-wTd" secondAttribute="top" constant="10" id="Vvh-O7-aEG"/>
+                                                <constraint firstItem="tR8-me-gDO" firstAttribute="top" secondItem="SAP-ef-7Xl" secondAttribute="bottom" constant="12" id="der-QY-5ME"/>
+                                                <constraint firstAttribute="bottom" secondItem="tR8-me-gDO" secondAttribute="bottom" constant="8" id="e4G-75-OPZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="3nK-3k-5gk" secondAttribute="trailing" constant="20" id="trh-Vg-NDg"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="catalogNumber" destination="SAP-ef-7Xl" id="18W-y4-TaU"/>
@@ -290,7 +296,7 @@
                         <viewLayoutGuide key="safeArea" id="KCf-pz-uyg"/>
                     </view>
                     <connections>
-                        <outlet property="kitName" destination="7WH-l1-0kp" id="DC3-Bw-paN"/>
+                        <outlet property="kitName" destination="7WH-l1-0kp" id="CC3-mR-iNf"/>
                         <outlet property="tableView" destination="OE3-W8-pyO" id="eLV-qA-vGQ"/>
                     </connections>
                 </viewController>

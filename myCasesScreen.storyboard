@@ -214,7 +214,7 @@
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="tableView" destination="EQm-VM-n2v" id="Xf5-ev-Lvl"/>
-                        <segue destination="dfg-B2-mgq" kind="presentation" identifier="showItems" destinationCreationSelector="showItems" id="LNr-q5-Uhc"/>
+                        <segue destination="GzM-fr-xZk" kind="presentation" identifier="showItems" destinationCreationSelector="showItems" id="LNr-q5-Uhc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qg-gL-pQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -230,7 +230,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="OE3-W8-pyO">
-                                <rect key="frame" x="0.0" y="113" width="414" height="695"/>
+                                <rect key="frame" x="0.0" y="169" width="414" height="639"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="instrumentInfo" rowHeight="75" id="YBQ-nU-KtL" customClass="InstrumentTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
@@ -278,7 +278,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-l1-0kp">
-                                <rect key="frame" x="35" y="58" width="76" height="39"/>
+                                <rect key="frame" x="35" y="114" width="76" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -295,6 +295,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KCf-pz-uyg"/>
                     </view>
+                    <navigationItem key="navigationItem" id="t3q-Mt-vtS">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="X57-vS-vuB">
+                            <connections>
+                                <action selector="closeScreen:" destination="dfg-B2-mgq" id="2EW-Wl-93H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="kitName" destination="7WH-l1-0kp" id="CC3-mR-iNf"/>
                         <outlet property="tableView" destination="OE3-W8-pyO" id="eLV-qA-vGQ"/>
@@ -302,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7T-7r-u1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6423.188405797102" y="-193.52678571428569"/>
+            <point key="canvasLocation" x="7333.3333333333339" y="-193.52678571428569"/>
         </scene>
         <!--My Cases-->
         <scene sceneID="l6C-LO-baU">
@@ -328,6 +335,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzw-yd-y38" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3724" y="-202.46305418719211"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cIW-ZO-cb7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GzM-fr-xZk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7TI-9d-ohq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dfg-B2-mgq" kind="relationship" relationship="rootViewController" id="Qp0-Mp-Phk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaX-8C-QD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6423.188405797102" y="-193.52678571428569"/>
         </scene>
     </scenes>
     <resources>

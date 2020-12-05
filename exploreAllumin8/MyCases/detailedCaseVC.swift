@@ -197,8 +197,10 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
         
-        let instrumentsVC = segue.destination as! DetailedItemsVC
+        let instrumentsNavController = segue.destination as! UINavigationController
         
+        guard let instrumentsVC =  instrumentsNavController.topViewController as? DetailedItemsVC else { return }
+            
         instrumentsVC.kitInfo = sender as? KitInfo
         
      }

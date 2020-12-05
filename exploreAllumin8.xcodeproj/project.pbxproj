@@ -14,6 +14,7 @@
 		02B682C8257AED8F00DBAC22 /* DetailedCaseViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */; };
 		02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682C9257B4C3800DBAC22 /* caseCell.swift */; };
 		02B682CC257B4C3800DBAC22 /* detailedCaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */; };
+		02B682CE257B66A600DBAC22 /* DetailedItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682CD257B66A600DBAC22 /* DetailedItemsVC.swift */; };
 		02F4E60C2568C6BE00022133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E60B2568C6BE00022133 /* AppDelegate.swift */; };
 		02F4E60E2568C6BE00022133 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E60D2568C6BE00022133 /* SceneDelegate.swift */; };
 		02F4E6102568C6BE00022133 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4E60F2568C6BE00022133 /* ViewController.swift */; };
@@ -69,6 +70,7 @@
 		02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailedCaseViewCells.swift; path = exploreAllumin8/DetailedCaseViewCells.swift; sourceTree = SOURCE_ROOT; };
 		02B682C9257B4C3800DBAC22 /* caseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = caseCell.swift; sourceTree = "<group>"; };
 		02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedCaseVC.swift; sourceTree = "<group>"; };
+		02B682CD257B66A600DBAC22 /* DetailedItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedItemsVC.swift; sourceTree = "<group>"; };
 		02F4E6082568C6BE00022133 /* exploreAllumin8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exploreAllumin8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F4E60B2568C6BE00022133 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02F4E60D2568C6BE00022133 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */,
 				02F4E6422571CA4D00022133 /* myCasesVC.swift */,
 				026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */,
+				02B682CD257B66A600DBAC22 /* DetailedItemsVC.swift */,
 			);
 			path = MyCases;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				A8829E23257997DF00BC44E1 /* SurgeryInfo.swift in Sources */,
 				02F4E60E2568C6BE00022133 /* SceneDelegate.swift in Sources */,
 				A8829E27257997DF00BC44E1 /* CatalogItemDetailedVC.swift in Sources */,
+				02B682CE257B66A600DBAC22 /* DetailedItemsVC.swift in Sources */,
 				A8829E2B257997DF00BC44E1 /* SurgeryInfoVC.swift in Sources */,
 				02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */,
 				A8829E25257997DF00BC44E1 /* CVDataSource.swift in Sources */,

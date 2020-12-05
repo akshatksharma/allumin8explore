@@ -214,11 +214,89 @@
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="tableView" destination="EQm-VM-n2v" id="Xf5-ev-Lvl"/>
+                        <segue destination="dfg-B2-mgq" kind="presentation" identifier="showItems" destinationCreationSelector="showItems" id="LNr-q5-Uhc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qg-gL-pQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5565.9420289855079" y="-202.23214285714286"/>
+        </scene>
+        <!--Detailed ItemsVC-->
+        <scene sceneID="dua-cM-78n">
+            <objects>
+                <viewController id="dfg-B2-mgq" customClass="DetailedItemsVC" customModule="exploreAllumin8" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g7j-pD-0Gr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="OE3-W8-pyO">
+                                <rect key="frame" x="0.0" y="113" width="414" height="695"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="instrumentInfo" rowHeight="100" id="YBQ-nU-KtL" customClass="InstrumentTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YBQ-nU-KtL" id="Sk1-Ez-wTd">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="catalog num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAP-ef-7Xl">
+                                                    <rect key="frame" x="20" y="11" width="75" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nK-3k-5gk">
+                                                    <rect key="frame" x="313" y="39" width="41" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR8-me-gDO">
+                                                    <rect key="frame" x="20" y="50" width="82" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="catalogNumber" destination="SAP-ef-7Xl" id="18W-y4-TaU"/>
+                                            <outlet property="instrumentItems" destination="3nK-3k-5gk" id="Sft-oG-zdJ"/>
+                                            <outlet property="instrumentTitle" destination="tR8-me-gDO" id="9cX-IW-Gb0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-l1-0kp">
+                                <rect key="frame" x="35" y="58" width="76" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7WH-l1-0kp" firstAttribute="leading" secondItem="KCf-pz-uyg" secondAttribute="leading" constant="35" id="7rT-jz-3mm"/>
+                            <constraint firstItem="OE3-W8-pyO" firstAttribute="leading" secondItem="KCf-pz-uyg" secondAttribute="leading" id="HhW-lp-pMq"/>
+                            <constraint firstItem="7WH-l1-0kp" firstAttribute="top" secondItem="KCf-pz-uyg" secondAttribute="top" constant="58" id="ThT-R1-Ujo"/>
+                            <constraint firstItem="OE3-W8-pyO" firstAttribute="top" secondItem="7WH-l1-0kp" secondAttribute="bottom" constant="16" id="dTK-aE-nVi"/>
+                            <constraint firstItem="KCf-pz-uyg" firstAttribute="bottom" secondItem="OE3-W8-pyO" secondAttribute="bottom" id="p8P-QF-LWl"/>
+                            <constraint firstItem="KCf-pz-uyg" firstAttribute="trailing" secondItem="OE3-W8-pyO" secondAttribute="trailing" id="pt8-hU-AbA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KCf-pz-uyg"/>
+                    </view>
+                    <connections>
+                        <outlet property="kitName" destination="7WH-l1-0kp" id="DC3-Bw-paN"/>
+                        <outlet property="tableView" destination="OE3-W8-pyO" id="eLV-qA-vGQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G7T-7r-u1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6423.188405797102" y="-193.52678571428569"/>
         </scene>
         <!--My Cases-->
         <scene sceneID="l6C-LO-baU">

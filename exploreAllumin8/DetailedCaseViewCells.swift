@@ -66,3 +66,26 @@ class DetailedSurgeryKitInfoTableViewCell: UITableViewCell {
      }
 }
 
+class InstrumentTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var instrumentTitle: UILabel!
+    @IBOutlet weak var instrumentItems: UILabel!
+    @IBOutlet weak var catalogNumber: UILabel!
+    
+    var caseInfo: DetailedViewItem? {
+        didSet {
+            guard let caseInfo = caseInfo as? InstrumentItem else {
+                print("failed convert")
+                return
+            }
+            
+            instrumentTitle.text = caseInfo.InstrumentName
+            instrumentItems.text = caseInfo.InstrumentNum
+            catalogNumber.text = caseInfo.catalogNum
+            
+            
+            
+        }
+    }
+    
+}

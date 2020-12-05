@@ -44,6 +44,11 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.caseInfo = item
                 return cell
             }
+        case .instrumentInfo:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
+                        cell.caseInfo = item
+                        return cell
+                    }
         }
         
         return UITableViewCell()

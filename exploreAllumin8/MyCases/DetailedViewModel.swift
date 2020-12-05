@@ -13,6 +13,7 @@ enum detailedViewItemType {
     case caseInfo
     case itemInfo
     case statusInfo
+    case instrumentInfo
 }
 
 // wrapper protocol for cell types
@@ -38,7 +39,6 @@ struct CaseInfoItem: DetailedViewItem {
     var surgeon: String?
     var caseId: String?
     var patientId: String?
-   
 }
 
 struct SurgeryKitItem: DetailedViewItem {
@@ -54,6 +54,14 @@ struct SurgeryKitItem: DetailedViewItem {
 struct StatusInfoItem:DetailedViewItem {
     var sectionTitle = "Procedure Status"
     var type: detailedViewItemType = .statusInfo
+}
+
+struct InstrumentItem: DetailedViewItem {
+    var type: detailedViewItemType = .instrumentInfo
+    var sectionTitle: String = "Instruments"
+    var InstrumentName: String?
+    var catalogNum: String?
+    var InstrumentNum: String?
 }
 
 

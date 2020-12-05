@@ -33,7 +33,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         guard let caseData = caseData else { return cell }
 
         
-        cell.caseTitle.text = caseData[indexPath.row].name
+        cell.caseTitle.text = caseData[indexPath.row].procedure
         
         
         return cell;
@@ -55,7 +55,9 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // this is just firebase stuff
         
         // accessing the surgeries_test collection from cloud firestore, and setting a snapshot listener so that this method is called whenever something new is added to the table
-        db?.collection("surgeries_test").addSnapshotListener {
+        let userId = "wnBfdSqoyNcj537YAk9M"
+        
+        db?.collection("operations").whereField("surgeon_id", isEqualTo: userId).addSnapshotListener {
             (querySnapshot, err) in
             
             guard let documents = querySnapshot?.documents else {
@@ -63,16 +65,32 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
               return
             }
             
+            print("here are the docs")
+           
+//            for document in documents {
+//                print("\(document.documentID) => \(document.data())")
+//            }
+            
             // mapping all of the data from the surgeries_test table to an array of objects of type Surgery
             self.caseData = documents.compactMap { queryDocumentSnapshot -> Surgery? in
                 return try? queryDocumentSnapshot.data(as: Surgery.self)
+                
+                
             }
             
+           
+           print(self.caseData)
+
+
             // calling the reloadData on the main method so it happens on time
             DispatchQueue.main.async {
+                
                 self.caseTable.reloadData()
             }
         }
+        
+        print(self.caseData)
+
         
       
     }

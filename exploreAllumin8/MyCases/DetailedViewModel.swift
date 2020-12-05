@@ -8,32 +8,9 @@
 
 import Foundation
 
-// actual info in each cell
-struct patientInfo {
-    var caseID: String?
-    var patientID: String?
-}
-
-struct itemKitInfo {
-    var name: String?
-    var items: [surgeryItem]?
-    var trackingInfo: String?
-}
-
-struct surgeryItem {
-    var name: String?
-    var catalogNum: Int?
-    var quantity: Int?
-}
-
-struct surgeryStatus {
-    var currentStatus: String?
-}
-
-
 // enum for what kind of cell will be displayed
 enum detailedViewItemType {
-    case patientInfo
+    case caseInfo
     case itemInfo
     case statusInfo
 }
@@ -54,14 +31,20 @@ extension DetailedViewItem {
 }
 
 // making specific cell data types
-struct PatientInfoItem: DetailedViewItem {
-    var sectionTitle = "Patient Info"
-    var type: detailedViewItemType = .patientInfo
+struct CaseInfoItem: DetailedViewItem {
+    var type: detailedViewItemType = .caseInfo
+    var sectionTitle = "Case Info"
+    var surgeryName: String?
+    var surgeon: String?
+    var caseId: String?
+    var patientId: String?
+   
 }
 
-struct SurgeryInfoItem: DetailedViewItem {
+struct SurgeryKitItem: DetailedViewItem {
     var sectionTitle = "Surgery Kits"
-    var surgeryItems: [surgeryItem]
+    var kitName: String?
+    var surgeryItems: [Product]
     var rowCount: Int {
         return surgeryItems.count
     }

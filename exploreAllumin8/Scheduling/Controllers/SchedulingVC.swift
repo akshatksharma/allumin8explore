@@ -17,13 +17,10 @@ class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
         LocalSurgeryInfo(date: Date(timeIntervalSince1970: 0), patientID: 1293809, hospital: "Barnes Jewish", procedure: "Pet Scan", instruments: [], implants: [])
     ]
     
-    @IBOutlet weak var surgeryTable:UITableView!
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        surgeryTable.register(UITableViewCell.self, forCellReuseIdentifier: "surgeryTableCell")
-        surgeryTable.dataSource = self
-        surgeryTable.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -37,9 +34,9 @@ class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
         
         print(surgeries)
         
-        surgeryTable.reloadData()
+        //surgeryTable.reloadData()
         
-        print(surgeryTable.numberOfRows(inSection: 0))
+       // print(surgeryTable.numberOfRows(inSection: 0))
         
         
 //        surgeryTable.beginUpdates()

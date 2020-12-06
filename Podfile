@@ -5,6 +5,8 @@ target 'exploreAllumin8' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+   pod "CalendarView"
+
   # Pods for exploreAllumin8
 
    # add the Firebase pod for Google Analytics

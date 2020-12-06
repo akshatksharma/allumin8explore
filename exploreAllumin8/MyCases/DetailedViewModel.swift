@@ -45,9 +45,6 @@ struct SurgeryKitItem: DetailedViewItem {
     var sectionTitle = "Surgery Kits"
     var kitName: String?
     var surgeryItems: [Product]
-    var rowCount: Int {
-        return surgeryItems.count
-    }
     var type: detailedViewItemType = .itemInfo
 }
 

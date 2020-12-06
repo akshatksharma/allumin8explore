@@ -13,7 +13,7 @@ class DetailedItemsVC: UIViewController, UITableViewDataSource {
     
     var kitInfo: KitInfo?
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var kitName: UILabel!
+
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,12 +52,16 @@ class DetailedItemsVC: UIViewController, UITableViewDataSource {
 
     }
     
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         
-        kitName.text = kitInfo?.name
+        self.title = kitInfo?.name
         
 
         // Do any additional setup after loading the view.

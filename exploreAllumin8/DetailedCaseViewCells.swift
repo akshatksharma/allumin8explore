@@ -79,8 +79,10 @@ class InstrumentTableViewCell: UITableViewCell {
                 return
             }
             
+            guard let instNum = caseInfo.InstrumentNum else { return  }
+            
             instrumentTitle.text = caseInfo.InstrumentName
-            instrumentItems.text = caseInfo.InstrumentNum
+            instrumentItems.text = "x\(instNum)"
             catalogNumber.text = caseInfo.catalogNum
             
             

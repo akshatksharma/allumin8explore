@@ -24,9 +24,13 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
+        dump(indexPath.section)
+        dump(indexPath.row)
         let item = items[indexPath.section]
         
-        print(item)
+        print("saw item")
+//        dump(items)
         
         switch item.type {
         case .caseInfo:
@@ -36,6 +40,8 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         case .itemInfo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
+                
+                print("making surgery cell  ")
                 cell.caseInfo = item
                 return cell
             }
@@ -79,17 +85,23 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadItems() {
+        
+        items.removeAll()
+        
         if let patientId = detailedCase?.patient_id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
             
             let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: patientId)
             
+            print("appending patientInfo to items")
             items.append(caseInfoItem)
         }
         
         if let instruments = detailedCase?.instruments, let procedure = detailedCase?.procedure {
             let surgeryKitItem = SurgeryKitItem(kitName: "\(procedure) Kit", surgeryItems: instruments)
             
+            print("appending surgery to items")
             items.append(surgeryKitItem)
+//            dump(items)
         }
     }
     
@@ -108,9 +120,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.delegate = self
         loadItems()
-        guard let detailedCase = detailedCase else {return}
         
-        //        dump(detailedCase)
         
         //        implantsTable.delegate = self
         //        implantsTable.dataSource = self

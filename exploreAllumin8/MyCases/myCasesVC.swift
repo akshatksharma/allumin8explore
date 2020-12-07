@@ -8,48 +8,88 @@
 
 import UIKit
 import Firebase
+import FSCalendar
 
-class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate {
     
     var db:Firestore?
+//    var calendar:FSCalendar?
     
 // caseData: an array of type Surgery that contains all the information fed in from fireStore
 // look at models.swift for the definition of the Surgery type
     var caseData: [Surgery]?
-    
+ 
+    @IBOutlet weak var switchView: UISegmentedControl!
     
     @IBOutlet weak var caseTable: UITableView!
     
+    @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var calendarTable: UITableView!
+    
+    let formatter = DateFormatter()
+    var dateSelected:Date = Date()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let caseData = caseData else { return 0 }
-        
-        return caseData.count
+
+        if tableView === caseTable{
+            return caseData.count
+        }
+        else{
+            let surgeries = surgeryOnDay(date: dateSelected)
+            return surgeries.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = caseTable.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! caseCell
-        
-        guard let caseData = caseData else { return cell }
+        // caseTable
+        if tableView === caseTable{
+            let cell = caseTable.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! caseCell
+            
+            guard let caseData = caseData else { return cell }
 
-        
-        cell.caseTitle.text = caseData[indexPath.row].procedure
-        
-        
-        return cell;
+            
+            cell.caseTitle.text = caseData[indexPath.row].procedure
+            
+            
+            return cell;
+        }
+            
+        // calendarTable
+        else{
+            let cell = calendarTable.dequeueReusableCell(withIdentifier: "calCell", for: indexPath)
+            let surgeries = surgeryOnDay(date: dateSelected)
+            cell.textLabel?.text = surgeries[indexPath.row].procedure
+            
+            return cell
+        }
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let caseData = caseData else { return }
+        var aCase:Surgery
+        
+        // caseTable
+        if tableView === caseTable {
+            guard let caseData = caseData else { return }
 
-        let aCase = caseData[indexPath.row]
+             aCase = caseData[indexPath.row]
+        }
+            
+        // calendarTable
+        else {
+            let surgeries = surgeryOnDay(date: dateSelected)
+            aCase = surgeries[indexPath.row]
+        }
         
         // a segue on the main storyboard. this line is passing in the Surgery case that was clicked on as a parameter to the detailed view controller
         // look in the prepare() method at the bottom to see the rest of the transition process
         performSegue(withIdentifier: "showDetailedSurgery", sender: aCase)
     }
     
+    
+        
     func loadData() {
         print("loading data")
         // this is just firebase stuff
@@ -75,10 +115,8 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.caseData = documents.compactMap { queryDocumentSnapshot -> Surgery? in
                 return try? queryDocumentSnapshot.data(as: Surgery.self)
                 
-                
             }
             
-           
            print(self.caseData)
 
 
@@ -86,28 +124,98 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             DispatchQueue.main.async {
                 
                 self.caseTable.reloadData()
+                self.calendar.reloadData()
+                self.calendarTable.reloadData()
             }
         }
         
         print(self.caseData)
 
-        
-      
     }
     
     
-   
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+
+        dateSelected = date
+        calendarTable.reloadData()
+        
+    }
+        
+    
+  // display dots on calendar on days where there are surgeries
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+        let surgeries = surgeryOnDay(date: date)
+        if surgeries.count > 0 {
+            return 1
+        }
+        return 0
+    }
+    
+    // takes in a date, appends all the surgeries on the given date to an array
+    func surgeryOnDay(date:Date) -> [Surgery]{
+        
+        var surgeries:[Surgery] = []
+        guard let caseData = caseData else { return[] }
+        
+        formatter.dateFormat = "MM/dd/yyyy"
+
+        for surgery in caseData{
+            
+            // convert timestamp from database to type Date
+            guard let timestampToDate = surgery.date?.dateValue() else { return []
+            }
+            
+            // convert type Date to string
+            let dateString = formatter.string(from: timestampToDate)
+            
+            // converts the string to type Date with "MM/dd/yyyy" format
+            guard let surgeryDate = formatter.date(from: dateString) else{
+                return []
+            }
+            if date == surgeryDate {
+                surgeries.append(surgery)
+            }
+        }
+        return surgeries
+    }
+
+    
+    // toggle between calendar view and table view of cases - switches between hiding and displaying the views
+    @IBAction func flipSwitch(_ sender: Any) {
+        switch switchView.selectedSegmentIndex {
+        case 0:
+            caseTable.isHidden = false
+            calendar?.isHidden = true
+            calendarTable.isHidden = true
+        case 1:
+            caseTable.isHidden = true
+            calendar?.isHidden = false
+            calendarTable.isHidden = false
+        default:
+            break
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.db = Firestore.firestore()
+        self.title = "My Cases"
         
         caseTable.delegate = self
         caseTable.dataSource = self
-        self.title = "My Cases"
+                
+        calendar.delegate = self
+        calendar.dataSource = self
+        calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calCell")
+        calendarTable.delegate = self
+        calendarTable.dataSource = self
+        calendarTable.isHidden = true
+        calendar.isHidden = true
         
         loadData()
-    
+
 
         // Do any additional setup after loading the view.
     }

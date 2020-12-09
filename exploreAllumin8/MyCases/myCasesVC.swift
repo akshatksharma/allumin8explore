@@ -58,10 +58,21 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
             
         // calendarTable
         else{
-            let cell = calendarTable.dequeueReusableCell(withIdentifier: "calCell", for: indexPath)
+            let cell = calendarTable.dequeueReusableCell(withIdentifier: "cal", for: indexPath) as! calCell
             let surgeries = surgeryOnDay(date: dateSelected)
-            cell.textLabel?.text = surgeries[indexPath.row].procedure
             
+            // set surgeryName label
+            cell.surgeryName.text =  surgeries[indexPath.row].procedure
+            
+            // set time label
+            
+            formatter.dateFormat = "HH:ss"
+            guard let timestampToDate = surgeries[indexPath.row].date?.dateValue() else{
+                cell.time.text = "00:00"
+                return cell
+            }
+            let time = formatter.string(from: timestampToDate)
+            cell.time.text = time
             return cell
         }
         

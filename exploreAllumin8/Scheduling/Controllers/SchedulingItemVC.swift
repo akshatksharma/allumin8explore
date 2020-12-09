@@ -8,7 +8,16 @@
 
 import UIKit
 
-class SchedulingItemVC: UIViewController{
+class SchedulingItemVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let myCell = UITableViewCell()
+            return myCell
+    }
+    
 
     @IBOutlet weak var itemField: UIView!
     

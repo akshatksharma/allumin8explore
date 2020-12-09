@@ -8,7 +8,16 @@
 
 import UIKit
 
-class CatalogSearchVC: SchedulingItemVC {
+class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let myCell = UICollectionViewCell()
+        return myCell
+    }
+    
 
     var collectionElements:[CatalogItem] = [
         CatalogItem(itemID: "ree1", cost: 19.99, manufacturer: "Johnson and Johnson", name: "Wet Wipes"),
@@ -17,7 +26,11 @@ class CatalogSearchVC: SchedulingItemVC {
     
         
     ]
-//    var selectedCatalogItem:String? = nil
+    @IBOutlet weak var searchBarCatalog: UISearchBar!
+    
+    @IBOutlet weak var catalogCollectionView: UICollectionView!
+    
+    //    var selectedCatalogItem:String? = nil
     @IBOutlet weak var collectionView:UICollectionView!
     
     
@@ -77,64 +90,7 @@ class CatalogSearchVC: SchedulingItemVC {
 
 }
 
-extension CatalogSearchVC: UICollectionViewDataSource{
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("setting num sections")
-        return collectionElements.count
-    }
-       
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
-           
-           
-           
-        
-           
-        setUpCell(cell: cell, indexPath: indexPath)
-           
-        return cell
-    }
-           
-      
-       
-    private func setUpCell(cell:UICollectionViewCell, indexPath:IndexPath) {
-           
-        let titleView = UILabel(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: cell.bounds.height))
-        titleView.textColor = UIColor.black
-        titleView.adjustsFontSizeToFitWidth = false
-        titleView.lineBreakMode = .byTruncatingTail
-        titleView.font = titleView.font.withSize(12)
-        titleView.numberOfLines = 2
-        titleView.textAlignment = .center
-        titleView.layoutMargins = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-        titleView.text = collectionElements[indexPath.row].name
-
-
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 1.0
-        
-        cell.addSubview(titleView)
-    }
-}
-
-extension CatalogSearchVC: UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let detailedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detailedCatalogItem") as? CatalogItemDetailedVC else {
-            print("couldnt get detailedCatalogItemVC")
-            return;
-        }
-        
-        print("pushing vc from collectionView")
-        detailedVC.catalogItem = collectionElements[indexPath.row]
-        navigationController?.pushViewController(detailedVC, animated: true)
-    }
-}
 
 
 

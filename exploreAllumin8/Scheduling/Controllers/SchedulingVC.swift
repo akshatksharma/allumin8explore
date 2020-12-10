@@ -14,7 +14,7 @@ protocol SurgeryListLocalUpdater {
 
 class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
     var surgeries:[LocalSurgeryInfo] = [
-        LocalSurgeryInfo(date: Date(timeIntervalSince1970: 0), patientID: 1293809, hospital: "Barnes Jewish", procedure: "Pet Scan", instruments: [], implants: [])
+        
     ]
     
  
@@ -88,7 +88,6 @@ extension SchedulingVC: UITableViewDataSource{
             fatalError("procedure is not set")
         }
         
-        cell.textLabel?.text = "\(procedure) at \(dateFormatter.string(from: surgeryInfo.date!))"
            
         return cell
     }

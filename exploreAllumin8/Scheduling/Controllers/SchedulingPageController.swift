@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SurgeryInfoUpdater{
-    func updateSurgeryInfo(newInfo: LocalSurgeryInfo)
+    func updateSurgeryInfo(newInfo: LocalSurgeryInfo, nextIndex: Int)
     func getCurrentInfo() -> LocalSurgeryInfo
 }
 
@@ -29,7 +29,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = self
+//        dataSource = self
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
@@ -39,10 +39,12 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
         }
     }
     
-    func updateSurgeryInfo(newInfo: LocalSurgeryInfo) {
+    func updateSurgeryInfo(newInfo: LocalSurgeryInfo, nextIndex:Int) {
         print("newInfo =")
         print(newInfo)
         surgeryInfo = newInfo
+        
+        setViewControllers([orderedViewControllers[nextIndex]], direction: .forward, animated: true, completion: nil)
     }
     
     func getCurrentInfo() -> LocalSurgeryInfo{
@@ -61,18 +63,29 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [
-            self.newViewController("Hospital"),
-            self.newViewController("PatientID"),
-            self.newViewController("Procedure"),
-            self.newViewController("SurgeryDate"),
+            self.newViewController("Hospital", nextIndex: 1),
+            self.newViewController("PatientID", nextIndex: 2),
+            self.newViewController("Procedure", nextIndex: 3),
+            self.newViewController("SurgeryDate", nextIndex: 4),
 //            self.newViewController("Implants"),
 //            self.newViewController("Requests"),
 //            self.newViewController("Notes"),
 //            self.newViewController("Photo"),
-            self.newViewController("Confirmation")]
+            self.newViewController("Confirmation", nextIndex: -1)]
     }()
 
-    private func newViewController(_ id: String) -> UIViewController {
+    private func newViewController(_ id: String, nextIndex: Int) -> UIViewController {
+        if id == "SurgeryDate"{
+            guard let vc = UIStoryboard(name: "scheduleScreen", bundle: nil)
+                .instantiateViewController(withIdentifier: "\(id)VC") as? SurgeryDatePickerVC else{
+                fatalError("could not set delegate of \(id)VC")
+            }
+            vc.surgeryInfoUpdater = self
+            vc.surgeryListUpdater = surgeryListUpdater
+            vc.id = id
+            vc.nextIndex = nextIndex
+            return vc
+        }
         guard let vc = UIStoryboard(name: "scheduleScreen", bundle: nil)
             .instantiateViewController(withIdentifier: "\(id)VC") as? SchedulingItemVC else{
             fatalError("could not set delegate of \(id)VC")
@@ -80,6 +93,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
         vc.surgeryInfoUpdater = self
         vc.surgeryListUpdater = surgeryListUpdater
         vc.id = id
+        vc.nextIndex = nextIndex
         return vc
     }
 
@@ -97,7 +111,6 @@ extension SchedulingPageController:UIPageViewControllerDelegate{
             print("could not convert to SchedulingItemVC")
             return
         }
-        vc.onFlip()
     }
 }
 

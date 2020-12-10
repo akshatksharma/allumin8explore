@@ -43,6 +43,7 @@
 		A8829E2A257997DF00BC44E1 /* SchedulingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1E257997DF00BC44E1 /* SchedulingVC.swift */; };
 		A8829E2B257997DF00BC44E1 /* SurgeryInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E1F257997DF00BC44E1 /* SurgeryInfoVC.swift */; };
 		A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */; };
+		A8D2B7682581688B008499D8 /* SurgeryDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2B7672581688B008499D8 /* SurgeryDatePickerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		A8829E1E257997DF00BC44E1 /* SchedulingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingVC.swift; sourceTree = "<group>"; };
 		A8829E1F257997DF00BC44E1 /* SurgeryInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryInfoVC.swift; sourceTree = "<group>"; };
 		A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogSearchVC.swift; sourceTree = "<group>"; };
+		A8D2B7672581688B008499D8 /* SurgeryDatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurgeryDatePickerVC.swift; sourceTree = "<group>"; };
 		B23FBF183A7FD72475FBB8ED /* Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8-exploreAllumin8UITests/Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9BB3E0C3C84AE1C8FE7803E /* Pods-exploreAllumin8Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8Tests.release.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8Tests/Pods-exploreAllumin8Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exploreAllumin8_exploreAllumin8UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +255,7 @@
 				A8829E1E257997DF00BC44E1 /* SchedulingVC.swift */,
 				A8829E1F257997DF00BC44E1 /* SurgeryInfoVC.swift */,
 				A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */,
+				A8D2B7672581688B008499D8 /* SurgeryDatePickerVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				02B682CE257B66A600DBAC22 /* DetailedItemsVC.swift in Sources */,
 				A8829E2B257997DF00BC44E1 /* SurgeryInfoVC.swift in Sources */,
 				02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */,
+				A8D2B7682581688B008499D8 /* SurgeryDatePickerVC.swift in Sources */,
 				A8829E25257997DF00BC44E1 /* CVDataSource.swift in Sources */,
 				02B682C8257AED8F00DBAC22 /* DetailedCaseViewCells.swift in Sources */,
 				A8829E22257997DF00BC44E1 /* LocalSurgeryInfo.swift in Sources */,

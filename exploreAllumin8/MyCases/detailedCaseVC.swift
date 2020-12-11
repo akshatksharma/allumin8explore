@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lightbox
 
 class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,12 +26,12 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        dump(indexPath.section)
-        dump(indexPath.row)
+//        dump(indexPath.section)
+//        dump(indexPath.row)
         let item = items[indexPath.section]
         
         print("saw item")
-//        dump(items)
+//        dump(item)
         
         switch item.type {
         case .caseInfo:
@@ -55,6 +56,11 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.caseInfo = item
                 return cell
             }
+        case .surgeryImageInfo:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "imageInfo", for: indexPath) as? SurgeryImageTableViewCell {
+                cell.caseInfo = item
+                return cell
+            }
         }
         
         return UITableViewCell()
@@ -76,7 +82,8 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         case .instrumentInfo:
             return
-            
+        case .surgeryImageInfo:
+            return
         }
     }
     
@@ -86,27 +93,43 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func loadItems() {
         
-        items.removeAll()
+        dump(detailedCase)
         
-        if let patientId = detailedCase?.patient_id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
+        if let patientId = detailedCase?.patient?.id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
             
-            let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: patientId)
+            let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: "\(patientId)")
             
             print("appending patientInfo to items")
             items.append(caseInfoItem)
         }
         
-        if let instruments = detailedCase?.instruments, let procedure = detailedCase?.procedure {
+        if let instruments = detailedCase?.kits?[0].instruments, let procedure = detailedCase?.procedure {
             let surgeryKitItem = SurgeryKitItem(kitName: "\(procedure) Kit", surgeryItems: instruments)
             
             print("appending surgery to items")
             items.append(surgeryKitItem)
 //            dump(items)
         }
+        
+    
+        
+       let images = [
+        LightboxImage(image: #imageLiteral(resourceName: "sampleImg3")),
+        LightboxImage(image: #imageLiteral(resourceName: "sampleImg2")),
+        LightboxImage(image: #imageLiteral(resourceName: "sampleImg1"))
+        
+        ]
+        
+        
+        
+        let surgeryImageItem = SurgeryImagesItem(images: images)
+        items.append(surgeryImageItem)
+        
     }
     
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self

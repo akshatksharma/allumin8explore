@@ -91,3 +91,75 @@ class InstrumentTableViewCell: UITableViewCell {
     }
     
 }
+
+class SurgeryImageTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    func setupCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.reloadData()
+        
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if let caseInfo = caseInfo as? SurgeryImagesItem {
+            return caseInfo.images.count
+        }
+        
+        return 0
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        guard let caseInfo = caseInfo as? SurgeryImagesItem else { return UICollectionViewCell() }
+         
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? SurgeryImageViewImages else { return UICollectionViewCell() }
+        
+        let image = caseInfo.images[indexPath.item].image
+        
+        cell.surgeryImages.image = image
+        
+        return cell
+     }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let caseInfo = caseInfo as? SurgeryImagesItem else { return }
+        
+        let image = caseInfo.images[indexPath.item].image
+  
+        
+        
+        
+        
+    }
+    
+    var caseInfo: DetailedViewItem? {
+           didSet {
+            
+            setupCollectionView()
+            
+//            guard let caseInfo = caseInfo as? SurgeryImagesItem else {
+//                         print("failed convert")
+//                         return
+//                }
+            }
+       }
+    
+    
+ 
+}
+
+class SurgeryImageViewImages: UICollectionViewCell {
+    
+    @IBOutlet weak var surgeryImages: UIImageView!
+    
+}
+

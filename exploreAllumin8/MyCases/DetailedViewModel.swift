@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Lightbox
 
 // enum for what kind of cell will be displayed
 enum detailedViewItemType {
@@ -14,6 +15,7 @@ enum detailedViewItemType {
     case itemInfo
     case statusInfo
     case instrumentInfo
+    case surgeryImageInfo
 }
 
 // wrapper protocol for cell types
@@ -59,6 +61,13 @@ struct InstrumentItem: DetailedViewItem {
     var InstrumentName: String?
     var catalogNum: String?
     var InstrumentNum: String?
+}
+
+struct SurgeryImagesItem: DetailedViewItem {
+    var sectionTitle = "Procedure Images"
+    var images: [LightboxImage]
+    var type: detailedViewItemType = .surgeryImageInfo
+
 }
 
 

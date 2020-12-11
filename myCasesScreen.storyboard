@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -263,6 +264,64 @@
                                             <outlet property="caseName" destination="Ngf-GT-erI" id="8VO-3n-6Ng"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageInfo" rowHeight="450" id="bK0-Wc-HYw" customClass="SurgeryImageTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="330.33333206176758" width="345" height="450"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bK0-Wc-HYw" id="Ocu-E5-lSj">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="450"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pPU-x0-HiH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="450"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LF6-aT-55x">
+                                                        <size key="itemSize" width="358" height="372"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="lzV-A7-tvq" customClass="SurgeryImageViewImages" customModule="exploreAllumin8" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="39" width="358" height="372"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4ZW-Fw-u6D">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="372"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YpC-fp-QQp">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="372"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="372" id="V0F-pW-vNt"/>
+                                                                            <constraint firstAttribute="width" constant="358" id="yVb-0F-x61"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="YpC-fp-QQp" secondAttribute="trailing" id="918-NC-eYs"/>
+                                                                    <constraint firstItem="YpC-fp-QQp" firstAttribute="top" secondItem="4ZW-Fw-u6D" secondAttribute="top" id="LD2-dH-1Fw"/>
+                                                                    <constraint firstItem="YpC-fp-QQp" firstAttribute="leading" secondItem="4ZW-Fw-u6D" secondAttribute="leading" id="RMD-Gt-3Dd"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="YpC-fp-QQp" secondAttribute="bottom" id="fTc-Nd-aou"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="358" height="372"/>
+                                                            <connections>
+                                                                <outlet property="surgeryImages" destination="YpC-fp-QQp" id="11U-bT-WtM"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="pPU-x0-HiH" secondAttribute="trailing" id="3qK-87-81t"/>
+                                                <constraint firstItem="pPU-x0-HiH" firstAttribute="leading" secondItem="Ocu-E5-lSj" secondAttribute="leading" id="R7q-Dh-Vro"/>
+                                                <constraint firstItem="pPU-x0-HiH" firstAttribute="top" secondItem="Ocu-E5-lSj" secondAttribute="top" id="feb-ES-hif"/>
+                                                <constraint firstAttribute="bottom" secondItem="pPU-x0-HiH" secondAttribute="bottom" id="kXw-hC-Tmp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="pPU-x0-HiH" id="gDC-Dt-z0r"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
@@ -276,7 +335,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5VP-ZS-iZ0"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6wQ-xp-kcr"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6wQ-xp-kcr">
+                        <barButtonItem key="rightBarButtonItem" title="Add Scans" id="O8d-kc-X2R"/>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="tableView" destination="EQm-VM-n2v" id="Xf5-ev-Lvl"/>
@@ -285,9 +346,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qg-gL-pQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5565.9420289855079" y="-202.23214285714286"/>
+            <point key="canvasLocation" x="5565.6000000000004" y="-202.46305418719211"/>
         </scene>
-        <!--thicc-->
+        <!--Detailed ItemsVC-->
         <scene sceneID="dua-cM-78n">
             <objects>
                 <viewController id="dfg-B2-mgq" customClass="DetailedItemsVC" customModule="exploreAllumin8" customModuleProvider="target" sceneMemberID="viewController">
@@ -353,7 +414,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KCf-pz-uyg"/>
                     </view>
-                    <navigationItem key="navigationItem" title="thicc" largeTitleDisplayMode="always" id="t3q-Mt-vtS">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="t3q-Mt-vtS">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="X57-vS-vuB">
                             <connections>
                                 <action selector="close:" destination="dfg-B2-mgq" id="U6F-mX-E3R"/>

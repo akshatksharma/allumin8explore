@@ -21,7 +21,6 @@ struct Surgery: Identifiable, Codable {
     let hospital: String?
     let kits: [Kit]?
     let notes: [String]?
-    let prep_status: String?
     let patient: Patient?
 //    var prep_status_enum: PrepStatusEnum {
 //        switch prep_status {
@@ -43,6 +42,41 @@ struct Surgery: Identifiable, Codable {
     let suregon_id: String?
     let surgeon_name: String?
     let tracking: [productTrackInfo]?
+}
+
+struct SchedulingSurgery: Codable{
+        var date: Timestamp?
+        var hospital: String?
+        var kits: [Kit]?
+        var notes: [String]?
+        var patient: Patient?
+        var procedure: String?
+        var status: String?
+        var surgeon_id: String?
+        var surgeon_name: String?
+        var tracking: [productTrackInfo]?
+    
+    init(){
+        self.date = nil
+        self.hospital = nil
+        self.kits = nil
+        self.notes = nil
+        self.patient = nil
+        self.procedure = nil
+        self.status = nil
+        self.surgeon_id = nil
+        self.surgeon_name = nil
+        self.tracking = []
+    }
+}
+
+
+
+
+struct Surgeon: Identifiable, Codable {
+    @DocumentID var id: String?
+    var name: String?
+    var hospitals: [String]?
 }
 
 

@@ -8,7 +8,7 @@ target 'exploreAllumin8' do
 #   pod "CalendarView"
 
   # Pods for exploreAllumin8
-  
+  pod 'Lightbox'
   pod 'FSCalendar'
    # add the Firebase pod for Google Analytics
    pod 'Firebase/Analytics'

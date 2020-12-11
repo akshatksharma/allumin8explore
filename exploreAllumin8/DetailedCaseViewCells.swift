@@ -127,6 +127,20 @@ class SurgeryImageTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         return cell
      }
     
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let caseInfo = caseInfo as? SurgeryImagesItem else { return }
+        
+        let image = caseInfo.images[indexPath.item].image
+  
+        
+        
+        
+        
+    }
+    
     var caseInfo: DetailedViewItem? {
            didSet {
             

@@ -88,15 +88,15 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         items.removeAll()
         
-        if let patientId = detailedCase?.patient_id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
+        if let patientId = detailedCase?.patient?.id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
             
-            let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: patientId)
+            let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: "\(patientId)")
             
             print("appending patientInfo to items")
             items.append(caseInfoItem)
         }
         
-        if let instruments = detailedCase?.instruments, let procedure = detailedCase?.procedure {
+        if let instruments = detailedCase?.kits?[0].instruments, let procedure = detailedCase?.procedure {
             let surgeryKitItem = SurgeryKitItem(kitName: "\(procedure) Kit", surgeryItems: instruments)
             
             print("appending surgery to items")

@@ -19,11 +19,10 @@ struct Surgery: Identifiable, Codable {
     @DocumentID var id: String?
     @ServerTimestamp var date: Timestamp?
     let hospital: String?
-    let instruments: [Product]?
+    let kits: [Kit]?
     let notes: [String]?
-    let patient_id: String?
     let prep_status: String?
-    
+    let patient: Patient?
 //    var prep_status_enum: PrepStatusEnum {
 //        switch prep_status {
 //        case "Scheduled":
@@ -40,7 +39,6 @@ struct Surgery: Identifiable, Codable {
 //    }
     
     let procedure: String?
-    let special_requests: [String]?
     let status: String?
     let suregon_id: String?
     let surgeon_name: String?
@@ -57,7 +55,20 @@ struct Product: Codable {
 struct productTrackInfo: Codable {
     let order_id: String?
     let status: String?
-    let trackingInfo: Double?
+    let tracking_number: Double?
+}
+
+struct Patient: Codable {
+    let age: Double?
+    let id: Double?
+    let name: String?
+    let sex: String?
+    let weight: Double
+}
+
+struct Kit: Codable {
+    let instruments: [Product]?
+    let kit_name: String?
 }
 
 

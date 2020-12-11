@@ -9,7 +9,23 @@
 import UIKit
 import Lightbox
 
-class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, imageViewer {
+    
+    func showImage(images: [LightboxImage], startIndex: Int) {
+        // Create an instance of LightboxController.
+        let controller = LightboxController(images: images, startIndex: startIndex)
+
+        // Set delegates.
+//        controller.pageDelegate = self
+//        controller.dismissalDelegate = self
+
+        // Use dynamic background.
+        controller.dynamicBackground = true
+
+        // Present your controller.
+        present(controller, animated: true, completion: nil)
+    }
+    
     
     @IBOutlet weak var tableView: UITableView!
     var detailedCase:Surgery?
@@ -59,6 +75,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .surgeryImageInfo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "imageInfo", for: indexPath) as? SurgeryImageTableViewCell {
                 cell.caseInfo = item
+                cell.delegate = self
                 return cell
             }
         }

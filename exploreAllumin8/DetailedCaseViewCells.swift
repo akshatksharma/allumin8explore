@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lightbox
 
 class DetailedCaseInfoTableViewCell: UITableViewCell {
 
@@ -94,8 +95,15 @@ class InstrumentTableViewCell: UITableViewCell {
 
 class SurgeryImageTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
+    var delegate: imageViewer!
+    
+    var caseInfo: DetailedViewItem? {
+             didSet {
+                  setupCollectionView()
+              }
+         }
+    
     
     func setupCollectionView() {
         collectionView.dataSource = self
@@ -133,28 +141,18 @@ class SurgeryImageTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         
         guard let caseInfo = caseInfo as? SurgeryImagesItem else { return }
         
-        let image = caseInfo.images[indexPath.item].image
-  
+        let images = caseInfo.images
         
-        
+        self.delegate.showImage(images: images, startIndex: indexPath.item)
         
         
     }
     
-    var caseInfo: DetailedViewItem? {
-           didSet {
-            
-            setupCollectionView()
-            
-//            guard let caseInfo = caseInfo as? SurgeryImagesItem else {
-//                         print("failed convert")
-//                         return
-//                }
-            }
-       }
-    
-    
- 
+  
+}
+
+protocol imageViewer {
+    func showImage(images: [LightboxImage], startIndex: Int)
 }
 
 class SurgeryImageViewImages: UICollectionViewCell {

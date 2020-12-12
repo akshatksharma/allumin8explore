@@ -68,8 +68,10 @@ class PatientInfoTableViewCell: UITableViewCell, UICollectionViewDelegate, UICol
         let patient = caseInfo.patient
         
         guard let id = patient.id, let name = patient.name, let age = patient.age, let sex = patient.sex, let weight = patient.weight else { return nil }
+        
+        guard let idInt = id.toInt(), let ageInt = age.toInt() else { return nil }
     
-        return [ ["\(id)" : "\(id)"], [name : name], ["\(age)" : "\(age)"], [sex : sex], ["\(weight)" : "\(weight)"]]
+        return [ ["ID" : "\(idInt)"], ["NAME" : name], ["AGE" : "\(ageInt)"], ["SEX" : sex], ["WEIGHT" : "\(weight)"]]
       }
     
     

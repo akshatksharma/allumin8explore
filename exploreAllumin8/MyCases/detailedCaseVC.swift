@@ -8,6 +8,8 @@
 
 import UIKit
 import Lightbox
+import PopupDialog
+
 
 class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate, imageViewer {
     
@@ -52,14 +54,8 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 let kit = surgeryItem.kits[indexPath.row]
                 cell.kit = kit
-                //               cell.caseInfo = item
                 return cell
             }
-            //        case .statusInfo:
-            //            if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
-            //                cell.caseInfo = item
-            //                return cell
-        //            }
         case .instrumentInfo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
                 return cell
@@ -88,8 +84,6 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let kit = surgeryItem.kits[indexPath.row]
             let kitInfo = kit
             performSegue(withIdentifier: "showItems", sender: kitInfo )
-            //        case .statusInfo:
-        //            return
         case .instrumentInfo:
             return
         case .surgeryImageInfo:
@@ -140,6 +134,12 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func addImage(_ sender: Any) {
         
+        // this function sets up the dialogs to open the photo library
+        // there is an option to open the Camera, but this will crash on the simulator
+        // i commented out the if statement to hide the camera if not availible, but i thought it would be good to have the camera option shown in the video, even if we don't click on it
+        
+        // calls the function below when done
+        
         let alert = UIAlertController.init(title: "Choose an image", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Photo Gallery", style: .default, handler: { (button) in
@@ -160,35 +160,73 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        print("am hereee")
+        // called after the user has picked an image
+        // chosenImage: UIImage -- the image the user chose
         
-        guard let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            print("f")
-            
-            return
-            
-        }
+        // this function then summons the custom modal that allows the user to caption the image
         
-        let lightboxImage = LightboxImage(image: chosenImage)
-        
-        images.append(lightboxImage)
-        
-        dump(images)
-        
-        DispatchQueue.main.async {
-            self.loadItems()
-        }
+        guard let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         
         dismiss(animated: true, completion: nil)
+        
+        showCaptionModal(chosenImage)
+    }
+    
+    func showCaptionModal(_ image: UIImage) {
+        
+        // this function sets up a modal/popup that allows the user to make their own caption
+        
+        // setting up styles and view
+        let overlayAppearance = PopupDialogOverlayView.appearance()
+        overlayAppearance.blurEnabled = false
+        overlayAppearance.opacity = 0.3
+        
+        let captionVC = AddCaptionVC(nibName: "AddCaptionVC", bundle: nil)
+        
+        // making the popup itself
+        
+        let popup = PopupDialog(viewController: captionVC, buttonAlignment: .horizontal)
+        
+        guard let customView = popup.viewController as? AddCaptionVC else { return }
+        
+        // defining buttons and callback functions
+        
+        let addButton = DefaultButton(title: "Add", height: 60) {
+            
+            /*
+             ************
+             this is where the image and caption will be accessible and able to be stored in firebase
+             ************
+             
+             image: UIImage -- parameter to this function
+             caption: String? -- variable in this closure (right below this comment)
+             */
+            
+            
+            let caption = customView.captionText.text
+            
+            let lightboxImage = LightboxImage(image: image, text:caption ?? "")
+            
+            self.images.append(lightboxImage)
+            
+            DispatchQueue.main.async {
+                self.loadItems()
+            }
+        }
+        
+        let cancelButton = CancelButton(title: "Cancel", height: 60) { return }
+        
+        // adding buttons to popup
+        
+        popup.addButtons([addButton, cancelButton])
+        
+        // adding image to popup
+        
+        customView.imageView.image = image
+        
+        self.present(popup, animated: true, completion: nil)
     }
     
     
@@ -196,6 +234,9 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func showImage(images: [LightboxImage], startIndex: Int) {
+        
+        // handles showing the image gallery when an image is clicked
+        
         // Create an instance of LightboxController.
         let controller = LightboxController(images: images, startIndex: startIndex)
         

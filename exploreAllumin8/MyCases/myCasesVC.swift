@@ -127,9 +127,6 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
                 return try? queryDocumentSnapshot.data(as: Surgery.self)
                 
             }
-            
-           print(self.caseData)
-
 
             // calling the reloadData on the main method so it happens on time
             DispatchQueue.main.async {
@@ -140,7 +137,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
             }
         }
         
-        print(self.caseData)
+        
 
     }
     

@@ -9,25 +9,12 @@
 import UIKit
 import Lightbox
 
-class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, imageViewer {
-    
-    func showImage(images: [LightboxImage], startIndex: Int) {
-        // Create an instance of LightboxController.
-        let controller = LightboxController(images: images, startIndex: startIndex)
-
-        // Set delegates.
-//        controller.pageDelegate = self
-//        controller.dismissalDelegate = self
-
-        // Use dynamic background.
-        controller.dynamicBackground = true
-
-        // Present your controller.
-        present(controller, animated: true, completion: nil)
-    }
+class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate, imageViewer {
     
     
     @IBOutlet weak var tableView: UITableView!
+    let imagePicker = UIImagePickerController()
+    var images = [LightboxImage]()
     var detailedCase:Surgery?
     var items = [DetailedViewItem]()
     
@@ -41,13 +28,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-//        dump(indexPath.section)
-//        dump(indexPath.row)
         let item = items[indexPath.section]
-        
-        print("saw item")
-//        dump(item)
         
         switch item.type {
         case .caseInfo:
@@ -55,21 +36,32 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.caseInfo = item
                 return cell
             }
+        case .patientInfo:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "patientInfo", for: indexPath) as? PatientInfoTableViewCell {
+                cell.caseInfo = item
+                return cell
+            }
         case .itemInfo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
                 
                 print("making surgery cell  ")
-                cell.caseInfo = item
+                guard let surgeryItem = item as? SurgeryKitItem else {
+                    print("failed convert")
+                    return cell
+                }
+                
+                let kit = surgeryItem.kits[indexPath.row]
+                cell.kit = kit
+                //               cell.caseInfo = item
                 return cell
             }
-        case .statusInfo:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
-                cell.caseInfo = item
-                return cell
-            }
+            //        case .statusInfo:
+            //            if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
+            //                cell.caseInfo = item
+            //                return cell
+        //            }
         case .instrumentInfo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "itemInfo", for: indexPath) as? DetailedSurgeryKitInfoTableViewCell {
-                cell.caseInfo = item
                 return cell
             }
         case .surgeryImageInfo:
@@ -78,6 +70,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.delegate = self
                 return cell
             }
+            
         }
         
         return UITableViewCell()
@@ -86,20 +79,22 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let item = items[indexPath.section]
-
+        
         switch item.type {
         case .caseInfo:
             return
         case .itemInfo:
-            guard let item = item as? SurgeryKitItem else { return }
-            let kitInfo = KitInfo(name: item.kitName, products: item.surgeryItems)
-    
+            guard let surgeryItem = item as? SurgeryKitItem else { return }
+            let kit = surgeryItem.kits[indexPath.row]
+            let kitInfo = kit
             performSegue(withIdentifier: "showItems", sender: kitInfo )
-        case .statusInfo:
-            return
+            //        case .statusInfo:
+        //            return
         case .instrumentInfo:
             return
         case .surgeryImageInfo:
+            return
+        case .patientInfo:
             return
         }
     }
@@ -110,65 +105,133 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func loadItems() {
         
-        dump(detailedCase)
+        items.removeAll()
         
         if let patientId = detailedCase?.patient?.id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
             
             let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: "\(patientId)")
             
-            print("appending patientInfo to items")
+            print("appending caseInfo to items")
             items.append(caseInfoItem)
         }
         
-        if let instruments = detailedCase?.kits?[0].instruments, let procedure = detailedCase?.procedure {
-            let surgeryKitItem = SurgeryKitItem(kitName: "\(procedure) Kit", surgeryItems: instruments)
+        if let patient = detailedCase?.patient {
             
-            print("appending surgery to items")
-            items.append(surgeryKitItem)
-//            dump(items)
+            let patientInfoItem = PatientInfoItem(patient: patient)
+            print("appending patientInfo to items")
+            items.append(patientInfoItem)
         }
         
-    
         
-       let images = [
-        LightboxImage(image: #imageLiteral(resourceName: "sampleImg3")),
-        LightboxImage(image: #imageLiteral(resourceName: "sampleImg2")),
-        LightboxImage(image: #imageLiteral(resourceName: "sampleImg1"))
-        
-        ]
-        
-        
+        if let kits = detailedCase?.kits {
+            let surgeryKitItem = SurgeryKitItem(kits: kits)
+            print("appending surgery to items")
+            items.append(surgeryKitItem)
+        }
         
         let surgeryImageItem = SurgeryImagesItem(images: images)
         items.append(surgeryImageItem)
         
+        self.tableView.reloadData()
+        
     }
     
-
+    
+    
+    @IBAction func addImage(_ sender: Any) {
+        
+        let alert = UIAlertController.init(title: "Choose an image", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Photo Gallery", style: .default, handler: { (button) in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        //        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (button) in
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        //        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        print("am hereee")
+        
+        guard let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            print("f")
+            
+            return
+            
+        }
+        
+        let lightboxImage = LightboxImage(image: chosenImage)
+        
+        images.append(lightboxImage)
+        
+        dump(images)
+        
+        DispatchQueue.main.async {
+            self.loadItems()
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    func showImage(images: [LightboxImage], startIndex: Int) {
+        // Create an instance of LightboxController.
+        let controller = LightboxController(images: images, startIndex: startIndex)
+        
+        // Use dynamic background.
+        controller.dynamicBackground = true
+        
+        // Present your controller.
+        present(controller, animated: true, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        imagePicker.delegate = self
         loadItems()
     }
-  
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
         
         let instrumentsNavController = segue.destination as! UINavigationController
         
         guard let instrumentsVC =  instrumentsNavController.topViewController as? DetailedItemsVC else { return }
-            
-        instrumentsVC.kitInfo = sender as? KitInfo
         
-     }
-     
+        instrumentsVC.kitInfo = sender as? Kit
+        
+    }
+    
     
 }
 

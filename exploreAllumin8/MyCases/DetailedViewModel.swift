@@ -8,6 +8,7 @@
 
 import Foundation
 import Lightbox
+import FirebaseFirestore
 
 // enum for what kind of cell will be displayed
 enum detailedViewItemType {
@@ -37,11 +38,11 @@ extension DetailedViewItem {
 // making specific cell data types
 struct CaseInfoItem: DetailedViewItem {
     var type: detailedViewItemType = .caseInfo
-    var sectionTitle = "Case Info"
+    var sectionTitle = "Procedure"
     var surgeryName: String?
     var surgeon: String?
-    var caseId: String?
-    var patientId: String?
+    var date: Timestamp?
+    var hospital: String?
 }
 
 struct PatientInfoItem:DetailedViewItem {

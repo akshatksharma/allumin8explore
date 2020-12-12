@@ -9,6 +9,8 @@
 import UIKit
 import Lightbox
 import PopupDialog
+import FirebaseFirestore
+
 
 
 class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate, imageViewer {
@@ -101,9 +103,9 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         items.removeAll()
         
-        if let patientId = detailedCase?.patient?.id, let caseId = detailedCase?.id, let surgeon = detailedCase?.surgeon_name, let surgeryName = detailedCase?.procedure {
+        if let surgeryName = detailedCase?.procedure, let surgeon = detailedCase?.surgeon_name, let date = detailedCase?.date, let hospital = detailedCase?.hospital {
             
-            let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, caseId: caseId, patientId: "\(patientId)")
+            let caseInfoItem = CaseInfoItem(surgeryName: surgeryName, surgeon: surgeon, date: date, hospital: hospital)
             
             print("appending caseInfo to items")
             items.append(caseInfoItem)

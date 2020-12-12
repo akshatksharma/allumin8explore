@@ -36,7 +36,6 @@ struct Surgery: Identifiable, Codable {
 //            return .noStatus
 //        }
 //    }
-    
     let procedure: String?
     let status: String?
     let suregon_id: String?

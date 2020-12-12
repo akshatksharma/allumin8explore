@@ -7,22 +7,33 @@
 
 import UIKit
 import Lightbox
+import FirebaseFirestore
 
 class DetailedCaseInfoTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var caseId: UILabel!
-    @IBOutlet weak var patientId: UILabel!
-    @IBOutlet weak var surgeonName: UILabel!
+    
+    
+    @IBOutlet weak var procedureLabel: UILabel!
+    @IBOutlet weak var surgeonLabel: UILabel!
+    @IBOutlet weak var hospitalLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     
     var caseInfo: DetailedViewItem? {
         didSet {
             guard let caseInfo = caseInfo as? CaseInfoItem else { return }
             
-            guard let truncatedCaseId = caseInfo.caseId?[0..<7], let truncatedPatientId = caseInfo.patientId?[0..<7]  else { return }
+            procedureLabel.text = caseInfo.surgeryName
+            surgeonLabel.text = caseInfo.surgeon
+            hospitalLabel.text = caseInfo.hospital
             
-            caseId.text = truncatedCaseId
-            patientId.text = truncatedPatientId
-            surgeonName.text = caseInfo.surgeon
+            guard let date = caseInfo.date?.dateValue() else { return }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM"
+            
+            let stringDate = dateFormatter.string(from: date)
+            
+            dateLabel.text = stringDate
         }
     }
     

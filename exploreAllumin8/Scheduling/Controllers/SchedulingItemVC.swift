@@ -8,108 +8,35 @@
 
 import UIKit
 
-class SchedulingItemVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
-    }
+class SchedulingItemVC: UIViewController{
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let myCell = UITableViewCell()
-            return myCell
-    }
     
 
-    @IBOutlet weak var itemField: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     var surgeryInfoUpdater: SurgeryInfoUpdater?
     var surgeryListUpdater: SurgeryListLocalUpdater?
     var id: String?
+    var nextIndex: Int?
+    
+    var info:[String] = ["Barnes Jewish"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(nextIndex)
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        
         // Do any additional setup after loading the view.
     }
 
+
     
-    func onFlip(){
-        
-        var newInfo:Any = ""
-        if let controlItem = itemField as? UIDatePicker{
-            newInfo = controlItem.date
-        }else if let textItem = itemField as? UITextField{
-            newInfo = textItem.text
-        }else{
-            print("could not parse item Field")
-            return
-        }
-        
-        
-        guard let surgeryInfoField = id else {
-            print("no id was passed")
-            return
-        }
-        
-        /*
-         var date: Date?
-         var patientID: Int?
-         var hospital: String?
-         var procedure: String?
-         var instruments: [CatalogItem]
-         var implants: [CatalogItem]
-         */
-        
-        guard let updater = surgeryInfoUpdater else{
-            print("updater not set")
-            return
-        }
-        
-        var tempSurgeryInfo = updater.getCurrentInfo()
-        print(surgeryInfoField)
-        switch surgeryInfoField{
-        case "SurgeryDate":
-            guard let date = newInfo as? Date else {
-                print("Failed to convert date to Date")
-                return
-            }
-            tempSurgeryInfo.date = date
-            break
-        case "PatientID":
-            guard let patientIDString = newInfo as? String else{
-                print("Failed to convert patientID to String")
-                return
-            }
-            print(patientIDString)
-            guard let patientID = Int(patientIDString) else {
-                print("Failed to convert patientID to Int")
-                return
-            }
-            tempSurgeryInfo.patientID = patientID
-            break
-        case "Hospital":
-            guard let hospital = newInfo as? String else {
-                print("Failed to convert hospital to String")
-                return
-            }
-            tempSurgeryInfo.hospital = hospital
-            break
-        case "Procedure":
-            guard let procedure = newInfo as? String else {
-                print("Failed to convert procedure to String")
-                return
-            }
-            tempSurgeryInfo.procedure = procedure
-        default:
-            print("ID not recognized")
-            break
-        }
-        
-        updater.updateSurgeryInfo(newInfo: tempSurgeryInfo)
-        
-        //Update surgeryInfo with info in current vc
-        //If nothing, set to nil
-        //At end of vcs, only confirm if all required fields are set
-    }
     
 
     /*
@@ -122,4 +49,62 @@ class SchedulingItemVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     */
 
+}
+
+extension SchedulingItemVC: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected \(info[indexPath.row])")
+        
+        let newInfo = info[indexPath.row]
+        
+        guard let fieldID = id else {
+            print("no id set")
+            return
+        }
+        
+        guard let updater = surgeryInfoUpdater else{
+            print("updater not set")
+            return
+        }
+        
+        var tempSurgeryInfo = updater.getCurrentInfo()
+        switch fieldID{
+        case "Hospital":
+            tempSurgeryInfo.hospital = newInfo
+            break
+        case "Patient":
+//            tempSurgeryInfo.patient?.id = Int(newInfo)
+            //NAMIT TO-DO: Patient updating was handled here but now needs to be handled elsewhere cause its not a table anymore
+            break
+        case "Procedure":
+            tempSurgeryInfo.procedure = newInfo
+            break
+        default:
+            print("info passed but could not find proper surgery info id to place it into")
+            return
+        }
+        
+        guard let nextVCIndex = nextIndex else {
+            fatalError("no vc to pass to next")
+        }
+        updater.updateSurgeryInfo(newInfo: tempSurgeryInfo, nextIndex: nextVCIndex)
+    }
+}
+
+extension SchedulingItemVC: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return info.count
+    }
+    
+
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let myCell = tableView.dequeueReusableCell(withIdentifier: "tableCell") else {
+            fatalError("could not find cell with reuse idenfier 'tableCell' in SchedulingItemVC")
+        }
+        
+        myCell.textLabel?.text = info[indexPath.row]
+        
+        return myCell
+    }
 }

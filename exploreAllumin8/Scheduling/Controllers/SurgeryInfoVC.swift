@@ -44,7 +44,7 @@ class SurgeryInfoVC: UIViewController {
         dateFormatter.dateFormat = "HH:mm E, d MMM y"
         
         
-        dateLabel.text = "Date: \(info.date == nil ? "Not Set" : dateFormatter.string(from: info.date!))"
+        dateLabel.text = "Date: \(info.startDate == nil ? "Not Set" : dateFormatter.string(from: info.startDate!))"
         patientIDLabel.text = "Patient ID: \(info.patientID == nil ? "Not Set" : String(info.patientID!))"
         hospitalLabel.text = "Hospital: \(info.hospital == "" ? "Not Set" : info.hospital!)"
         procedureLabel.text = "Procedure: \(info.procedure == "" ? "Not Set" : info.procedure!)"

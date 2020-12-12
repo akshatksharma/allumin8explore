@@ -20,6 +20,9 @@ target 'exploreAllumin8' do
 
    # Optionally, include the Swift extensions if you're using Swift.
    pod 'FirebaseFirestoreSwift'
+   
+   pod 'CodableFirebase'
+
 
   target 'exploreAllumin8Tests' do
     inherit! :search_paths
@@ -29,5 +32,7 @@ target 'exploreAllumin8' do
   target 'exploreAllumin8UITests' do
     # Pods for testing
   end
+  
+
 
 end

@@ -9,6 +9,10 @@
 import UIKit
 
 class ConfirmationVC: SchedulingItemVC {
+    @IBOutlet weak var caseIdLabel: UILabel!
+    @IBOutlet weak var patientIDLabel: UILabel!
+    @IBOutlet weak var surgeonNameLabel: UILabel!
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -26,6 +30,14 @@ class ConfirmationVC: SchedulingItemVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let updater = surgeryInfoUpdater else {
+            fatalError("no updater passed to confirmationVC")
+        }
+        
+        let tempInfo = updater.getCurrentInfo()
+        
+        
+        
     
     }
     
@@ -34,6 +46,10 @@ class ConfirmationVC: SchedulingItemVC {
             print("failed to get info")
             return
         }
+        
+        caseIdLabel.text = "ljkl;aejsf"
+//        patientIDLabel.text = String(info.patientID!)
+        surgeonNameLabel.text = "Todd Sproul"
         
 
 

@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import FSCalendar
 
+protocol CasesUpdater {
+}
+
 class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate {
     
     var db:Firestore?
@@ -116,7 +119,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
               return
             }
             
-            print("here are the docs")
+//            print("here are the docs")
            
 //            for document in documents {
 //                print("\(document.documentID) => \(document.data())")
@@ -136,8 +139,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
                 self.calendarTable.reloadData()
             }
         }
-        
-        
+      
 
     }
     
@@ -222,13 +224,16 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         calendarTable.isHidden = true
         calendar.isHidden = true
         
-        loadData()
+        
 
 
         // Do any additional setup after loading the view.
     }
     
 
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
 
     // MARK: - Navigation
 

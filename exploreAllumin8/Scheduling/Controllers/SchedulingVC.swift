@@ -7,58 +7,68 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SurgeryListLocalUpdater {
     func updateSurgeries(newSurgery:LocalSurgeryInfo)
 }
 
 class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
+
+    
     var surgeries:[LocalSurgeryInfo] = [
-        LocalSurgeryInfo(date: Date(timeIntervalSince1970: 0), patientID: 1293809, hospital: "Barnes Jewish", procedure: "Pet Scan", instruments: [], implants: [])
+        
     ]
     
- 
+    
+//    var surgeonData:Surgeon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
     
-
+    
+        
+//        print(self.caseData)
+        
+    
+    
     //Temp until connected to FireStore
     func updateSurgeries(newSurgery: LocalSurgeryInfo) {
         print("updating surgery list")
-
- 
+        
+        
         surgeries.append(newSurgery)
         
         print(surgeries)
         
         //surgeryTable.reloadData()
         
-       // print(surgeryTable.numberOfRows(inSection: 0))
+        // print(surgeryTable.numberOfRows(inSection: 0))
         
         
-//        surgeryTable.beginUpdates()
-//        surgeryTable.insertRows(at: [IndexPath(row: self.surgeries.count-2, section: 0)], with: .automatic)
-//        surgeryTable.endUpdates()
-     
+        //        surgeryTable.beginUpdates()
+        //        surgeryTable.insertRows(at: [IndexPath(row: self.surgeries.count-2, section: 0)], with: .automatic)
+        //        surgeryTable.endUpdates()
+        
     }
-     
-     
+    
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        print("seguing to \(segue.destination)")
+//        print("seguing to \(segue.destination)")
         if let pageController = segue.destination as? SchedulingPageController{
             pageController.surgeryListUpdater = self
         }
     }
     
-
+    
 }
 
 extension SchedulingVC: UITableViewDataSource{
@@ -76,23 +86,25 @@ extension SchedulingVC: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "surgeryTableCell", for: indexPath)
-           
+        
         let surgeryInfo = surgeries[indexPath.row]
-           
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm E, d MMM y"
-
+        
         
         
         guard let procedure = surgeryInfo.procedure else {
             fatalError("procedure is not set")
         }
         
-        cell.textLabel?.text = "\(procedure) at \(dateFormatter.string(from: surgeryInfo.date!))"
-           
+        
         return cell
     }
 }
+
+
+
 
 extension SchedulingVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

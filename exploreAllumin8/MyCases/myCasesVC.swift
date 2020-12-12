@@ -119,11 +119,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
               return
             }
             
-//            print("here are the docs")
-           
-//            for document in documents {
-//                print("\(document.documentID) => \(document.data())")
-//            }
+
             
             // mapping all of the data from the surgeries_test table to an array of objects of type Surgery
             self.caseData = documents.compactMap { queryDocumentSnapshot -> Surgery? in

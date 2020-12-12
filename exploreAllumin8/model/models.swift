@@ -22,20 +22,6 @@ struct Surgery: Identifiable, Codable {
     let kits: [Kit]?
     let notes: [String]?
     let patient: Patient?
-//    var prep_status_enum: PrepStatusEnum {
-//        switch prep_status {
-//        case "Scheduled":
-//            return .scheduled
-//        case "Confirmed":
-//            return .confirmed
-//        case "Items Shipped":
-//            return .itemsShipped
-//        case "Items Recieved":
-//            return .itemsRecieved
-//        default:
-//            return .noStatus
-//        }
-//    }
     let procedure: String?
     let status: String?
     let suregon_id: String?
@@ -68,8 +54,6 @@ struct SchedulingSurgery: Codable{
         self.tracking = []
     }
 }
-
-
 
 
 struct Surgeon: Identifiable, Codable {

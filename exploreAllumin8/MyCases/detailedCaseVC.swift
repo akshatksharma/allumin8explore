@@ -209,8 +209,11 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let caption = customView.captionText.text
             
-            let lightboxImage = LightboxImage(image: image, text:caption ?? "")
             
+            
+            
+            let lightboxImage = LightboxImage(image: image, text:caption ?? "")
+     
             self.images.append(lightboxImage)
             
             DispatchQueue.main.async {
@@ -256,6 +259,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.delegate = self
         imagePicker.delegate = self
+        
         loadItems()
     }
     

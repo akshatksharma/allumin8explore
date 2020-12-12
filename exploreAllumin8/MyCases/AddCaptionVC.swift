@@ -9,14 +9,15 @@
 import UIKit
 
 class AddCaptionVC: UIViewController {
-
+    
     @IBOutlet weak var captionText: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        progressBar.isHidden = true
         captionText.delegate = self
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
@@ -24,24 +25,25 @@ class AddCaptionVC: UIViewController {
     }
     
     @objc func endEditing() {
-           view.endEditing(true)
-       }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        print("save photo hot")
+        view.endEditing(true)
     }
-    */
-
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension AddCaptionVC: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditing()
         return true

@@ -119,17 +119,28 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
               return
             }
             
-
+            
             
             // mapping all of the data from the surgeries_test table to an array of objects of type Surgery
             self.caseData = documents.compactMap { queryDocumentSnapshot -> Surgery? in
                 return try? queryDocumentSnapshot.data(as: Surgery.self)
                 
             }
+            
+            
+            
 
+//            for document in documents{
+//                print(document)
+//            }
+            
             // calling the reloadData on the main method so it happens on time
             DispatchQueue.main.async {
-                
+//                print("documents = ")
+//                print(documents)
+//                print(self.caseData)
+//                print(documents.count)
+//                print(self.caseData?.count)
                 self.caseTable.reloadData()
                 self.calendar.reloadData()
                 self.calendarTable.reloadData()

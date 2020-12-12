@@ -51,6 +51,14 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
         }
         
         self.db = Firestore.firestore()
+        
+        //DEBUG
+//        let userId = "wnBfdSqoyNcj537YAk9M" //TODO: UPDATE TO USER AUTHENTICATION ON LOGIN
+//        let testPatient = Patient(age: 20, id: 1234, name: "Evans, Ethan", sex: "M", weight: 190)
+//        let trackingInfo:[productTrackInfo] = []
+//        let testSchedulingSurgery = SchedulingSurgery(date: Timestamp(date: Date(timeIntervalSinceNow: 0)), hospital: "Habif", kits: procedureKits, notes: ["Patient is a loser"], patient: testPatient, procedure: "Spine Replacement", status: "Pending confirmation", surgeon_id: userId, surgeon_name: "Todd Sproull", tracking: trackingInfo, images: [])
+//        testOperationUpload(newOperation: testSchedulingSurgery)
+        
         loadData()
     }
     

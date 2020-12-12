@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="captionText" destination="wVc-Cw-Pyk" id="hes-yh-lAi"/>
                 <outlet property="imageView" destination="wbW-ss-ZPG" id="M8k-Nd-QM4"/>
+                <outlet property="progressBar" destination="dPA-ka-GvU" id="pRo-A2-MCR"/>
                 <outlet property="view" destination="tVq-ll-eFL" id="cCv-eV-DT5"/>
             </connections>
         </placeholder>
@@ -49,6 +50,10 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dPA-ka-GvU">
+                            <rect key="frame" x="75" y="286" width="150" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </progressView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="wbW-ss-ZPG" firstAttribute="top" secondItem="EL8-cO-qa0" secondAttribute="top" id="07U-ml-zRH"/>

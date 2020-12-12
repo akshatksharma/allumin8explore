@@ -9,7 +9,10 @@
 import UIKit
 import Lightbox
 import PopupDialog
+import Firebase
 import FirebaseFirestore
+import FirebaseStorage
+import CodableFirebase
 
 
 
@@ -21,6 +24,7 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var images = [LightboxImage]()
     var detailedCase:Surgery?
     var items = [DetailedViewItem]()
+    var db:Firestore?
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return items.count
@@ -133,7 +137,6 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    
     @IBAction func addImage(_ sender: Any) {
         
         // this function sets up the dialogs to open the photo library
@@ -191,11 +194,20 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let popup = PopupDialog(viewController: captionVC, buttonAlignment: .horizontal)
         
-        guard let customView = popup.viewController as? AddCaptionVC else { return }
+        guard let customView = popup.viewController as? AddCaptionVC else {
+            print("could not get customVIew")
+            return
+        }
+        
+        guard let progressBar = customView.progressBar else {
+            print("could not get progress bar")
+            return
+        }
         
         // defining buttons and callback functions
         
-        let addButton = DefaultButton(title: "Add", height: 60) {
+        
+        let addButton = DefaultButton(title: "Add", height: 60, dismissOnTap: false) {
             
             /*
              ************
@@ -206,20 +218,106 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
              caption: String? -- variable in this closure (right below this comment)
              */
             
+            let randomID = UUID.init().uuidString
+            let newImagePath = "images/\(randomID).jpeg"
+            let uploadRef = Storage.storage().reference(withPath: newImagePath)
+            guard let imageData = image.pngData() else {
+                print("image could not be converted to jpeg")
+                return
+            }
+            let uploadMetadata = StorageMetadata.init()
+            uploadMetadata.contentType = "image/jpeg"
             
-            let caption = customView.captionText.text
+            let taskReference = uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+                if let error = error{
+                    print("ERROR:\(error.localizedDescription)")
+                    return
+                }
+                print("Put is complete and I got this back: \(String(describing: downloadMetadata))")
+            }
             
+            progressBar.isHidden = false;
             
+            taskReference.observe(.progress) {[weak self] (snapshot) in
+                guard let pctThere = snapshot.progress?.fractionCompleted else {
+                    print("upload progress not defined")
+                    return
+                }
+                print("You are \(pctThere) complete")
+                progressBar.progress = Float(pctThere)
+            }
             
+            taskReference.observe(.success){[weak self] (snapshot) in
+                let caption = customView.captionText.text
+                print("uploaded image, updating operation")
+                //Update surgery with new Image struct
+                guard let surgeryInfo = self?.detailedCase else {
+                    print("couldn't get documentID for detailedCase")
+                    return
+                }
+                
+                guard let db = self?.db else {
+                    print("couldn't get firebase databse in detaliedCaseVC")
+                    return
+                }
+                //TO-DO: appending to copy of list, need to update list
+                guard var images = self?.detailedCase?.images else {
+                    print("couldn't get images from surgeryInfo")
+                    return
+                }
+                
+                let newImage = SurgeryImage(image_path: newImagePath, comment: caption)
+                
+                images.append(newImage)
+                
+                guard let documentID = self?.detailedCase?.id else {
+                    print("couldn't get documentID from surgeryInfo")
+                    return
+                }
+                
+                
+                let imagesData = try? FirebaseEncoder().encode(images)
+                
+                db.collection("operations").document(documentID).updateData([
+                    "images": imagesData
+                    
+                ]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+                }
+                
+                let lightboxImage = LightboxImage(image: image, text:caption ?? "")
+                
+                self?.images.append(lightboxImage)
+                print("dimissing modal")
+                self?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self?.detailedCase?.images = images
+                    self?.loadItems()
+                }
+            }
             
-            let lightboxImage = LightboxImage(image: image, text:caption ?? "")
-     
-            self.images.append(lightboxImage)
-            
-            DispatchQueue.main.async {
-                self.loadItems()
+            taskReference.observe(.failure){[weak self] (snapshot) in
+                print("upload failed")
+                // Create new Alert
+                var dialogMessage = UIAlertController(title: "Upload failed", message: "Could not upload image to case", preferredStyle: .alert)
+                
+                // Create OK button with action handler
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button tapped")
+                })
+                
+                //Add OK button to a dialog message
+                dialogMessage.addAction(ok)
+                // Present Alert to
+                self?.present(dialogMessage, animated: true, completion: nil)
             }
         }
+        
+        
         
         let cancelButton = CancelButton(title: "Cancel", height: 60) { return }
         
@@ -234,7 +332,39 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(popup, animated: true, completion: nil)
     }
     
-    
+    func fetchImages(){
+        let storage = Storage.storage()
+        
+        guard let imagesInfo = detailedCase?.images else {
+            print("detailedCase.images not defined")
+            return
+        }
+        
+        for imageInfo in imagesInfo {
+            DispatchQueue.global(qos: .userInitiated).async  {
+                print("dispatched queue to get image with path \(imageInfo.image_path)")
+                let imageRef = storage.reference(withPath: imageInfo.image_path)
+                imageRef.getData(maxSize: 32 * 1024 * 1024, completion: {[weak self] (data, error) in
+                    if let error = error{
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    if let data = data{
+                        guard let newImage = UIImage(data: data) else {
+                            print("cannot create new image from data")
+                            return
+                        }
+                        let newLightboxImage = LightboxImage(image: newImage, text: imageInfo.comment ?? "")
+                        DispatchQueue.main.async {[weak self] in
+                            print("appending image to images")
+                            self?.images.append(newLightboxImage)
+                            self?.loadItems()
+                        }
+                    }
+                })
+            }
+        }
+        
+    }
     
     
     
@@ -260,6 +390,8 @@ class detailedCaseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         imagePicker.delegate = self
         
+        self.db = Firestore.firestore()
+        fetchImages()
         loadItems()
     }
     

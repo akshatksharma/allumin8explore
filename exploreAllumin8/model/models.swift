@@ -26,20 +26,38 @@ struct Surgery: Identifiable, Codable {
     let status: String?
     let suregon_id: String?
     let surgeon_name: String?
+    var images: [SurgeryImage]?
     let tracking: [productTrackInfo]?
 }
 
 struct SchedulingSurgery: Codable{
-        var date: Timestamp?
-        var hospital: String?
-        var kits: [Kit]?
-        var notes: [String]?
-        var patient: Patient?
-        var procedure: String?
-        var status: String?
-        var surgeon_id: String?
-        var surgeon_name: String?
-        var tracking: [productTrackInfo]?
+    var date: Timestamp?
+    var hospital: String?
+    var kits: [Kit]?
+    var notes: [String]?
+    var patient: Patient?
+    var procedure: String?
+    var status: String?
+    var surgeon_id: String?
+    var surgeon_name: String?
+    var images: [SurgeryImage]?
+    var tracking: [productTrackInfo]?
+    
+    
+    init(date: Timestamp?, hospital: String?, kits: [Kit]?, notes: [String]?, patient: Patient?, procedure: String?, status: String?,
+         surgeon_id: String?, surgeon_name: String?, tracking: [productTrackInfo]?, images: [SurgeryImage]?){
+        self.date = date
+        self.hospital = hospital
+        self.kits = kits
+        self.notes = notes
+        self.patient = patient
+        self.procedure = procedure
+        self.status = status
+        self.surgeon_id = surgeon_id
+        self.surgeon_name = surgeon_name
+        self.tracking = tracking
+        self.images = images
+    }
     
     init(){
         self.date = nil
@@ -52,9 +70,14 @@ struct SchedulingSurgery: Codable{
         self.surgeon_id = nil
         self.surgeon_name = nil
         self.tracking = []
+        self.images = []
     }
 }
 
+struct SurgeryImage: Codable {
+    var image_path: String
+    var comment: String?
+}
 
 struct Surgeon: Identifiable, Codable {
     @DocumentID var id: String?

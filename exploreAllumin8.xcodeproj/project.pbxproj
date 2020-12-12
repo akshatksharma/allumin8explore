@@ -11,6 +11,8 @@
 		026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD812579718700398A3C /* scheduleScreen.storyboard */; };
 		026CBD85257971A900398A3C /* myCasesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD84257971A900398A3C /* myCasesScreen.storyboard */; };
 		026CBD8B257AA8B000398A3C /* DetailedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */; };
+		02803B6D25845F9D0054FB18 /* AddCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02803B6B25845F9D0054FB18 /* AddCaptionVC.swift */; };
+		02803B6E25845F9D0054FB18 /* AddCaptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */; };
 		02B682C8257AED8F00DBAC22 /* DetailedCaseViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */; };
 		02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682C9257B4C3800DBAC22 /* caseCell.swift */; };
 		02B682CC257B4C3800DBAC22 /* detailedCaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */; };
@@ -71,6 +73,8 @@
 		026CBD822579718700398A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/scheduleScreen.storyboard; sourceTree = "<group>"; };
 		026CBD84257971A900398A3C /* myCasesScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = myCasesScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewModel.swift; sourceTree = "<group>"; };
+		02803B6B25845F9D0054FB18 /* AddCaptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionVC.swift; sourceTree = "<group>"; };
+		02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCaptionVC.xib; sourceTree = "<group>"; };
 		02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailedCaseViewCells.swift; path = exploreAllumin8/DetailedCaseViewCells.swift; sourceTree = SOURCE_ROOT; };
 		02B682C9257B4C3800DBAC22 /* caseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = caseCell.swift; sourceTree = "<group>"; };
 		02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedCaseVC.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				D309D7BD2581099000F7D242 /* calCell.swift */,
 				02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */,
 				02F4E6422571CA4D00022133 /* myCasesVC.swift */,
+				02803B6B25845F9D0054FB18 /* AddCaptionVC.swift */,
+				02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */,
 				026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */,
 				02B682CD257B66A600DBAC22 /* DetailedItemsVC.swift */,
 				D3FF45632583E8A80009948B /* LoginVC.swift */,
@@ -409,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F4E61B2568C6C000022133 /* LaunchScreen.storyboard in Resources */,
+				02803B6E25845F9D0054FB18 /* AddCaptionVC.xib in Resources */,
 				02F4E63F2568D64B00022133 /* GoogleService-Info.plist in Resources */,
 				026CBD802579714600398A3C /* trackScreen.storyboard in Resources */,
 				026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */,
@@ -549,6 +556,7 @@
 				A8829E28257997DF00BC44E1 /* ConfirmationVC.swift in Sources */,
 				02F4E6102568C6BE00022133 /* ViewController.swift in Sources */,
 				A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */,
+				02803B6D25845F9D0054FB18 /* AddCaptionVC.swift in Sources */,
 				02F4E6162568C6BE00022133 /* exploreAllumin8.xcdatamodeld in Sources */,
 				02F4E60C2568C6BE00022133 /* AppDelegate.swift in Sources */,
 				02F4E6452571DAE000022133 /* models.swift in Sources */,

@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import FSCalendar
 
+protocol CasesUpdater {
+}
+
 class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate {
     
     var db:Firestore?
@@ -116,20 +119,13 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
               return
             }
             
-            print("here are the docs")
-           
-//            for document in documents {
-//                print("\(document.documentID) => \(document.data())")
-//            }
+
             
             // mapping all of the data from the surgeries_test table to an array of objects of type Surgery
             self.caseData = documents.compactMap { queryDocumentSnapshot -> Surgery? in
                 return try? queryDocumentSnapshot.data(as: Surgery.self)
                 
             }
-            
-           print(self.caseData)
-
 
             // calling the reloadData on the main method so it happens on time
             DispatchQueue.main.async {
@@ -139,8 +135,7 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
                 self.calendarTable.reloadData()
             }
         }
-        
-        print(self.caseData)
+      
 
     }
     
@@ -225,13 +220,16 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         calendarTable.isHidden = true
         calendar.isHidden = true
         
-        loadData()
+        
 
 
         // Do any additional setup after loading the view.
     }
     
 
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
 
     // MARK: - Navigation
 

@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import Lightbox
+import FirebaseFirestore
 
 // enum for what kind of cell will be displayed
 enum detailedViewItemType {
     case caseInfo
+    case patientInfo
     case itemInfo
-    case statusInfo
+//    case statusInfo
     case instrumentInfo
+    case surgeryImageInfo
 }
 
 // wrapper protocol for cell types
@@ -34,24 +38,33 @@ extension DetailedViewItem {
 // making specific cell data types
 struct CaseInfoItem: DetailedViewItem {
     var type: detailedViewItemType = .caseInfo
-    var sectionTitle = "Case Info"
+    var sectionTitle = "Procedure"
     var surgeryName: String?
     var surgeon: String?
-    var caseId: String?
-    var patientId: String?
+    var date: Timestamp?
+    var hospital: String?
+}
+
+struct PatientInfoItem:DetailedViewItem {
+    var sectionTitle = "Patient Info"
+    var type: detailedViewItemType = .patientInfo
+    var patient: Patient
+  
 }
 
 struct SurgeryKitItem: DetailedViewItem {
     var sectionTitle = "Surgery Kits"
-    var kitName: String?
-    var surgeryItems: [Product]
+    var kits: [Kit]
+    var rowCount: Int {
+        return kits.count
+    }
     var type: detailedViewItemType = .itemInfo
 }
 
-struct StatusInfoItem:DetailedViewItem {
-    var sectionTitle = "Procedure Status"
-    var type: detailedViewItemType = .statusInfo
-}
+//struct StatusInfoItem:DetailedViewItem {
+//    var sectionTitle = "Procedure Status"
+//    var type: detailedViewItemType = .statusInfo
+//}
 
 struct InstrumentItem: DetailedViewItem {
     var type: detailedViewItemType = .instrumentInfo
@@ -59,6 +72,13 @@ struct InstrumentItem: DetailedViewItem {
     var InstrumentName: String?
     var catalogNum: String?
     var InstrumentNum: String?
+}
+
+struct SurgeryImagesItem: DetailedViewItem {
+    var sectionTitle = "Procedure Images"
+    var images: [LightboxImage]
+    var type: detailedViewItemType = .surgeryImageInfo
+
 }
 
 

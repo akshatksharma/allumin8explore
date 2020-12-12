@@ -48,7 +48,7 @@ class ConfirmationVC: SchedulingItemVC {
         }
         
         caseIdLabel.text = "ljkl;aejsf"
-        patientIDLabel.text = String(info.patientID!)
+//        patientIDLabel.text = String(info.patientID!)
         surgeonNameLabel.text = "Todd Sproul"
         
 

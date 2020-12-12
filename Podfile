@@ -8,7 +8,8 @@ target 'exploreAllumin8' do
 #   pod "CalendarView"
 
   # Pods for exploreAllumin8
-  
+  pod 'PopupDialog', '~> 1.1'
+  pod 'Lightbox'
   pod 'FSCalendar'
    # add the Firebase pod for Google Analytics
    pod 'Firebase/Analytics'
@@ -20,6 +21,9 @@ target 'exploreAllumin8' do
    
    # Optionally, include the Swift extensions if you're using Swift.
    pod 'FirebaseFirestoreSwift'
+   
+   pod 'CodableFirebase'
+
 
   target 'exploreAllumin8Tests' do
     inherit! :search_paths
@@ -29,5 +33,7 @@ target 'exploreAllumin8' do
   target 'exploreAllumin8UITests' do
     # Pods for testing
   end
+  
+
 
 end

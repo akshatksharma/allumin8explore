@@ -72,8 +72,9 @@ extension SchedulingItemVC: UITableViewDelegate{
         case "Hospital":
             tempSurgeryInfo.hospital = newInfo
             break
-        case "PatientID":
-            tempSurgeryInfo.patientID = Int(newInfo)
+        case "Patient":
+//            tempSurgeryInfo.patient?.id = Int(newInfo)
+            //NAMIT TO-DO: Patient updating was handled here but now needs to be handled elsewhere cause its not a table anymore
             break
         case "Procedure":
             tempSurgeryInfo.procedure = newInfo

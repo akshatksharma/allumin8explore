@@ -12,8 +12,9 @@ import Lightbox
 // enum for what kind of cell will be displayed
 enum detailedViewItemType {
     case caseInfo
+    case patientInfo
     case itemInfo
-    case statusInfo
+//    case statusInfo
     case instrumentInfo
     case surgeryImageInfo
 }
@@ -43,17 +44,26 @@ struct CaseInfoItem: DetailedViewItem {
     var patientId: String?
 }
 
+struct PatientInfoItem:DetailedViewItem {
+    var sectionTitle = "Patient Info"
+    var type: detailedViewItemType = .patientInfo
+    var patient: Patient
+  
+}
+
 struct SurgeryKitItem: DetailedViewItem {
     var sectionTitle = "Surgery Kits"
-    var kitName: String?
-    var surgeryItems: [Product]
+    var kits: [Kit]
+    var rowCount: Int {
+        return kits.count
+    }
     var type: detailedViewItemType = .itemInfo
 }
 
-struct StatusInfoItem:DetailedViewItem {
-    var sectionTitle = "Procedure Status"
-    var type: detailedViewItemType = .statusInfo
-}
+//struct StatusInfoItem:DetailedViewItem {
+//    var sectionTitle = "Procedure Status"
+//    var type: detailedViewItemType = .statusInfo
+//}
 
 struct InstrumentItem: DetailedViewItem {
     var type: detailedViewItemType = .instrumentInfo

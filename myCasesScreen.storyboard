@@ -159,7 +159,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="778"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="caseInfo" rowHeight="200" id="kB9-k7-kkx" customClass="DetailedCaseInfoTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="caseInfo" rowHeight="200" id="kB9-k7-kkx" customClass="DetailedCaseInfoTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
                                         <rect key="frame" x="15" y="55.333332061767578" width="345" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kB9-k7-kkx" id="3hU-Sj-pRa">
@@ -240,7 +240,7 @@
                                             <outlet property="surgeonName" destination="gHH-yz-oiz" id="h9X-bD-IuD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemInfo" rowHeight="75" id="WUf-ii-Ic0" customClass="DetailedSurgeryKitInfoTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemInfo" rowHeight="75" id="WUf-ii-Ic0" customClass="DetailedSurgeryKitInfoTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
                                         <rect key="frame" x="15" y="255.33333206176758" width="345" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WUf-ii-Ic0" id="OaJ-Bz-7C2">
@@ -254,6 +254,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Ngf-GT-erI" firstAttribute="top" secondItem="OaJ-Bz-7C2" secondAttribute="top" constant="43" id="6QW-ZK-fbx"/>
                                                 <constraint firstItem="Ngf-GT-erI" firstAttribute="leading" secondItem="OaJ-Bz-7C2" secondAttribute="leading" constant="20" id="oNj-6i-IoJ"/>
@@ -264,7 +265,7 @@
                                             <outlet property="caseName" destination="Ngf-GT-erI" id="8VO-3n-6Ng"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageInfo" rowHeight="450" id="bK0-Wc-HYw" customClass="SurgeryImageTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageInfo" rowHeight="450" id="bK0-Wc-HYw" customClass="SurgeryImageTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
                                         <rect key="frame" x="15" y="330.33333206176758" width="345" height="450"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bK0-Wc-HYw" id="Ocu-E5-lSj">
@@ -322,6 +323,74 @@
                                             <outlet property="collectionView" destination="pPU-x0-HiH" id="gDC-Dt-z0r"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="patientInfo" focusStyle="custom" rowHeight="200" id="uew-Xf-fYz" customClass="PatientInfoTableViewCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="780.33333206176758" width="345" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uew-Xf-fYz" id="sC1-vw-tXh">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KOM-4x-03e">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="200"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fga-RW-vc1">
+                                                        <size key="itemSize" width="150" height="150"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="patientInfoCell" id="SD9-l2-EyK" customClass="PatientInfoCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="25" width="150" height="150"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="L7K-Ni-dWz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNi-ZD-PVk">
+                                                                        <rect key="frame" x="52" y="48.333333333333343" width="46" height="33.666666666666657"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kk7-0j-nEr">
+                                                                        <rect key="frame" x="50" y="105" width="51" height="18"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="kk7-0j-nEr" secondAttribute="bottom" constant="27" id="54v-fW-HpV"/>
+                                                                    <constraint firstItem="JNi-ZD-PVk" firstAttribute="top" secondItem="L7K-Ni-dWz" secondAttribute="top" constant="48.333333333333343" id="MsE-01-nO2"/>
+                                                                    <constraint firstItem="JNi-ZD-PVk" firstAttribute="leading" secondItem="L7K-Ni-dWz" secondAttribute="leading" constant="52" id="WL5-dS-oLn"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="kk7-0j-nEr" secondAttribute="trailing" constant="49" id="WSZ-G9-GgC"/>
+                                                                    <constraint firstItem="kk7-0j-nEr" firstAttribute="leading" secondItem="L7K-Ni-dWz" secondAttribute="leading" constant="50" id="Xop-5c-Ib1"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="JNi-ZD-PVk" secondAttribute="trailing" constant="52" id="bdy-se-jnq"/>
+                                                                    <constraint firstItem="kk7-0j-nEr" firstAttribute="top" secondItem="JNi-ZD-PVk" secondAttribute="bottom" constant="23" id="d9j-d1-IkA"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <size key="customSize" width="150" height="150"/>
+                                                            <connections>
+                                                                <outlet property="statLabel" destination="JNi-ZD-PVk" id="jgS-Sb-vR8"/>
+                                                                <outlet property="subtitleLabel" destination="kk7-0j-nEr" id="4Il-Td-Acb"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KOM-4x-03e" firstAttribute="leading" secondItem="sC1-vw-tXh" secondAttribute="leading" id="jE5-Rk-ivF"/>
+                                                <constraint firstItem="KOM-4x-03e" firstAttribute="top" secondItem="sC1-vw-tXh" secondAttribute="top" id="tXr-pV-sgc"/>
+                                                <constraint firstAttribute="bottom" secondItem="KOM-4x-03e" secondAttribute="bottom" id="uOv-AG-dIo"/>
+                                                <constraint firstAttribute="trailing" secondItem="KOM-4x-03e" secondAttribute="trailing" id="xcn-V8-pNO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="KOM-4x-03e" id="twQ-P7-rXj"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
@@ -336,7 +405,11 @@
                         <viewLayoutGuide key="safeArea" id="5VP-ZS-iZ0"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6wQ-xp-kcr">
-                        <barButtonItem key="rightBarButtonItem" title="Add Scans" id="O8d-kc-X2R"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Scans" id="O8d-kc-X2R">
+                            <connections>
+                                <action selector="addImage:" destination="PAO-Tv-cLW" id="KqG-He-A5c"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>

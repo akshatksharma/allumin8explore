@@ -11,14 +11,14 @@ import UIKit
 class DetailedItemsVC: UIViewController, UITableViewDataSource {
 
     
-    var kitInfo: KitInfo?
+    var kitInfo: Kit?
     @IBOutlet weak var tableView: UITableView!
 
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let instruments = kitInfo?.products else { return 0 }
+        guard let instruments = kitInfo?.instruments else { return 0 }
         
         print(instruments)
         return instruments.count
@@ -26,7 +26,7 @@ class DetailedItemsVC: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let instruments = kitInfo?.products else { return UITableViewCell() }
+        guard let instruments = kitInfo?.instruments else { return UITableViewCell() }
         
         let instrument = instruments[indexPath.row]
         
@@ -61,7 +61,7 @@ class DetailedItemsVC: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         tableView.dataSource = self
         
-        self.title = kitInfo?.name
+        self.title = kitInfo?.kit_name
         
 
         // Do any additional setup after loading the view.

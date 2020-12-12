@@ -97,7 +97,7 @@ struct Patient: Codable {
     let id: Double?
     let name: String?
     let sex: String?
-    let weight: Double
+    let weight: Double?
 }
 
 struct Kit: Codable {

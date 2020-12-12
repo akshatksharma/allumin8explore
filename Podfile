@@ -16,7 +16,8 @@ target 'exploreAllumin8' do
    # https://firebase.google.com/docs/ios/setup#available-pods
 
    pod 'Firebase/Firestore'
-
+   pod 'Firebase/Auth'
+   
    # Optionally, include the Swift extensions if you're using Swift.
    pod 'FirebaseFirestoreSwift'
 

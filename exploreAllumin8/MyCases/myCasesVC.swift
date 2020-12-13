@@ -229,7 +229,11 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         }
     }
     
-
+    @IBAction func seeAccount(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "account")
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.db = Firestore.firestore()

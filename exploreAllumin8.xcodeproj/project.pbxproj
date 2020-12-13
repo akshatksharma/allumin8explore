@@ -47,6 +47,7 @@
 		A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */; };
 		A8D2B7682581688B008499D8 /* SurgeryDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2B7672581688B008499D8 /* SurgeryDatePickerVC.swift */; };
 		D309D7BE2581099000F7D242 /* calCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309D7BD2581099000F7D242 /* calCell.swift */; };
+		D325C623258682990046C8E0 /* accountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D325C622258682990046C8E0 /* accountVC.swift */; };
 		D3FF45642583E8A80009948B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45632583E8A80009948B /* LoginVC.swift */; };
 		D3FF45662584E7610009948B /* registrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45652584E7610009948B /* registrationVC.swift */; };
 		D3FF45682585B5590009948B /* addHospitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45672585B5590009948B /* addHospitalVC.swift */; };
@@ -120,6 +121,7 @@
 		B23FBF183A7FD72475FBB8ED /* Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8-exploreAllumin8UITests/Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9BB3E0C3C84AE1C8FE7803E /* Pods-exploreAllumin8Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8Tests.release.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8Tests/Pods-exploreAllumin8Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D309D7BD2581099000F7D242 /* calCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calCell.swift; sourceTree = "<group>"; };
+		D325C622258682990046C8E0 /* accountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountVC.swift; sourceTree = "<group>"; };
 		D3FF45632583E8A80009948B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D3FF45652584E7610009948B /* registrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registrationVC.swift; sourceTree = "<group>"; };
 		D3FF45672585B5590009948B /* addHospitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHospitalVC.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				D3FF45652584E7610009948B /* registrationVC.swift */,
 				D3FF45672585B5590009948B /* addHospitalVC.swift */,
 				D3FF45692585C3EF0009948B /* hospitalCell.swift */,
+				D325C622258682990046C8E0 /* accountVC.swift */,
 			);
 			path = loginRegister;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D325C623258682990046C8E0 /* accountVC.swift in Sources */,
 				02B682CC257B4C3800DBAC22 /* detailedCaseVC.swift in Sources */,
 				A8829E29257997DF00BC44E1 /* SchedulingPageController.swift in Sources */,
 				A8829E28257997DF00BC44E1 /* ConfirmationVC.swift in Sources */,

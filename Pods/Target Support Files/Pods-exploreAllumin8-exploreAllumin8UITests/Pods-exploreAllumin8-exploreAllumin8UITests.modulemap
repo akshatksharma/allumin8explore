@@ -1,6 +1,0 @@
-framework module Pods_exploreAllumin8_exploreAllumin8UITests {
-  umbrella header "Pods-exploreAllumin8-exploreAllumin8UITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

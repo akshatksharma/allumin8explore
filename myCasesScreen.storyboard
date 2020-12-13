@@ -114,6 +114,16 @@
                         <viewLayoutGuide key="safeArea" id="MQB-5N-srT"/>
                     </view>
                     <navigationItem key="navigationItem" id="qdo-Mz-Ma5">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="0bX-iQ-tds">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MaI-0S-1wF">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOut:" destination="VRI-L1-ev3" eventType="touchUpInside" id="vSb-m9-ZYb"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="og4-G9-a1s">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="LsU-ds-H3k">
                                 <rect key="frame" x="276" y="5.6666666666666679" width="83" height="33"/>

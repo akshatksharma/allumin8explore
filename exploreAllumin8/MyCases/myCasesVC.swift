@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FSCalendar
+import FirebaseAuth
 
 protocol CasesUpdater {
 }
@@ -203,6 +204,29 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         }
     }
     
+    // sign out adapted from Firebase documentation: https://firebase.google.com/docs/auth/web/password-auth
+    
+    @IBAction func signOut(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            print("signed out")
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+        
+        // display login page if user successfully signed out
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if Auth.auth().currentUser == nil{
+            print("no user")
+            guard let login = storyboard.instantiateViewController(identifier: "loginRegister") as? UINavigationController else{
+                print("error")
+                return
+            }
+            view.window?.rootViewController = login
+            view.window?.makeKeyAndVisible()
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,7 +243,6 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         calendarTable.dataSource = self
         calendarTable.isHidden = true
         calendar.isHidden = true
-        
         
 
 

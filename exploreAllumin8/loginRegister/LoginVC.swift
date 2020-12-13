@@ -21,13 +21,12 @@ class LoginVC: UIViewController {
     
     
     // adapted from Firebase documentation: https://firebase.google.com/docs/auth/ios/start
+    
     @IBAction func login(_ sender: Any) {
         
         // invalid login alert
-        var invalid = UIAlertController(title: "Alert", message: "Incorrect email or password", preferredStyle: .alert)
-        let close = UIAlertAction(title: "Close", style: .cancel, handler: {(action) -> Void in
-            print("closed")
-            })
+        let invalid = UIAlertController(title: "Alert", message: "Incorrect email or password", preferredStyle: .alert)
+        let close = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         invalid.addAction(close)
         
         
@@ -50,11 +49,17 @@ class LoginVC: UIViewController {
                 }
                 print("successful login")
                 print(authResult!.user.uid)
+                
+                
+                let home = self?.storyboard?.instantiateViewController(identifier: "userHome") as? UITabBarController
+                self?.view.window?.rootViewController = home
+                self?.view.window?.makeKeyAndVisible()
             }
         }
         else {
             print("empty input")
         }
+        
         
     }
     

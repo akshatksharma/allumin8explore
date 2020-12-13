@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3io-LE-hCc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2876" y="141.87192118226602"/>
+            <point key="canvasLocation" x="2151" y="-495"/>
         </scene>
         <!--RegistrationVC-->
         <scene sceneID="ENQ-jP-QhM">
@@ -186,12 +186,104 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nne-4E-zfL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3724" y="-33"/>
+            <point key="canvasLocation" x="2906" y="-495"/>
+        </scene>
+        <!--Add HospitalVC-->
+        <scene sceneID="xxZ-Sn-LEp">
+            <objects>
+                <viewController storyboardIdentifier="addHospital" id="tRC-Zp-Dvh" customClass="addHospitalVC" customModule="exploreAllumin8" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fdh-Iz-BbX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nzZ-gE-fng">
+                                <rect key="frame" x="0.0" y="96" width="375" height="682"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hospital" rowHeight="58" id="fBI-wO-Xw1" customClass="hospitalCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fBI-wO-Xw1" id="0Ux-rv-xxY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Barnes Jewish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIu-Ya-dDO">
+                                                    <rect key="frame" x="40" y="15" width="320" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eIu-Ya-dDO" firstAttribute="leading" secondItem="0Ux-rv-xxY" secondAttribute="leadingMargin" constant="25" id="2E6-qL-bea"/>
+                                                <constraint firstItem="eIu-Ya-dDO" firstAttribute="trailing" secondItem="0Ux-rv-xxY" secondAttribute="trailingMargin" id="2Rt-d5-cZY"/>
+                                                <constraint firstItem="eIu-Ya-dDO" firstAttribute="top" secondItem="0Ux-rv-xxY" secondAttribute="topMargin" constant="4" id="PCI-0W-6ow"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="eIu-Ya-dDO" secondAttribute="bottom" constant="5" id="rAK-jK-09d"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="hospitalName" destination="eIu-Ya-dDO" id="7gI-Kr-7px"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Hospitals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJJ-OO-y17">
+                                <rect key="frame" x="16" y="54" width="173.33333333333334" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtB-3y-Qhf">
+                                <rect key="frame" x="264.33333333333331" y="54" width="32.666666666666686" height="30"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="plus" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                </state>
+                                <connections>
+                                    <action selector="add:" destination="tRC-Zp-Dvh" eventType="touchUpInside" id="bXQ-7f-dMX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndd-pI-s0A">
+                                <rect key="frame" x="312" y="50" width="53" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="tRC-Zp-Dvh" eventType="touchUpInside" id="7gk-6D-dD5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="nzZ-gE-fng" firstAttribute="leading" secondItem="ds2-lD-uja" secondAttribute="leading" id="7W8-3i-Zky"/>
+                            <constraint firstItem="nzZ-gE-fng" firstAttribute="top" secondItem="Ndd-pI-s0A" secondAttribute="bottom" constant="7" id="9QS-ea-YRA"/>
+                            <constraint firstItem="Ndd-pI-s0A" firstAttribute="leading" secondItem="gtB-3y-Qhf" secondAttribute="trailing" constant="15" id="MHE-lr-xaZ"/>
+                            <constraint firstItem="nzZ-gE-fng" firstAttribute="bottom" secondItem="ds2-lD-uja" secondAttribute="bottom" id="aCo-Tp-3R3"/>
+                            <constraint firstItem="Ndd-pI-s0A" firstAttribute="top" secondItem="ds2-lD-uja" secondAttribute="top" constant="6" id="b8M-hL-tjb"/>
+                            <constraint firstItem="gtB-3y-Qhf" firstAttribute="top" secondItem="ds2-lD-uja" secondAttribute="top" constant="10" id="dPM-2A-uKM"/>
+                            <constraint firstItem="nzZ-gE-fng" firstAttribute="trailing" secondItem="ds2-lD-uja" secondAttribute="trailing" id="fQq-VG-TOn"/>
+                            <constraint firstItem="nzZ-gE-fng" firstAttribute="top" secondItem="gtB-3y-Qhf" secondAttribute="bottom" constant="12" id="fve-o2-Tik"/>
+                            <constraint firstItem="BJJ-OO-y17" firstAttribute="top" secondItem="ds2-lD-uja" secondAttribute="top" constant="10" id="tNe-fB-uA8"/>
+                            <constraint firstItem="BJJ-OO-y17" firstAttribute="leading" secondItem="ds2-lD-uja" secondAttribute="leading" constant="16" id="v6p-ec-HpF"/>
+                            <constraint firstItem="nzZ-gE-fng" firstAttribute="top" secondItem="BJJ-OO-y17" secondAttribute="bottom" constant="8" id="xZC-P9-yBq"/>
+                            <constraint firstItem="ds2-lD-uja" firstAttribute="trailing" secondItem="Ndd-pI-s0A" secondAttribute="trailing" constant="10" id="yWT-i6-8Qv"/>
+                            <constraint firstItem="gtB-3y-Qhf" firstAttribute="leading" secondItem="BJJ-OO-y17" secondAttribute="trailing" constant="75" id="zjB-dA-CiH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ds2-lD-uja"/>
+                    </view>
+                    <connections>
+                        <outlet property="hospitalTable" destination="nzZ-gE-fng" id="CSu-kz-fSl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E0p-q5-ake" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3680.8000000000002" y="-494.33497536945816"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gjt-3P-gSy">
             <objects>
-                <tabBarController id="E7z-gh-yOj" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="userHome" id="E7z-gh-yOj" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Vhf-OG-V0Q"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6ge-N4-Rp7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -206,7 +298,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tf-kX-UwX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4656.8000000000002" y="156.65024630541873"/>
+            <point key="canvasLocation" x="4834" y="-494"/>
         </scene>
         <!--trackScreen-->
         <scene sceneID="Cwn-mU-GmY">
@@ -216,7 +308,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFI-W6-987" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3724" y="1210"/>
+            <point key="canvasLocation" x="5709" y="-204"/>
         </scene>
         <!--scheduleScreen-->
         <scene sceneID="1i2-Bq-wti">
@@ -226,7 +318,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoF-Jp-C2i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3724" y="480"/>
+            <point key="canvasLocation" x="5709" y="-494"/>
         </scene>
         <!--myCasesScreen-->
         <scene sceneID="VBM-IE-4Sa">
@@ -236,12 +328,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVU-aN-OnS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5608" y="-202.46305418719211"/>
+            <point key="canvasLocation" x="5709" y="-784"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M6Z-Ni-iPt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jpq-jK-6tR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginRegister" automaticallyAdjustsScrollViewInsets="NO" id="Jpq-jK-6tR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ekn-9X-6DP">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -254,10 +346,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwS-xz-BAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933.5999999999999" y="141.87192118226602"/>
+            <point key="canvasLocation" x="1409" y="-493"/>
         </scene>
     </scenes>
     <resources>
         <image name="Allumin8-logo" width="5760" height="2400"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

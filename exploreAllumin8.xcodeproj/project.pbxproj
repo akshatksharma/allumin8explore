@@ -49,6 +49,8 @@
 		D309D7BE2581099000F7D242 /* calCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309D7BD2581099000F7D242 /* calCell.swift */; };
 		D3FF45642583E8A80009948B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45632583E8A80009948B /* LoginVC.swift */; };
 		D3FF45662584E7610009948B /* registrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45652584E7610009948B /* registrationVC.swift */; };
+		D3FF45682585B5590009948B /* addHospitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45672585B5590009948B /* addHospitalVC.swift */; };
+		D3FF456A2585C3EF0009948B /* hospitalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45692585C3EF0009948B /* hospitalCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		D309D7BD2581099000F7D242 /* calCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calCell.swift; sourceTree = "<group>"; };
 		D3FF45632583E8A80009948B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D3FF45652584E7610009948B /* registrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registrationVC.swift; sourceTree = "<group>"; };
+		D3FF45672585B5590009948B /* addHospitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHospitalVC.swift; sourceTree = "<group>"; };
+		D3FF45692585C3EF0009948B /* hospitalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalCell.swift; sourceTree = "<group>"; };
 		F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exploreAllumin8_exploreAllumin8UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -173,8 +177,6 @@
 				02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */,
 				026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */,
 				02B682CD257B66A600DBAC22 /* DetailedItemsVC.swift */,
-				D3FF45632583E8A80009948B /* LoginVC.swift */,
-				D3FF45652584E7610009948B /* registrationVC.swift */,
 			);
 			path = MyCases;
 			sourceTree = "<group>";
@@ -204,6 +206,7 @@
 		02F4E60A2568C6BE00022133 /* exploreAllumin8 */ = {
 			isa = PBXGroup;
 			children = (
+				D3FF456C2585C4320009948B /* loginRegister */,
 				026CBD89257AA86F00398A3C /* MyCases */,
 				026CBD7E257970DF00398A3C /* storyboards */,
 				02F4E60B2568C6BE00022133 /* AppDelegate.swift */,
@@ -303,6 +306,17 @@
 				341EC8E75A417CDADE4F6A9A /* Pods_exploreAllumin8Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3FF456C2585C4320009948B /* loginRegister */ = {
+			isa = PBXGroup;
+			children = (
+				D3FF45632583E8A80009948B /* LoginVC.swift */,
+				D3FF45652584E7610009948B /* registrationVC.swift */,
+				D3FF45672585B5590009948B /* addHospitalVC.swift */,
+				D3FF45692585C3EF0009948B /* hospitalCell.swift */,
+			);
+			path = loginRegister;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,9 +585,11 @@
 				02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */,
 				A8D2B7682581688B008499D8 /* SurgeryDatePickerVC.swift in Sources */,
 				A8829E25257997DF00BC44E1 /* CVDataSource.swift in Sources */,
+				D3FF45682585B5590009948B /* addHospitalVC.swift in Sources */,
 				02B682C8257AED8F00DBAC22 /* DetailedCaseViewCells.swift in Sources */,
 				D309D7BE2581099000F7D242 /* calCell.swift in Sources */,
 				D3FF45662584E7610009948B /* registrationVC.swift in Sources */,
+				D3FF456A2585C3EF0009948B /* hospitalCell.swift in Sources */,
 				A8829E22257997DF00BC44E1 /* LocalSurgeryInfo.swift in Sources */,
 				A8829E26257997DF00BC44E1 /* SchedulingItemVC.swift in Sources */,
 				A8829E2A257997DF00BC44E1 /* SchedulingVC.swift in Sources */,

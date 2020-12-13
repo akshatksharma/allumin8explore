@@ -36,31 +36,54 @@ class registrationVC: UIViewController {
             return
         }
         
+        // invalid email alert
+        let invalidEmail = UIAlertController(title: "Alert", message: "Invalid email", preferredStyle: .alert)
+        let close = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        invalidEmail.addAction(close)
+        
+        // invalid password alert
+        let invalidPw = UIAlertController(title: "Alert", message: "Please set a password with at least 6 characters", preferredStyle: .alert)
+        invalidPw.addAction(close)
+        
+        // invalid password alert
+        let pwMatch = UIAlertController(title: "Alert", message: "The passwords you have entered do not match", preferredStyle: .alert)
+        pwMatch.addAction(close)
+        
+        // invalid password alert
+        let user = UIAlertController(title: "Alert", message: "This email address is already associated to an account.", preferredStyle: .alert)
+        user.addAction(close)
+        
         // validate email as xxx@xx.xxx format
         // adapted from https://www.tutorialspoint.com/email-and-phone-validation-in-swift
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let validate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if !validate.evaluate(with: email){
             print("invalid email")
+            self.present(invalidEmail, animated: true, completion: nil)
             return
         }
         
-    
         if password != confirmPw {
             print("passwords don't match")
+            self.present(pwMatch, animated: true, completion: nil)
             return
         }
         if password.count < 6{
             print("Password too short")
+            self.present(invalidPw, animated: true, completion: nil)
             return
         }
+        
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if error != nil {
+                self.present(user, animated: true, completion: nil)
                 print("unsuccessful sign up")
                 return
             }
             print("successful sign up")
-            self.navigationController?.popViewController(animated: true)
+            print(authResult?.user.uid)
+            let vc = self.storyboard?.instantiateViewController(identifier: "addHospital")
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
 
 

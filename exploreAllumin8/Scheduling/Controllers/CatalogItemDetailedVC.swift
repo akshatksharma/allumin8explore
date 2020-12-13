@@ -14,9 +14,18 @@ class CatalogItemDetailedVC: UIViewController {
     
     @IBOutlet weak var itemLabel: UILabel!
     
-
+    @IBOutlet weak var itemImage: UIImageView!
+    
+    
+    
+    
     @IBAction func addItemToKit(_ sender: Any) {
+        
+        
+        
     }
+    
+    
     init(catalogItem:CatalogItem){
         self.catalogItem = catalogItem
         super.init(nibName: nil, bundle: nil)

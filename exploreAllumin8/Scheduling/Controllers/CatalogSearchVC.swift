@@ -7,8 +7,33 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
-class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionViewDataSource {
+class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
+    
+    
+    
+    func fetchDataForCollectionView(_ query: String) {
+
+        
+        
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    
+        guard let searchText = searchBar.text else {return}
+        DispatchQueue.global(qos: .background).async {
+  
+            DispatchQueue.main.async {
+                
+              
+            }
+        }
+    }
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
     }
@@ -59,6 +84,7 @@ class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionV
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        searchBarCatalog.delegate = self
     }
     
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ConfirmationVC: SchedulingItemVC {
     @IBOutlet weak var caseIdLabel: UILabel!

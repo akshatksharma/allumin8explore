@@ -110,7 +110,9 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         // this is just firebase stuff
         
         // accessing the surgeries_test collection from cloud firestore, and setting a snapshot listener so that this method is called whenever something new is added to the table
-        let userId = "wnBfdSqoyNcj537YAk9M"
+        
+        let userId = Auth.auth().currentUser?.uid
+//        let userId = "wnBfdSqoyNcj537YAk9M"
         
         db?.collection("operations").whereField("surgeon_id", isEqualTo: userId).addSnapshotListener {
             (querySnapshot, err) in

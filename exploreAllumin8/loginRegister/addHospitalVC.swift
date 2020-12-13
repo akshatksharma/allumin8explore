@@ -37,7 +37,6 @@ class addHospitalVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewWillAppear(_ animated:Bool){
         super.viewWillAppear(animated)
-        self.navigationItem
         self.navigationController?.setNavigationBarHidden(true,animated:animated)
     }
     

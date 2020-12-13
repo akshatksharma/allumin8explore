@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class SchedulingItemVC: UIViewController{
     
     
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -19,6 +20,16 @@ class SchedulingItemVC: UIViewController{
     var surgeryListUpdater: SurgeryListLocalUpdater?
     var id: String?
     var nextIndex: Int?
+    
+    var schedulingInfo: [patientStruct] = []
+    
+    
+    
+    func fetchDataForSchedulingView(_ query: String) {
+
+        
+        
+    }
     
     var info:[String] = ["Barnes Jewish"]
     

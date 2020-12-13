@@ -23,7 +23,7 @@ class addHospitalVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = hospitalTable.dequeueReusableCell(withIdentifier: "hospital", for: indexPath) as! hospitalCell
-        cell.hospitalName.text = hospitals[indexPath.row]
+        cell.hospitalNameLabel.text = hospitals[indexPath.row]
         return cell
     }
     

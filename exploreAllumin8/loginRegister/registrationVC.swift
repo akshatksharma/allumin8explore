@@ -8,9 +8,12 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class registrationVC: UIViewController {
 
+    var db:Firestore?
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -18,6 +21,7 @@ class registrationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.db = Firestore.firestore()
 
         // Do any additional setup after loading the view.
     }
@@ -49,7 +53,7 @@ class registrationVC: UIViewController {
         let pwMatch = UIAlertController(title: "Alert", message: "The passwords you have entered do not match", preferredStyle: .alert)
         pwMatch.addAction(close)
         
-        // invalid password alert
+        // existing email alert
         let user = UIAlertController(title: "Alert", message: "This email address is already associated to an account.", preferredStyle: .alert)
         user.addAction(close)
         
@@ -82,11 +86,31 @@ class registrationVC: UIViewController {
             }
             print("successful sign up")
             print(authResult?.user.uid)
+            guard let uid = authResult?.user.uid else{
+                return
+            }
+            self.addUserToDB(uid: uid, name: name)
             let vc = self.storyboard?.instantiateViewController(identifier: "addHospital")
             self.navigationController?.pushViewController(vc!, animated: true)
         }
 
 
+    }
+    
+    
+    // adapted from https://firebase.google.com/docs/firestore/manage-data/add-data#swift
+    
+    func addUserToDB(uid: String, name: String){
+        db?.collection("surgeons").document(uid).setData([
+            "name":name
+        ]){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            }
+            else{
+                print("Document successfully written!")
+            }
+        }
     }
     
 

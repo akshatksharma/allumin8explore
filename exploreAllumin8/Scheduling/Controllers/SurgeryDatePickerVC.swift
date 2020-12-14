@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class SurgeryDatePickerVC: UIViewController {
-
+    
     var surgeryInfoUpdater: SurgeryInfoUpdater?
     var surgeryListUpdater: SurgeryListLocalUpdater?
     var id: String?
@@ -18,17 +18,17 @@ class SurgeryDatePickerVC: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBAction func reviewSurgery(_ sender:UIButton){
-//        let startTime = startDatePicker.date
-//        let endTime = endDatePicker.date
+    @IBAction func reviewSurgery(_ sender: UIButton) {
+        //        let startTime = startDatePicker.date
+        //        let endTime = endDatePicker.date
         
         
         guard let updater = surgeryInfoUpdater else {
             fatalError("updater not provided to surgeryDatePickerVC")
         }
         var tempSurgeryInfo = updater.getCurrentInfo()
-//        tempSurgeryInfo.startDate = startTime
-//        tempSurgeryInfo.endDate = endTime
+        //        tempSurgeryInfo.startDate = startTime
+        //        tempSurgeryInfo.endDate = endTime
         
         let date = datePicker.date
         tempSurgeryInfo.date = Timestamp(date: date)
@@ -43,19 +43,19 @@ class SurgeryDatePickerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

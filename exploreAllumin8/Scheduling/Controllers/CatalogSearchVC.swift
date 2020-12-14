@@ -9,55 +9,23 @@
 import UIKit
 import FirebaseFirestore
 
-class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
-    
-    
-    
-    func fetchDataForCollectionView(_ query: String) {
-
-        
-        
-    }
-    
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    
-        guard let searchText = searchBar.text else {return}
-        DispatchQueue.global(qos: .background).async {
-  
-            DispatchQueue.main.async {
-                
-              
-            }
-        }
-    }
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let myCell = UICollectionViewCell()
-        return myCell
-    }
+class CatalogSearchVC: UIViewController{
     
 
-    var collectionElements:[CatalogItem] = [
-        CatalogItem(itemID: "ree1", cost: 19.99, manufacturer: "Johnson and Johnson", name: "Wet Wipes"),
-        CatalogItem(itemID: "ree2", cost: 1.99, manufacturer: "Trotta's", name: "Medical Mask"),
-        CatalogItem(itemID: "ree3", cost: 9.99, manufacturer: "JPMorgan", name: "Hankies")
-    
-        
-    ]
     @IBOutlet weak var searchBarCatalog: UISearchBar!
     
     @IBOutlet weak var catalogCollectionView: UICollectionView!
     
     //    var selectedCatalogItem:String? = nil
     @IBOutlet weak var collectionView:UICollectionView!
+        var collectionElements:[Product] = []
     
+    @IBOutlet weak var searchFilter: UISegmentedControl!
+//    var db:Firestore?
+    
+    var products:[Product]?
+    var queryResults:[Product]?
+    var srkDelegate:SpecialRequestKitDelegate?
     
     required init?(coder: NSCoder){
         
@@ -85,8 +53,64 @@ class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionV
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBarCatalog.delegate = self
+        
+//        db = Firestore.firestore()
+        
+        
     }
     
+    
+    func searchByDescription(_ query: String){
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let productList = self?.products else {
+                print("could not unwrap products")
+                return
+            }
+
+            var queryResult:[Product] = []
+            
+            for product in productList {
+                guard let desc = product.description else {
+                    print("could not unwrap product.description")
+                    return
+                }
+                if desc.contains(query){
+                    queryResult.append(product)
+                }
+            }
+            DispatchQueue.main.async {
+                self?.queryResults = queryResult
+                print(queryResult)
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func searchByCatalogNumber(_ query: String){
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let productList = self?.products else {
+                print("could not unwrap products")
+                return
+            }
+
+            var queryResult:[Product] = []
+            
+            for product in productList {
+                guard let catalog_number = product.catalog_number else {
+                    print("could not unwrap product.description")
+                    return
+                }
+                if catalog_number.contains(query){
+                    queryResult.append(product)
+                }
+            }
+            DispatchQueue.main.async {
+                self?.queryResults = queryResult
+                print(queryResult)
+                self?.collectionView.reloadData()
+            }
+        }
+    }
 
     
     // MARK: - Navigation
@@ -100,7 +124,7 @@ class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionV
             fatalError("Could not convert segue.destination to CatalogItemDetailedVC")
         }
         
-
+        
         
         
         print("seguing")
@@ -116,8 +140,62 @@ class CatalogSearchVC: SchedulingItemVC, UICollectionViewDelegate, UICollectionV
 
 }
 
+//MARK: Extensions
 
+//MARK: UICollectionViewDataSource
+extension CatalogSearchVC: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard var detailedProductVC = UIStoryboard(name: "scheduleScreen", bundle: nil)
+            .instantiateViewController(withIdentifier: "DetailedProductVC") as? CatalogItemDetailedVC else{
+                fatalError("could not instantiate new detailedProductVC")
+        }
+        detailedProductVC.catalog_item = queryResults?[indexPath.row]
+        detailedProductVC.srkDelegate = srkDelegate
+        present(detailedProductVC, animated: true, completion: nil)
+    }
+}
 
+extension CatalogSearchVC: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("num of items = \(queryResults?.count ?? 0)")
+        return queryResults?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
+        for subview in myCell.subviews {
+            subview.removeFromSuperview()
+        }
+        let product_info = queryResults?[indexPath.row]
+        
+        myCell.backgroundColor = UIColor.green
+        
+        let textLabel = UILabel(frame: myCell.bounds)
+        
+        textLabel.text = product_info?.description
+        
+        myCell.addSubview(textLabel)
+        
+        return myCell
+    }
+}
+
+//MARK: UISearchBarDelegate
+extension CatalogSearchVC: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else {return}
+        
+        searchBarCatalog.resignFirstResponder()
+        
+        if searchFilter.selectedSegmentIndex == 0 {
+            searchByDescription(searchText)
+        } else if searchFilter.selectedSegmentIndex == 1{
+            searchByCatalogNumber(searchText)
+        }
+        
+        
+    }
+}
 
 
 

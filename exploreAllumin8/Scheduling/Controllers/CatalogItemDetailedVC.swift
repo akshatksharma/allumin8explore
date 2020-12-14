@@ -10,29 +10,34 @@ import UIKit
 
 class CatalogItemDetailedVC: UIViewController {
 
-    var catalogItem:CatalogItem?
+    var catalog_item:Product?
     
-    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var productNumberLabel: UILabel!
+    @IBOutlet weak var productDescLabel: UILabel!
+    @IBOutlet weak var productQuantityLabel: UILabel!
+
     
-    @IBOutlet weak var itemImage: UIImageView!
-    
-    
+    var srkDelegate:SpecialRequestKitDelegate?
     
     
     @IBAction func addItemToKit(_ sender: Any) {
+        print("adding to kit")
         
-        
+        guard let newProduct = catalog_item else {
+            fatalError("could not unwrap catalog_item")
+        }
+        srkDelegate?.addToSpecialKit(newProduct)
+        dismiss(animated: true, completion: nil)
         
     }
     
     
-    init(catalogItem:CatalogItem){
-        self.catalogItem = catalogItem
-        super.init(nibName: nil, bundle: nil)
-    }
+//    init(catalogItem:CatalogItem){
+//        self.catalogItem = catalogItem
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
     required init?(coder: NSCoder) {
-        self.catalogItem = nil
         super.init(coder: coder)
         
         print("made new vc from seque")
@@ -41,7 +46,13 @@ class CatalogItemDetailedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        productDescLabel.text = catalog_item?.description
+        productNumberLabel.text = catalog_item?.catalog_number
+        
+        if let quantity = catalog_item?.quantity{
+            productQuantityLabel.text = "\(quantity)"
+        }
+        
         
         
         // Do any additional setup after loading the view.

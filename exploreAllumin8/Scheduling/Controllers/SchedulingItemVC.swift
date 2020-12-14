@@ -26,17 +26,18 @@ class SchedulingItemVC: UIViewController{
     
     
     func fetchDataForSchedulingView(_ query: String) {
-
+        
         
         
     }
     
-    var info:[String] = ["Barnes Jewish"]
+    var info:[String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(nextIndex)
+        print("info in \(id) = ")
+        print(info)
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         tableView.dataSource = self
@@ -45,28 +46,13 @@ class SchedulingItemVC: UIViewController{
         
         // Do any additional setup after loading the view.
     }
-
-
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension SchedulingItemVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected \(info[indexPath.row])")
+        print("selected \(info?[indexPath.row])")
         
-        let newInfo = info[indexPath.row]
+        let newInfo = info?[indexPath.row]
         
         guard let fieldID = id else {
             print("no id set")
@@ -77,18 +63,15 @@ extension SchedulingItemVC: UITableViewDelegate{
             print("updater not set")
             return
         }
-        
         var tempSurgeryInfo = updater.getCurrentInfo()
+        
         switch fieldID{
         case "Hospital":
             tempSurgeryInfo.hospital = newInfo
             break
-        case "Patient":
-//            tempSurgeryInfo.patient?.id = Int(newInfo)
-            //NAMIT TO-DO: Patient updating was handled here but now needs to be handled elsewhere cause its not a table anymore
-            break
         case "Procedure":
             tempSurgeryInfo.procedure = newInfo
+            
             break
         default:
             print("info passed but could not find proper surgery info id to place it into")
@@ -104,17 +87,15 @@ extension SchedulingItemVC: UITableViewDelegate{
 
 extension SchedulingItemVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return info.count
+        return info?.count ?? 0
     }
-    
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let myCell = tableView.dequeueReusableCell(withIdentifier: "tableCell") else {
             fatalError("could not find cell with reuse idenfier 'tableCell' in SchedulingItemVC")
         }
         
-        myCell.textLabel?.text = info[indexPath.row]
+        myCell.textLabel?.text = info?[indexPath.row]
         
         return myCell
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SurgeryDatePickerVC: UIViewController {
 
@@ -15,8 +16,7 @@ class SurgeryDatePickerVC: UIViewController {
     var id: String?
     var nextIndex: Int?
     
-    @IBOutlet weak var startDatePicker: UIDatePicker!
-    @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBAction func reviewSurgery(_ sender:UIButton){
 //        let startTime = startDatePicker.date
@@ -30,6 +30,8 @@ class SurgeryDatePickerVC: UIViewController {
 //        tempSurgeryInfo.startDate = startTime
 //        tempSurgeryInfo.endDate = endTime
         
+        let date = datePicker.date
+        tempSurgeryInfo.date = Timestamp(date: date)
         //NAMIT TO-DO: Needs to update tempSurgeryInfo.date from whatever calendar you use
         
         guard let nextVCIndex = nextIndex else {

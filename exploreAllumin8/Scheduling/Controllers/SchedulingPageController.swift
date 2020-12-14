@@ -24,6 +24,15 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     var db:Firestore?
     
     
+    private(set) lazy var orderedViewControllers: [UIViewController] = {
+        return [
+            self.newViewController("Hospital", nextIndex: 1),
+            self.newViewController("Patient", nextIndex: 2),
+            self.newViewController("Procedure", nextIndex: 3),
+            self.newViewController("SurgeryDate", nextIndex: 4),
+            self.newViewController("Confirmation", nextIndex: -1)]
+    }()
+    
     //Info needed for Surgery scheduling
     var procedureKits:[Kit]?
     var products:[Product]?
@@ -38,19 +47,20 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
         delegate = self
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //        dataSource = self
         
-        if let firstViewController = orderedViewControllers.first {
-            setViewControllers([firstViewController],
-                               direction: .forward,
-                               animated: true,
-                               completion: nil)
-        }
+        let firstViewController =  UIStoryboard(name: "scheduleScreen", bundle: nil)
+            .instantiateViewController(withIdentifier: "FetchInfoVC")
         
-        self.db = Firestore.firestore()
+        setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        
+       self.db = Firestore.firestore()
+       loadData()
+        
         
         //DEBUG
 //        let userId = "wnBfdSqoyNcj537YAk9M" //TODO: UPDATE TO USER AUTHENTICATION ON LOGIN
@@ -59,7 +69,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
 //        let testSchedulingSurgery = SchedulingSurgery(date: Timestamp(date: Date(timeIntervalSinceNow: 0)), hospital: "Habif", kits: procedureKits, notes: ["Patient is a loser"], patient: testPatient, procedure: "Spine Replacement", status: "Pending confirmation", surgeon_id: userId, surgeon_name: "Todd Sproull", tracking: trackingInfo, images: [])
 //        testOperationUpload(newOperation: testSchedulingSurgery)
         
-        loadData()
+ 
     }
     
     func loadData() {
@@ -74,7 +84,9 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
             if let document = document, document.exists {
                 let surgeonData = try? document.data(as: Surgeon.self)
                 DispatchQueue.main.async {
+                    print("fetched surgeon info")
                     self.surgeonInfo = surgeonData
+                    self.finishFetchSurgeryInfo()
                 }
             } else {
                 print("Document does not exist")
@@ -95,65 +107,56 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                     }
                 }
                 DispatchQueue.main.async {
+                    print("fetched procedure kits")
                     self.procedureKits = procedureKits
-                    
-//                    DUMMY DATA FOR TESTING UPLOAD
-//                    let userId = "wnBfdSqoyNcj537YAk9M" //TODO: UPDATE TO USER AUTHENTICATION ON LOGIN
-//                    let testPatient = Patient(age: 20, id: 1234, name: "Evans, Ethan", sex: "M", weight: 190)
-//                    let trackingInfo:[productTrackInfo] = []
-//                    let testSchedulingSurgery = SchedulingSurgery(date: Timestamp(date: Date(timeIntervalSinceNow: 0)), hospital: "Habif", kits: procedureKits, notes: ["Patient is a loser"], patient: testPatient, procedure: "Spine Replacement", status: "Pending confirmation", surgeon_id: userId, surgeon_name: "Todd Sproull", tracking: trackingInfo)
-//                    self.testOperationUpload()
+                    self.finishFetchSurgeryInfo()
                 }
             }
         }
         
-        //TEST
-        //Firebase querying get all items in the product catalog
-        let productCatalog = db?.collection("catalog")
-        var products:[Product] = []
-        productCatalog?.getDocuments(){ (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    if let newProduct = try? document.data(as: Product.self) {
-                        products.append(newProduct)
-                    }
-                }
-                DispatchQueue.main.async {
-                    self.products = products
-                }
-            }
-        }
+        
         
     }
     
-    
-    //FUNCTION THAT UPLOADS NEW OPERATION TO FIRESTORE
-    //Pass in fully defined SchedulingSurgery Struct (tracking can just be an empty array)
-    func testOperationUpload(newOperation: SchedulingSurgery){
-        do{
-            //Convert surgery into JSON object for Firebase to decode
-            let operationData = try FirebaseEncoder().encode(newOperation) as! [String: Any]
-            
-            //New ID of operation in Firestore
-            var ref: DocumentReference? = nil
-            ref = db?.collection("operations").addDocument(data: operationData) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(ref!.documentID)")
-                }
-            }
-        }catch{
-            fatalError("could not convert patient info to JSON")
+    func finishFetchSurgeryInfo(){
+        if surgeonInfo != nil && procedureKits != nil{
+            print("finished fetching data, updating")
+            var newSurgeryInfo = SchedulingSurgery()
+            newSurgeryInfo.surgeon_id = surgeonInfo?.id
+            newSurgeryInfo.surgeon_name = surgeonInfo?.name
+            updateSurgeryInfo(newInfo: newSurgeryInfo, nextIndex: 0)
+        }else{
+            print("still waiting on data")
         }
+        
     }
     
     func updateSurgeryInfo(newInfo: SchedulingSurgery, nextIndex:Int) {
-        print("newInfo =")
-        print(newInfo)
+        let previousProcedure = surgeryInfo.procedure
         surgeryInfo = newInfo
+        
+        
+        if let procedure = newInfo.procedure {
+            print("procedure updated")
+            //Procedure is updated / set
+            
+            if procedure != previousProcedure {
+                //Set kits[0]
+                if let kits = procedureKits {
+                    var newKits = newInfo.kits ?? [Kit(instruments: nil, kit_name: nil)]
+                    for kit in kits{
+                        if kit.kit_name == procedure {
+                            newKits[0] = kit
+                        }
+                    }
+                    print("updating surgeryInfo.kits to")
+                    print(newKits)
+                    surgeryInfo.kits = newKits
+                }
+            }
+        }
+        
+        
         
         setViewControllers([orderedViewControllers[nextIndex]], direction: .forward, animated: true, completion: nil)
     }
@@ -163,14 +166,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     }
     
     
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [
-            self.newViewController("Hospital", nextIndex: 1),
-            self.newViewController("PatientID", nextIndex: 2),
-            self.newViewController("Procedure", nextIndex: 3),
-            self.newViewController("SurgeryDate", nextIndex: 4),
-            self.newViewController("Confirmation", nextIndex: -1)]
-    }()
+    
     
     private func newViewController(_ id: String, nextIndex: Int) -> UIViewController {
         if id == "SurgeryDate"{
@@ -183,7 +179,30 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
             vc.id = id
             vc.nextIndex = nextIndex
             return vc
+        }else if id == "Patient"{
+            guard let vc = UIStoryboard(name: "scheduleScreen", bundle: nil)
+                .instantiateViewController(withIdentifier: "\(id)VC") as? patientInfoVC else{
+                    fatalError("could not set delegate of \(id)VC")
+            }
+            vc.surgeryInfoUpdater = self
+            vc.surgeryListUpdater = surgeryListUpdater
+            vc.id = id
+            vc.nextIndex = nextIndex
+            return vc
+        }else if id == "Confirmation"{
+            guard let vc = UIStoryboard(name: "scheduleScreen", bundle: nil)
+                .instantiateViewController(withIdentifier: "\(id)VC") as? ConfirmationVC else{
+                    fatalError("could not set delegate of \(id)VC")
+            }
+            vc.surgeryInfoUpdater = self
+            vc.surgeryListUpdater = surgeryListUpdater
+            vc.id = id
+            vc.nextIndex = nextIndex
+            return vc
         }
+        
+
+        
         guard let vc = UIStoryboard(name: "scheduleScreen", bundle: nil)
             .instantiateViewController(withIdentifier: "\(id)VC") as? SchedulingItemVC else{
                 fatalError("could not set delegate of \(id)VC")
@@ -192,6 +211,25 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
         vc.surgeryListUpdater = surgeryListUpdater
         vc.id = id
         vc.nextIndex = nextIndex
+        
+        print("id = \(id)")
+        if id == "Hospital"{
+            print("setting info to the following:")
+            print(surgeonInfo)
+            vc.info = surgeonInfo?.hospitals
+            return vc
+        } else if id == "Procedure" {
+            guard let kits = procedureKits else {
+                print("couldn't get kits")
+                return vc
+            }
+            var kitNames:[String] = []
+            for kit in kits{
+                kitNames.append(kit.kit_name ?? "missing kit")
+            }
+            vc.info = kitNames
+        }
+        
         return vc
     }
     

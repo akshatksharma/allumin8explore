@@ -95,6 +95,10 @@ class accountVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Hospitals"
+    }
+    
     /*
      // MARK: - Navigation
      

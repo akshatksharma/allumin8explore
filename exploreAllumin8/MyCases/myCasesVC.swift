@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FSCalendar
+import FirebaseAuth
 
 protocol CasesUpdater {
 }
@@ -109,7 +110,9 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         // this is just firebase stuff
         
         // accessing the surgeries_test collection from cloud firestore, and setting a snapshot listener so that this method is called whenever something new is added to the table
-        let userId = "wnBfdSqoyNcj537YAk9M"
+        
+        let userId = Auth.auth().currentUser?.uid
+//        let userId = "wnBfdSqoyNcj537YAk9M"
         
         db?.collection("operations").whereField("surgeon_id", isEqualTo: userId).addSnapshotListener {
             (querySnapshot, err) in
@@ -214,7 +217,18 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         }
     }
     
+    // sign out adapted from Firebase documentation: https://firebase.google.com/docs/auth/web/password-auth
+    
 
+    
+    @IBAction func seeAccount(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "account")
+        
+        
+        
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.db = Firestore.firestore()
@@ -230,7 +244,6 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
         calendarTable.dataSource = self
         calendarTable.isHidden = true
         calendar.isHidden = true
-        
         
 
 

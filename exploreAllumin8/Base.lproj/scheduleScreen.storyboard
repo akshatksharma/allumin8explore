@@ -164,7 +164,7 @@
                                 <rect key="frame" x="20" y="199" width="374" height="394"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <datePicker contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="35k-5t-rtL">
+                            <datePicker contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="35k-5t-rtL">
                                 <rect key="frame" x="47" y="593" width="320" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="uPx-uo-dLC"/>

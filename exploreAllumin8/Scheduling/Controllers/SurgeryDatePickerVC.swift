@@ -23,7 +23,7 @@ class SurgeryDatePickerVC: UIViewController, FSCalendarDelegate, FSCalendarDataS
     let dateFormatter = DateFormatter()
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateFormat = "MM/dd/yyyy "
         dateSelected = dateFormatter.string(from: date)
         print(dateSelected)
         
@@ -42,12 +42,26 @@ class SurgeryDatePickerVC: UIViewController, FSCalendarDelegate, FSCalendarDataS
         dateFormatter.dateFormat = "hh:mm a"
         var timeString:String = dateFormatter.string(from: time)
         
+        guard let dateString = dateSelected else {
+            print("date not converted")
+            return
+        }
         
-        print(timeString)
+        
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        guard let newDate = dateFormatter.date(from: dateString + timeString) else {
+            print("date not converted to time")
+            return
+        }
+        
+        print("newDate=")
+        print(dateFormatter.string(from: newDate))
         
         guard let nextVCIndex = nextIndex else {
             fatalError("no nextIndex provided to surgeryDatePickerVC")
         }
+        
+        tempSurgeryInfo.date = Timestamp(date: newDate)
         
         updater.updateSurgeryInfo(newInfo: tempSurgeryInfo, nextIndex: nextVCIndex)
     }

@@ -92,9 +92,9 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
     override func viewDidAppear(_ animated: Bool) {
         guard let kitCount = surgeryInfo?.kits?.count else {return}
         if kitCount == 2 {
-            specialRequestButton.titleLabel?.text = "Edit Special Request Kit"
+            specialRequestButton.titleLabel?.text = "Edit"
         } else {
-            specialRequestButton.titleLabel?.text = "Add Special Request Kit"
+            specialRequestButton.titleLabel?.text = "Add"
         }
     }
     

@@ -14,25 +14,30 @@ protocol SurgeryListLocalUpdater {
 }
 
 class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
-
+    
     
     var surgeries:[LocalSurgeryInfo] = [
         
     ]
     
     
-//    var surgeonData:Surgeon?
+    //    var surgeonData:Surgeon?
     
     override func viewDidLoad() {
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
     }
     
     
-        
-//        print(self.caseData)
-        
+    
+    //        print(self.caseData)
+    
     
     
     //Temp until connected to FireStore
@@ -62,7 +67,7 @@ class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-//        print("seguing to \(segue.destination)")
+        //        print("seguing to \(segue.destination)")
         if let pageController = segue.destination as? SchedulingPageController{
             pageController.surgeryListUpdater = self
         }

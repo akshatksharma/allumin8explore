@@ -7,6 +7,17 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+        <array key="OpenSans-SemiBold.ttf">
+            <string>OpenSans-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--SchedulingVC-->
         <scene sceneID="FWm-i9-8IS">
@@ -16,25 +27,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SCHEDULE  A  CASE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="662-Kr-beL">
-                                <rect key="frame" x="57" y="133" width="301" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Sip-Oh-k7G"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule Case" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYe-AD-uhP">
+                                <rect key="frame" x="20" y="120" width="272" height="44"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znd-Qx-0Wr">
-                                <rect key="frame" x="0.0" y="556" width="414" height="120"/>
-                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Todd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVi-AS-BQz">
+                                <rect key="frame" x="20" y="88" width="86" height="24"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="calendar.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EdR-At-Zyc">
+                                <rect key="frame" x="20" y="315.5" width="374" height="202"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="Fe1-aE-mST"/>
+                                    <constraint firstAttribute="height" constant="203" id="1uQ-NH-f0E"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Schedule New Surgery">
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znd-Qx-0Wr">
+                                <rect key="frame" x="100" y="697" width="214" height="85"/>
+                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                <state key="normal" title="Click to Start"/>
+                                <state key="selected" title="f">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="hdC-Rg-lSR" kind="show" id="UFj-9y-4Qp"/>
                                 </connections>
@@ -42,16 +72,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="662-Kr-beL" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" constant="57" id="Onc-a6-6lu"/>
-                            <constraint firstItem="662-Kr-beL" firstAttribute="top" secondItem="fcS-Wh-ojA" secondAttribute="top" constant="45" id="ZkI-az-ASK"/>
-                            <constraint firstItem="fcS-Wh-ojA" firstAttribute="bottom" secondItem="Znd-Qx-0Wr" secondAttribute="bottom" constant="186" id="ggE-OU-s4L"/>
-                            <constraint firstItem="662-Kr-beL" firstAttribute="centerX" secondItem="Znd-Qx-0Wr" secondAttribute="centerX" id="rIu-aL-mcW"/>
-                            <constraint firstItem="662-Kr-beL" firstAttribute="centerX" secondItem="51A-Yb-VRa" secondAttribute="centerX" id="u97-OP-SwT"/>
-                            <constraint firstItem="Znd-Qx-0Wr" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" id="vF1-Dq-a9v"/>
+                            <constraint firstItem="fcS-Wh-ojA" firstAttribute="bottom" secondItem="Znd-Qx-0Wr" secondAttribute="bottom" constant="80" id="BiJ-yc-aEV"/>
+                            <constraint firstItem="lYe-AD-uhP" firstAttribute="top" secondItem="YVi-AS-BQz" secondAttribute="bottom" constant="8" id="E8X-iF-YMI"/>
+                            <constraint firstItem="EdR-At-Zyc" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" constant="20" id="ODE-Ah-GdS"/>
+                            <constraint firstItem="lYe-AD-uhP" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" constant="20" id="Uc7-uG-QfY"/>
+                            <constraint firstItem="Znd-Qx-0Wr" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" constant="100" id="WIP-EI-aO0"/>
+                            <constraint firstItem="Znd-Qx-0Wr" firstAttribute="top" relation="lessThanOrEqual" secondItem="EdR-At-Zyc" secondAttribute="bottom" constant="180" id="Y0Z-aR-2mj"/>
+                            <constraint firstItem="fcS-Wh-ojA" firstAttribute="trailing" secondItem="Znd-Qx-0Wr" secondAttribute="trailing" constant="100" id="hxs-WW-G4C"/>
+                            <constraint firstItem="fcS-Wh-ojA" firstAttribute="trailing" secondItem="EdR-At-Zyc" secondAttribute="trailing" constant="20" id="ihO-zK-6WY"/>
+                            <constraint firstItem="YVi-AS-BQz" firstAttribute="leading" secondItem="fcS-Wh-ojA" secondAttribute="leading" constant="20" id="j2a-gz-vo2"/>
+                            <constraint firstItem="EdR-At-Zyc" firstAttribute="top" secondItem="lYe-AD-uhP" secondAttribute="bottom" constant="150" id="wqF-cL-yoC"/>
+                            <constraint firstItem="YVi-AS-BQz" firstAttribute="top" secondItem="fcS-Wh-ojA" secondAttribute="top" id="xij-yT-jIA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fcS-Wh-ojA"/>
                     </view>
-                    <navigationItem key="navigationItem" id="eK7-rZ-jPa"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="eK7-rZ-jPa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zE-7Q-wVw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,7 +133,7 @@
         <scene sceneID="PSD-K7-KjA">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hdC-Rg-lSR" customClass="SchedulingPageController" customModule="exploreAllumin8" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Br7-6q-830"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Br7-6q-830"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3on-qW-HyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -169,6 +204,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NMb-bD-zQ8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

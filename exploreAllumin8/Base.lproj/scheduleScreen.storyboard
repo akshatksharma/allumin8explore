@@ -644,6 +644,7 @@
                         <viewLayoutGuide key="safeArea" id="zsx-KM-DZH"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="xgB-xR-gMm" id="PtU-hw-u0r"/>
                         <outlet property="productDescLabel" destination="0re-I3-IX7" id="5ET-MF-Sjc"/>
                         <outlet property="productNumberLabel" destination="XfY-MQ-QlT" id="8iH-9z-SOy"/>
                         <outlet property="productQuantityLabel" destination="4Hd-zV-v3G" id="UEe-al-hig"/>

@@ -147,7 +147,6 @@ extension CatalogSearchVC: UICollectionViewDataSource{
         let quantityLabel = UILabel(frame: frameRect)
      
         descLabel.text = product_info?.description
-        descLabel.backgroundColor = UIColor.red
         descLabel.font = UIFont(name: "System", size: 24)
         
         catalogNumberLabel.text = product_info?.catalog_number

@@ -50,6 +50,11 @@
 		A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8829E20257997DF00BC44E1 /* CatalogSearchVC.swift */; };
 		A8D2B7682581688B008499D8 /* SurgeryDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2B7672581688B008499D8 /* SurgeryDatePickerVC.swift */; };
 		D309D7BE2581099000F7D242 /* calCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309D7BD2581099000F7D242 /* calCell.swift */; };
+		D325C623258682990046C8E0 /* accountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D325C622258682990046C8E0 /* accountVC.swift */; };
+		D3FF45642583E8A80009948B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45632583E8A80009948B /* LoginVC.swift */; };
+		D3FF45662584E7610009948B /* registrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45652584E7610009948B /* registrationVC.swift */; };
+		D3FF45682585B5590009948B /* addHospitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45672585B5590009948B /* addHospitalVC.swift */; };
+		D3FF456A2585C3EF0009948B /* hospitalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF45692585C3EF0009948B /* hospitalCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +127,11 @@
 		B23FBF183A7FD72475FBB8ED /* Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8-exploreAllumin8UITests/Pods-exploreAllumin8-exploreAllumin8UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9BB3E0C3C84AE1C8FE7803E /* Pods-exploreAllumin8Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exploreAllumin8Tests.release.xcconfig"; path = "Target Support Files/Pods-exploreAllumin8Tests/Pods-exploreAllumin8Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D309D7BD2581099000F7D242 /* calCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calCell.swift; sourceTree = "<group>"; };
+		D325C622258682990046C8E0 /* accountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountVC.swift; sourceTree = "<group>"; };
+		D3FF45632583E8A80009948B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D3FF45652584E7610009948B /* registrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registrationVC.swift; sourceTree = "<group>"; };
+		D3FF45672585B5590009948B /* addHospitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addHospitalVC.swift; sourceTree = "<group>"; };
+		D3FF45692585C3EF0009948B /* hospitalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalCell.swift; sourceTree = "<group>"; };
 		F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exploreAllumin8_exploreAllumin8UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,8 +179,8 @@
 				02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */,
 				02B682C9257B4C3800DBAC22 /* caseCell.swift */,
 				D309D7BD2581099000F7D242 /* calCell.swift */,
-				02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */,
 				02F4E6422571CA4D00022133 /* myCasesVC.swift */,
+				02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */,
 				02803B6B25845F9D0054FB18 /* AddCaptionVC.swift */,
 				02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */,
 				026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */,
@@ -204,6 +214,7 @@
 		02F4E60A2568C6BE00022133 /* exploreAllumin8 */ = {
 			isa = PBXGroup;
 			children = (
+				D3FF456C2585C4320009948B /* loginRegister */,
 				026CBD89257AA86F00398A3C /* MyCases */,
 				026CBD7E257970DF00398A3C /* storyboards */,
 				02F4E60B2568C6BE00022133 /* AppDelegate.swift */,
@@ -306,6 +317,18 @@
 				341EC8E75A417CDADE4F6A9A /* Pods_exploreAllumin8Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3FF456C2585C4320009948B /* loginRegister */ = {
+			isa = PBXGroup;
+			children = (
+				D3FF45632583E8A80009948B /* LoginVC.swift */,
+				D3FF45652584E7610009948B /* registrationVC.swift */,
+				D3FF45672585B5590009948B /* addHospitalVC.swift */,
+				D3FF45692585C3EF0009948B /* hospitalCell.swift */,
+				D325C622258682990046C8E0 /* accountVC.swift */,
+			);
+			path = loginRegister;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -554,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D325C623258682990046C8E0 /* accountVC.swift in Sources */,
 				02B682CC257B4C3800DBAC22 /* detailedCaseVC.swift in Sources */,
 				A8829E29257997DF00BC44E1 /* SchedulingPageController.swift in Sources */,
 				A8829E28257997DF00BC44E1 /* ConfirmationVC.swift in Sources */,
@@ -564,6 +588,7 @@
 				02F4E60C2568C6BE00022133 /* AppDelegate.swift in Sources */,
 				02F4E6452571DAE000022133 /* models.swift in Sources */,
 				02F4E6432571CA4D00022133 /* myCasesVC.swift in Sources */,
+				D3FF45642583E8A80009948B /* LoginVC.swift in Sources */,
 				026CBD8B257AA8B000398A3C /* DetailedViewModel.swift in Sources */,
 				A8829E23257997DF00BC44E1 /* SurgeryInfo.swift in Sources */,
 				02F4E60E2568C6BE00022133 /* SceneDelegate.swift in Sources */,
@@ -575,8 +600,11 @@
 				02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */,
 				A8D2B7682581688B008499D8 /* SurgeryDatePickerVC.swift in Sources */,
 				A8829E25257997DF00BC44E1 /* CVDataSource.swift in Sources */,
+				D3FF45682585B5590009948B /* addHospitalVC.swift in Sources */,
 				02B682C8257AED8F00DBAC22 /* DetailedCaseViewCells.swift in Sources */,
 				D309D7BE2581099000F7D242 /* calCell.swift in Sources */,
+				D3FF45662584E7610009948B /* registrationVC.swift in Sources */,
+				D3FF456A2585C3EF0009948B /* hospitalCell.swift in Sources */,
 				A8829E22257997DF00BC44E1 /* LocalSurgeryInfo.swift in Sources */,
 				A8829E26257997DF00BC44E1 /* SchedulingItemVC.swift in Sources */,
 				A8829E2A257997DF00BC44E1 /* SchedulingVC.swift in Sources */,

@@ -29,7 +29,7 @@ class DetailedCaseInfoTableViewCell: UITableViewCell {
             guard let date = caseInfo.date?.dateValue() else { return }
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM"
+            dateFormatter.dateFormat = "MM/dd HH:mm"
             
             let stringDate = dateFormatter.string(from: date)
             

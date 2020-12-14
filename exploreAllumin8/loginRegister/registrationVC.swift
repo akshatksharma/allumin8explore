@@ -22,6 +22,11 @@ class registrationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.db = Firestore.firestore()
+        
+        nameField.delegate = self
+        emailField.delegate = self
+        passwordField.delegate = self
+        confirmPassword.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -125,4 +130,16 @@ class registrationVC: UIViewController {
     }
     */
 
+}
+
+extension registrationVC: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
 }

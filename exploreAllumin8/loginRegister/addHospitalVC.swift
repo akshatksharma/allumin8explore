@@ -7,12 +7,15 @@
 //
 
 import UIKit
-
+import CodableFirebase
+import Firebase
+import FirebaseAuth
 class addHospitalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var hospitalTable: UITableView!
     var hospitals:[String] = []
     
+    var db:Firestore?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if hospitals == []{
@@ -33,6 +36,8 @@ class addHospitalVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Do any additional setup after loading the view.
         hospitalTable.delegate = self
         hospitalTable.dataSource = self
+        
+        db = Firestore.firestore()
     }
     
     override func viewWillAppear(_ animated:Bool){
@@ -59,6 +64,26 @@ class addHospitalVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBAction func save(_ sender: Any){
         let home = storyboard?.instantiateViewController(identifier: "userHome") as? UITabBarController
+        guard let documentID = Auth.auth().currentUser?.uid else {
+            print("couldn't get documentID from surgeryInfo")
+            return
+        }
+        
+        
+        
+        let hospitalData = try? FirebaseEncoder().encode(hospitals) as Any
+        
+        db?.collection("surgeons").document(documentID).updateData([
+            "hospitals": hospitalData
+            
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Hospitals successfully written!")
+            }
+        }
+        
         view.window?.rootViewController = home
         view.window?.makeKeyAndVisible()
     }

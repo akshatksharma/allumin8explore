@@ -14,6 +14,7 @@ import CodableFirebase
 protocol SurgeryInfoUpdater{
     func updateSurgeryInfo(newInfo: SchedulingSurgery, nextIndex: Int)
     func getCurrentInfo() -> SchedulingSurgery
+    func postOperationPost()
 }
 
 class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
@@ -23,6 +24,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     
     var db:Firestore?
     
+    var ocDelegate:OperationCompletionDelegate?
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [
@@ -37,9 +39,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     var procedureKits:[Kit]?
     var products:[Product]?
     var surgeonInfo: Surgeon?
-    
-    var surgeryListUpdater:SurgeryListLocalUpdater?
-    
+        
     required init?(coder: NSCoder) {
         surgeryInfo = SchedulingSurgery()
         
@@ -50,9 +50,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        dataSource = self
-        
+                
         let firstViewController =  UIStoryboard(name: "scheduleScreen", bundle: nil)
             .instantiateViewController(withIdentifier: "FetchInfoVC")
         
@@ -61,13 +59,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
        self.db = Firestore.firestore()
        loadData()
         
-        
-        //DEBUG
-//        let userId = "wnBfdSqoyNcj537YAk9M" //TODO: UPDATE TO USER AUTHENTICATION ON LOGIN
-//        let testPatient = Patient(age: 20, id: 1234, name: "Evans, Ethan", sex: "M", weight: 190)
-//        let trackingInfo:[productTrackInfo] = []
-//        let testSchedulingSurgery = SchedulingSurgery(date: Timestamp(date: Date(timeIntervalSinceNow: 0)), hospital: "Habif", kits: procedureKits, notes: ["Patient is a loser"], patient: testPatient, procedure: "Spine Replacement", status: "Pending confirmation", surgeon_id: userId, surgeon_name: "Todd Sproull", tracking: trackingInfo, images: [])
-//        testOperationUpload(newOperation: testSchedulingSurgery)
+    
         
  
     }
@@ -75,8 +67,9 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
     func loadData() {
         // accessing the surgeries_test collection from cloud firestore, and setting a snapshot listener so that this method is called whenever something new is added to the table
         
-        let userId = "wnBfdSqoyNcj537YAk9M" //TODO: UPDATE TO USER AUTHENTICATION ON LOGIN
-        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            fatalError("could not get userId to load necessary data to schedule surgery")
+        }
         
         //Firebase querying for surgeon information
         let docRef = db?.collection("surgeons").document(userId)
@@ -84,12 +77,11 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
             if let document = document, document.exists {
                 let surgeonData = try? document.data(as: Surgeon.self)
                 DispatchQueue.main.async {
-                    print("fetched surgeon info")
                     self.surgeonInfo = surgeonData
                     self.finishFetchSurgeryInfo()
                 }
             } else {
-                print("Document does not exist")
+                print("surgeon document does not exist")
             }
         }
         
@@ -103,42 +95,32 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                 for document in querySnapshot!.documents {
                     if let newKit = try? document.data(as: Kit.self) {
                         procedureKits.append(newKit)
-                        
                     }
                 }
                 DispatchQueue.main.async {
-                    print("fetched procedure kits")
                     self.procedureKits = procedureKits
                     self.finishFetchSurgeryInfo()
                 }
             }
         }
-        
-        
-        
     }
     
     func finishFetchSurgeryInfo(){
         if surgeonInfo != nil && procedureKits != nil{
-            print("finished fetching data, updating")
             var newSurgeryInfo = SchedulingSurgery()
             newSurgeryInfo.surgeon_id = surgeonInfo?.id
             newSurgeryInfo.surgeon_name = surgeonInfo?.name
             updateSurgeryInfo(newInfo: newSurgeryInfo, nextIndex: 0)
-        }else{
-            print("still waiting on data")
         }
-        
     }
     
     func updateSurgeryInfo(newInfo: SchedulingSurgery, nextIndex:Int) {
+        
         let previousProcedure = surgeryInfo.procedure
         surgeryInfo = newInfo
         
         
         if let procedure = newInfo.procedure {
-            print("procedure updated")
-            //Procedure is updated / set
             
             if procedure != previousProcedure {
                 //Set kits[0]
@@ -149,8 +131,6 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                             newKits[0] = kit
                         }
                     }
-                    print("updating surgeryInfo.kits to")
-                    print(newKits)
                     surgeryInfo.kits = newKits
                 }
             }
@@ -165,7 +145,10 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
         return surgeryInfo
     }
     
-    
+    func postOperationPost() {
+        self.navigationController?.popToRootViewController(animated: true)
+        ocDelegate?.displayAlert()
+    }
     
     
     private func newViewController(_ id: String, nextIndex: Int) -> UIViewController {
@@ -175,7 +158,6 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                     fatalError("could not set delegate of \(id)VC")
             }
             vc.surgeryInfoUpdater = self
-            vc.surgeryListUpdater = surgeryListUpdater
             vc.id = id
             vc.nextIndex = nextIndex
             return vc
@@ -185,7 +167,6 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                     fatalError("could not set delegate of \(id)VC")
             }
             vc.surgeryInfoUpdater = self
-            vc.surgeryListUpdater = surgeryListUpdater
             vc.id = id
             vc.nextIndex = nextIndex
             return vc
@@ -195,7 +176,6 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                     fatalError("could not set delegate of \(id)VC")
             }
             vc.surgeryInfoUpdater = self
-            vc.surgeryListUpdater = surgeryListUpdater
             vc.id = id
             vc.nextIndex = nextIndex
             return vc
@@ -208,15 +188,11 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
                 fatalError("could not set delegate of \(id)VC")
         }
         vc.surgeryInfoUpdater = self
-        vc.surgeryListUpdater = surgeryListUpdater
         vc.id = id
         vc.nextIndex = nextIndex
         
-        print("id = \(id)")
         if id == "Hospital"{
-            print("setting info to the following:")
-            print(surgeonInfo)
-            vc.info = surgeonInfo?.hospitals
+            vc.tableData = surgeonInfo?.hospitals
             return vc
         } else if id == "Procedure" {
             guard let kits = procedureKits else {
@@ -227,7 +203,7 @@ class SchedulingPageController: UIPageViewController, SurgeryInfoUpdater{
             for kit in kits{
                 kitNames.append(kit.kit_name ?? "missing kit")
             }
-            vc.info = kitNames
+            vc.tableData = kitNames
         }
         
         return vc

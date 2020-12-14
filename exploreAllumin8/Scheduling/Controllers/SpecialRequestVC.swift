@@ -40,12 +40,10 @@ class SpecialRequestsVC: UIViewController, SpecialRequestKitDelegate {
                     }
                 }
                 DispatchQueue.main.async {
-                    print("fetched all catalog items")
                     self.products = products
                 }
             }
         }
-        addedItems = []
         
         
         tableView.delegate = self
@@ -56,7 +54,6 @@ class SpecialRequestsVC: UIViewController, SpecialRequestKitDelegate {
     
     
     @IBAction func saveSpecialRequest(_ sender: UIButton){
-//        addedItems?.append(Product(catalog_number: "1.2.3.4", description: "Bell", quantity: 1))
         let specialRequestKit = Kit(instruments: addedItems, kit_name: "Special Requests")
         updateDelegate?.updateSpecialRequest(requestedKit: specialRequestKit)
         navigationController?.popViewController(animated: true)
@@ -68,12 +65,8 @@ class SpecialRequestsVC: UIViewController, SpecialRequestKitDelegate {
     }
     
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("preparing to segue")
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let catalogSearchVC = segue.destination as? CatalogSearchVC{
-            print("seguing to catalog search")
             catalogSearchVC.products = self.products
             catalogSearchVC.srkDelegate = self
         }
@@ -82,6 +75,23 @@ class SpecialRequestsVC: UIViewController, SpecialRequestKitDelegate {
 
 extension SpecialRequestsVC: UITableViewDelegate {
     //IF HAVE TIME: On click shows details of product without add button
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            addedItems?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard var detailedProductVC = UIStoryboard(name: "scheduleScreen", bundle: nil)
+            .instantiateViewController(withIdentifier: "DetailedProductVC") as? CatalogItemDetailedVC else{
+                fatalError("could not instantiate new detailedProductVC")
+        }
+        detailedProductVC.catalog_item = addedItems?[indexPath.row]
+        detailedProductVC.addDisabled = true
+        
+        present(detailedProductVC, animated: true, completion: nil)
+    }
 }
 
 extension SpecialRequestsVC: UITableViewDataSource{

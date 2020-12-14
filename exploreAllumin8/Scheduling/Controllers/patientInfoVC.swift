@@ -29,7 +29,7 @@ class patientInfoVC: UIViewController {
     }
     
     var surgeryInfoUpdater: SurgeryInfoUpdater?
-    var surgeryListUpdater: SurgeryListLocalUpdater?
+//    var surgeryListUpdater: SurgeryListLocalUpdater?
     var id: String?
     var nextIndex: Int?
     
@@ -54,25 +54,15 @@ class patientInfoVC: UIViewController {
             return
         }
         
-        guard let name = patientName.text else {
-            print("could not get patient name")
-            return
-        }
-        guard let age = Double(patientAge.text!) else {
-            print("could not get patient age")
-            return
-        }
-        guard let id = Double(patientID.text!) else {
-            print("could not get patient id")
-            return
-        }
+        let name: String? = patientName.text
         
-        guard let weight = Double(patientWeight.text!) else {
-            print("could not get patient weight")
-            return
-        }
+        let age: Double? = Double(patientAge.text!)
         
-        var sex: String = ""
+        let id: Double? = Double(patientID.text!)
+        
+        let weight: Double? = Double(patientWeight.text!)
+        
+        var sex: String? = nil
         switch patientSex.selectedSegmentIndex {
         case 0:
             sex = "Female"
@@ -84,15 +74,35 @@ class patientInfoVC: UIViewController {
             print("couldn't get patient sex")
             break
         }
+
         
-        //TO-DO: Fix validation for certain input fields
-        //Validate age string to be + number only
-        //Make sex options
-        //Validate weight to be only +
+        var errorMessage = ""
+        var isInvalid = false
+        if name == nil || name!.count == 0{
+            isInvalid = true
+            errorMessage += "Patient Name is Invalid \n"
+        }
+        if age == nil || age! < 0.0 || age! > 140.0 {
+            isInvalid = true
+            errorMessage += "Patient Age is Invalid \n"
+        }
+        if id == nil || id! < 0.0 {
+            isInvalid = true
+            errorMessage += "Patient ID is Invalid \n"
+        }
+        if sex == nil {
+            isInvalid = true
+            errorMessage += "Patient Sex is Invalid \n"
+        }
+        if weight == nil || weight! < 0.0 {
+            isInvalid = true
+            errorMessage += "Patient Weight is Invalid \n"
+        }
         
-        //TO-DO: Fix Keyboards so that typing works with software keyboard
-        
-        
+        if isInvalid{
+            displayAlert(message: errorMessage)
+            return
+        }
         
         var patientInfo = Patient(age: age, id: id, name: name, sex: sex, weight: weight)
         tempSurgeryInfo.patient = patientInfo
@@ -104,6 +114,26 @@ class patientInfoVC: UIViewController {
     
     }
     
+    func displayAlert(message: String){
+        let alert = UIAlertController(title: "Invalid Patient Input", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+            
+            default:
+                print("ree")
+                
+            }}))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
     // For pressing return on the keyboard to dismiss keyboard
     
 
@@ -111,7 +141,6 @@ class patientInfoVC: UIViewController {
 
 extension patientInfoVC: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("returning")
         textField.resignFirstResponder()
         
         return true

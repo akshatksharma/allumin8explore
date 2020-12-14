@@ -26,9 +26,10 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
     //    var kits:[Kit]?
     
     var surgeryInfoUpdater: SurgeryInfoUpdater?
-    var surgeryListUpdater: SurgeryListLocalUpdater?
+//    var surgeryListUpdater: SurgeryListLocalUpdater?
     var id: String?
     var nextIndex: Int?
+    var navController: UINavigationController?
     
     var surgeryInfo: SchedulingSurgery?
     
@@ -113,23 +114,15 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
                     print("Document added with ID: \(ref!.documentID)")
 //                    UIAlertAction(title: "Scheduled Operation", style: .default, handler: nil)
                     
-                    let alert = UIAlertController(title: "Scheduled Operation", message: "The operation has been successfully scheduled", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-                          switch action.style{
-                          case .default:
-                                print("default")
-
-                          case .cancel:
-                                print("cancel")
-
-                          case .destructive:
-                                print("destructive")
-
-
-                    }}))
-                    self.present(alert, animated: true, completion: nil)
+//                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                     
-                    self.tabBarController?.selectedIndex = 0
+                  
+                    
+//                    self.navigationController?.popToRootViewController(animated: false)
+                    
+//                    self.tabBarController?.selectedIndex = 0
+                    
+                    self.surgeryInfoUpdater?.postOperationPost()
                     
                 }
             }
@@ -153,10 +146,13 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
         if numberOfNewInstruments > 0 && numberOfKits == 1{
             //Requested instruments not added, add Special Request kit
             surgeryInfo?.kits?.append(requestedKit)
-        }else if numberOfNewInstruments == 0 && numberOfKits == 2{
-            //No requested instruments, remove Special Request kit
-            surgeryInfo?.kits?.popLast()
+        }else if numberOfNewInstruments == 0 {
+            //No requested instruments, remove Special Request kit if it's been added
+            if numberOfKits == 2{
+                surgeryInfo?.kits?.popLast()
+            }
         }else {
+
             //Non-zero number of requested intruments, special request kit already added
             surgeryInfo?.kits?[1] = requestedKit
         }
@@ -177,6 +173,10 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
             patientReviewVC.patientInfo = surgeryInfo?.patient
         } else if let specialRequests = segue.destination as? SpecialRequestsVC {
             specialRequests.updateDelegate = self
+            specialRequests.addedItems = []
+            if surgeryInfo?.kits?.count == 2 {
+                specialRequests.addedItems = surgeryInfo?.kits?[1].instruments
+            }
         }
     }
     
@@ -204,6 +204,7 @@ extension ConfirmationVC: UITableViewDataSource{
         guard let myCell = tableView.dequeueReusableCell(withIdentifier: "tableCell") else {
             fatalError("could not find cell with reuse idenfier 'tableCell' in ConfirmationVC")
         }
+        
         myCell.textLabel?.text = surgeryInfo?.kits?[indexPath.row].kit_name
         return myCell
     }

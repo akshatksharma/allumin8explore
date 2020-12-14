@@ -15,10 +15,10 @@ class CatalogItemDetailedVC: UIViewController {
     @IBOutlet weak var productNumberLabel: UILabel!
     @IBOutlet weak var productDescLabel: UILabel!
     @IBOutlet weak var productQuantityLabel: UILabel!
-
+    @IBOutlet weak var addButton: UIButton!
     
     var srkDelegate:SpecialRequestKitDelegate?
-    
+    var addDisabled:Bool = false
     
     @IBAction func addItemToKit(_ sender: Any) {
         print("adding to kit")
@@ -32,19 +32,10 @@ class CatalogItemDetailedVC: UIViewController {
     }
     
     
-//    init(catalogItem:CatalogItem){
-//        self.catalogItem = catalogItem
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        print("made new vc from seque")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addButton.isHidden = addDisabled
         
         productDescLabel.text = catalog_item?.description
         productNumberLabel.text = catalog_item?.catalog_number
@@ -52,22 +43,7 @@ class CatalogItemDetailedVC: UIViewController {
         if let quantity = catalog_item?.quantity{
             productQuantityLabel.text = "\(quantity)"
         }
-        
-        
-        
-        // Do any additional setup after loading the view.
-        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

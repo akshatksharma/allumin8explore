@@ -16,33 +16,22 @@ class CatalogSearchVC: UIViewController{
     
     @IBOutlet weak var catalogCollectionView: UICollectionView!
     
-    //    var selectedCatalogItem:String? = nil
     @IBOutlet weak var collectionView:UICollectionView!
         var collectionElements:[Product] = []
     
     @IBOutlet weak var searchFilter: UISegmentedControl!
-//    var db:Firestore?
     
     var products:[Product]?
     var queryResults:[Product]?
     var srkDelegate:SpecialRequestKitDelegate?
     
     required init?(coder: NSCoder){
-        
-        
         super.init(coder: coder)
-        
-        
-        print("creating cvDataSource")
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 10)
         
       
         layout.itemSize = CGSize(width: collectionView.bounds.width / 3, height: 40)
@@ -53,9 +42,6 @@ class CatalogSearchVC: UIViewController{
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBarCatalog.delegate = self
-        
-//        db = Firestore.firestore()
-        
         
     }
     
@@ -80,7 +66,6 @@ class CatalogSearchVC: UIViewController{
             }
             DispatchQueue.main.async {
                 self?.queryResults = queryResult
-                print(queryResult)
                 self?.collectionView.reloadData()
             }
         }
@@ -106,38 +91,10 @@ class CatalogSearchVC: UIViewController{
             }
             DispatchQueue.main.async {
                 self?.queryResults = queryResult
-                print(queryResult)
                 self?.collectionView.reloadData()
             }
         }
     }
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-//        print("item=\(selectedCatalogItem)")
-        
-        guard let detailedVC = segue.destination as? CatalogItemDetailedVC else{
-            fatalError("Could not convert segue.destination to CatalogItemDetailedVC")
-        }
-        
-        
-        
-        
-        print("seguing")
-
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
-    func updateSelectedCatalogItem(element: String) {
-        print("updating selected catalog item")
-//        selectedCatalogItem = element
-    }
-
 }
 
 //MARK: Extensions
@@ -151,13 +108,13 @@ extension CatalogSearchVC: UICollectionViewDelegate{
         }
         detailedProductVC.catalog_item = queryResults?[indexPath.row]
         detailedProductVC.srkDelegate = srkDelegate
+        
         present(detailedProductVC, animated: true, completion: nil)
     }
 }
 
 extension CatalogSearchVC: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("num of items = \(queryResults?.count ?? 0)")
         return queryResults?.count ?? 0
     }
     
@@ -168,13 +125,57 @@ extension CatalogSearchVC: UICollectionViewDataSource{
         }
         let product_info = queryResults?[indexPath.row]
         
-        myCell.backgroundColor = UIColor.green
+        myCell.backgroundColor = UIColor.white
+        let aspectRatio = collectionView.bounds.width/2 - 5
+        myCell.frame.size = CGSize(width: aspectRatio, height: aspectRatio / 1.5)
         
-        let textLabel = UILabel(frame: myCell.bounds)
+        var frameRect = CGRect(x: 0, y: 0, width: myCell.bounds.width, height: 24)
         
-        textLabel.text = product_info?.description
+        let catalogNumberLabel = UILabel(frame: frameRect) //Font-size = 13
         
-        myCell.addSubview(textLabel)
+        
+     
+        frameRect.origin.y = myCell.bounds.maxY/2
+        
+        
+        
+        
+        let descLabel = UILabel(frame: frameRect) //Font-size = 24
+        
+        frameRect.origin.y = myCell.bounds.maxY - 20
+        
+        let quantityLabel = UILabel(frame: frameRect)
+     
+        descLabel.text = product_info?.description
+        descLabel.backgroundColor = UIColor.red
+        descLabel.font = UIFont(name: "System", size: 24)
+        
+        catalogNumberLabel.text = product_info?.catalog_number
+        catalogNumberLabel.font = UIFont(name: "System", size: 13)
+        
+        quantityLabel.text = "\((product_info?.quantity)!)x"
+        quantityLabel.font = UIFont(name: "System Bold", size: 18)
+        
+        myCell.addSubview(catalogNumberLabel)
+        myCell.addSubview(descLabel)
+        myCell.addSubview(quantityLabel)
+             
+//        descLabel.centerYAnchor.constraint(equalTo: myCell.safeAreaLayoutGuide.bottomAnchor)
+//        let descConstraints = [
+//            descLabel.centerYAnchor.constraint(equalTo: myCell.centerYAnchor)
+//        ]
+//        NSLayoutConstraint.activate(descConstraints)
+//        let centerConstrant = NSLayoutConstraint(item: descLabel, attribute: .centerY, relatedBy: .equal, toItem: myCell, attribute: .centerY, multiplier: 1, constant: 0)
+//        descLabel.leadingAnchor.constraint(equalTo: myCell.safeAreaLayoutGuide.leadingAnchor, constant: 10)
+//        descLabel.widthAnchor.constraint(equal)
+//        NSLayoutConstraint.activate([centerConstrant])
+//        let quantityLabel = UILabel(frame: frameRect) //Font-size: 18 bold
+        
+        
+//
+        
+        
+//        myCell.addSubview(catalogNumberLabel)
         
         return myCell
     }
@@ -192,8 +193,6 @@ extension CatalogSearchVC: UISearchBarDelegate{
         } else if searchFilter.selectedSegmentIndex == 1{
             searchByCatalogNumber(searchText)
         }
-        
-        
     }
 }
 

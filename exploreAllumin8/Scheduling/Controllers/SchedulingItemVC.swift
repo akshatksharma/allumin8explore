@@ -11,48 +11,29 @@ import FirebaseFirestore
 
 class SchedulingItemVC: UIViewController{
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     
     var surgeryInfoUpdater: SurgeryInfoUpdater?
-    var surgeryListUpdater: SurgeryListLocalUpdater?
     var id: String?
     var nextIndex: Int?
-    
-    var schedulingInfo: [patientStruct] = []
-    
-    
-    
-    func fetchDataForSchedulingView(_ query: String) {
         
-        
-        
-    }
-    
-    var info:[String]?
+    var tableData:[String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("info in \(id) = ")
-        print(info)
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         tableView.dataSource = self
         tableView.delegate = self
         
-        
-        // Do any additional setup after loading the view.
     }
 }
 
 extension SchedulingItemVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected \(info?[indexPath.row])")
         
-        let newInfo = info?[indexPath.row]
+        let selectedData = tableData?[indexPath.row]
         
         guard let fieldID = id else {
             print("no id set")
@@ -63,18 +44,18 @@ extension SchedulingItemVC: UITableViewDelegate{
             print("updater not set")
             return
         }
+        
         var tempSurgeryInfo = updater.getCurrentInfo()
         
         switch fieldID{
         case "Hospital":
-            tempSurgeryInfo.hospital = newInfo
+            tempSurgeryInfo.hospital = selectedData
             break
         case "Procedure":
-            tempSurgeryInfo.procedure = newInfo
-            
+            tempSurgeryInfo.procedure = selectedData
             break
         default:
-            print("info passed but could not find proper surgery info id to place it into")
+            print("fieldID \(fieldID) not recognized for selected row")
             return
         }
         
@@ -87,7 +68,7 @@ extension SchedulingItemVC: UITableViewDelegate{
 
 extension SchedulingItemVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return info?.count ?? 0
+        return tableData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,7 +76,7 @@ extension SchedulingItemVC: UITableViewDataSource{
             fatalError("could not find cell with reuse idenfier 'tableCell' in SchedulingItemVC")
         }
         
-        myCell.textLabel?.text = info?[indexPath.row]
+        myCell.textLabel?.text = tableData?[indexPath.row]
         
         return myCell
     }

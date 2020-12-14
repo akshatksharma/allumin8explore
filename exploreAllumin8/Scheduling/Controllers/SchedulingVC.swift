@@ -9,19 +9,31 @@
 import UIKit
 import Firebase
 
-protocol SurgeryListLocalUpdater {
-    func updateSurgeries(newSurgery:LocalSurgeryInfo)
+protocol OperationCompletionDelegate{
+    func displayAlert()
 }
 
-class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
-
+class SchedulingVC: UIViewController, OperationCompletionDelegate {
     
-    var surgeries:[LocalSurgeryInfo] = [
+    func displayAlert(){
+        let alert = UIAlertController(title: "Scheduled Operation", message: "The operation has been successfully scheduled", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
         
-    ]
+        self.present(alert, animated: true, completion: nil)
+    }
     
-    
-//    var surgeonData:Surgeon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,31 +41,7 @@ class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
         
     }
     
-    
-        
-//        print(self.caseData)
-        
-    
-    
-    //Temp until connected to FireStore
-    func updateSurgeries(newSurgery: LocalSurgeryInfo) {
-        print("updating surgery list")
-        
-        
-        surgeries.append(newSurgery)
-        
-        print(surgeries)
-        
-        //surgeryTable.reloadData()
-        
-        // print(surgeryTable.numberOfRows(inSection: 0))
-        
-        
-        //        surgeryTable.beginUpdates()
-        //        surgeryTable.insertRows(at: [IndexPath(row: self.surgeries.count-2, section: 0)], with: .automatic)
-        //        surgeryTable.endUpdates()
-        
-    }
+
     
     
     // MARK: - Navigation
@@ -64,57 +52,58 @@ class SchedulingVC: UIViewController, SurgeryListLocalUpdater {
         // Pass the selected object to the new view controller.
 //        print("seguing to \(segue.destination)")
         if let pageController = segue.destination as? SchedulingPageController{
-            pageController.surgeryListUpdater = self
+//            pageController.surgeryListUpdater = self
+            pageController.ocDelegate = self
         }
     }
     
     
 }
 
-extension SchedulingVC: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return surgeries.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "surgeryTableCell", for: indexPath)
-        
-        let surgeryInfo = surgeries[indexPath.row]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm E, d MMM y"
-        
-        
-        
-        guard let procedure = surgeryInfo.procedure else {
-            fatalError("procedure is not set")
-        }
-        
-        
-        return cell
-    }
-}
-
-
-
-
-extension SchedulingVC: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let surgeryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurgeryInfo") as? SurgeryInfoVC else {
-            print("couldnt get surgeryInfoVC")
-            return;
-        }
-        
-        print("pushing vc from collectionView")
-        surgeryVC.surgeryInfo = surgeries[indexPath.row]
-        navigationController?.pushViewController(surgeryVC, animated: true)
-    }
-}
+//extension SchedulingVC: UITableViewDataSource{
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return surgeries.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "surgeryTableCell", for: indexPath)
+//
+//        let surgeryInfo = surgeries[indexPath.row]
+//
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm E, d MMM y"
+//
+//
+//
+//        guard let procedure = surgeryInfo.procedure else {
+//            fatalError("procedure is not set")
+//        }
+//
+//
+//        return cell
+//    }
+//}
+//
+//
+//
+//
+//extension SchedulingVC: UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let surgeryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurgeryInfo") as? SurgeryInfoVC else {
+//            print("couldnt get surgeryInfoVC")
+//            return;
+//        }
+//
+//        print("pushing vc from collectionView")
+//        surgeryVC.surgeryInfo = surgeries[indexPath.row]
+//        navigationController?.pushViewController(surgeryVC, animated: true)
+//    }
+//}

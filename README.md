@@ -23,7 +23,7 @@ Instead forcing medical professionals to bounce throughout 2 or 3 different syst
      * Patient information, such as ID, sex, name, and weight
      * Date 
      * Instrument and Implant kits
-     * Additional information 
+     * Additional information / notes for the surgeon
  
  Then, surgeons can see the surgeries they've scheduled in their main feed. This feed can be viewed for linearly, to show all their surgeries, or in a calendar view to let them get a better sense of the timescale of their work. They can click on a surgery and see the detailed information about the case. Furthermore, the surgeon can also upload relevant scans, after the case has been completed. These scans can be opened fullscreen in an immersive image viewer that allows zooming and other key features. 
  

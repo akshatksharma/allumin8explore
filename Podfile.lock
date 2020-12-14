@@ -223,6 +223,9 @@ PODS:
   - DynamicBlurView (4.1.0)
   - Firebase/Analytics (6.34.0):
     - Firebase/Core
+  - Firebase/Auth (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 6.9.2)
   - Firebase/Core (6.34.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.9.0)
@@ -231,9 +234,6 @@ PODS:
   - Firebase/Firestore (6.34.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.19.0)
-  - Firebase/Storage (6.34.0):
-    - Firebase/CoreOnly
-    - FirebaseStorage (~> 3.9.1)
   - FirebaseAnalytics (6.9.0):
     - FirebaseCore (~> 6.10)
     - FirebaseInstallations (~> 1.7)
@@ -344,6 +344,7 @@ PODS:
 DEPENDENCIES:
   - CodableFirebase
   - Firebase/Analytics
+  - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
@@ -360,6 +361,7 @@ SPEC REPOS:
     - DynamicBlurView
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
@@ -388,6 +390,7 @@ SPEC CHECKSUMS:
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
+  FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseFirestore: 9b2f1b9b9a6f2f0b6fb7484b9e32ab7e39243554
@@ -408,6 +411,6 @@ SPEC CHECKSUMS:
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
 
-PODFILE CHECKSUM: 19556e8acd730703a83520b60ae87a8be58c7d6f
+PODFILE CHECKSUM: 52a4997485d0ba8eba7b2e7cef62b8510423c781
 
 COCOAPODS: 1.10.0

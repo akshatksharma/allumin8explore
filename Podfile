@@ -18,6 +18,8 @@ target 'exploreAllumin8' do
 
    pod 'Firebase/Firestore'
    pod 'Firebase/Storage'
+   pod 'Firebase/Auth'
+   
    # Optionally, include the Swift extensions if you're using Swift.
    pod 'FirebaseFirestoreSwift'
    

@@ -1,19 +1,17 @@
 //
-//  hospitalCell.swift
+//  ScheduleCells.swift
 //  exploreAllumin8
 //
-//  Created by Kathy Zhou on 12/13/20.
+//  Created by Akshat Sharma on 12/14/20.
 //  Copyright © 2020 Akshat Sharma. All rights reserved.
 //
 
 import UIKit
 
-class hospitalCell: UITableViewCell {
+class ScheduleHospitalCell: UITableViewCell {
 
-    
     @IBOutlet weak var hospitalNameLabel: UILabel!
-    
-    
+    @IBOutlet weak var procedureNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,9 +22,5 @@ class hospitalCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-}
-
-class patientCell: UITableViewCell {
 
 }

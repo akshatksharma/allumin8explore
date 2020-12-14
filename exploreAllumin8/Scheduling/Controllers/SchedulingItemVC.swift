@@ -72,11 +72,18 @@ extension SchedulingItemVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let myCell = tableView.dequeueReusableCell(withIdentifier: "tableCell") else {
+        guard let myCell = tableView.dequeueReusableCell(withIdentifier: "ScheduleHospitalCell") as? ScheduleHospitalCell else {
             fatalError("could not find cell with reuse idenfier 'tableCell' in SchedulingItemVC")
         }
         
-        myCell.textLabel?.text = tableData?[indexPath.row]
+        if tableView.tag == 1 {
+             myCell.hospitalNameLabel.text = info?[indexPath.row]
+        }
+        
+        else if tableView.tag == 2 {
+                myCell.procedureNameLabel.text = info?[indexPath.row]
+        }
+    
         
         return myCell
     }

@@ -13,6 +13,7 @@ protocol OperationCompletionDelegate{
     func displayAlert()
 }
 
+
 class SchedulingVC: UIViewController, OperationCompletionDelegate {
     
     func displayAlert(){
@@ -36,12 +37,15 @@ class SchedulingVC: UIViewController, OperationCompletionDelegate {
     
     
     override func viewDidLoad() {
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
     }
-    
-
     
     
     // MARK: - Navigation
@@ -50,7 +54,7 @@ class SchedulingVC: UIViewController, OperationCompletionDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-//        print("seguing to \(segue.destination)")
+        //        print("seguing to \(segue.destination)")
         if let pageController = segue.destination as? SchedulingPageController{
 //            pageController.surgeryListUpdater = self
             pageController.ocDelegate = self

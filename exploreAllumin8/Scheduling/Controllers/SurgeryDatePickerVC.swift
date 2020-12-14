@@ -10,13 +10,14 @@ import UIKit
 import Firebase
 
 class SurgeryDatePickerVC: UIViewController {
-
+    
     var surgeryInfoUpdater: SurgeryInfoUpdater?
     var id: String?
     var nextIndex: Int?
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+
     @IBAction func reviewSurgery(_ sender:UIButton){
         guard let updater = surgeryInfoUpdater else {
             fatalError("updater not provided to surgeryDatePickerVC")
@@ -38,5 +39,4 @@ class SurgeryDatePickerVC: UIViewController {
         super.viewDidLoad()
 
     }
-
 }

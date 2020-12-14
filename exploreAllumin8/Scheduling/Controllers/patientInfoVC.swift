@@ -16,7 +16,8 @@ class patientInfoVC: UIViewController {
     }
     @IBOutlet weak var patientSex: UISegmentedControl!
     
-    @IBOutlet weak var patientID: UITextField!{
+
+    @IBOutlet weak var patientID: UITextField! {
         didSet { patientID?.addDoneCancelToolbar() }
     }
     
@@ -49,6 +50,9 @@ class patientInfoVC: UIViewController {
     
     
     @IBAction func updatePatient(_ sender: UIButton){
+        
+        print("in here")
+        
         guard var tempSurgeryInfo = surgeryInfoUpdater?.getCurrentInfo() else {
             print("patient Info not passed to surgeryInfo, could not get surgeryInfo")
             return

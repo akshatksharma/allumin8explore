@@ -16,6 +16,7 @@
 		0246A56225870C2E00260E55 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0246A55E25870C2E00260E55 /* OpenSans-SemiBold.ttf */; };
 		0246A56325870C2E00260E55 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0246A55F25870C2E00260E55 /* OpenSans-Bold.ttf */; };
 		0246A5652587147B00260E55 /* SpecialRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246A5642587147A00260E55 /* SpecialRequestVC.swift */; };
+		0246A56725878A9000260E55 /* ScheduleCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246A56625878A9000260E55 /* ScheduleCells.swift */; };
 		026CBD802579714600398A3C /* trackScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD7F2579714600398A3C /* trackScreen.storyboard */; };
 		026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD812579718700398A3C /* scheduleScreen.storyboard */; };
 		026CBD85257971A900398A3C /* myCasesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD84257971A900398A3C /* myCasesScreen.storyboard */; };
@@ -90,6 +91,7 @@
 		0246A55E25870C2E00260E55 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		0246A55F25870C2E00260E55 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		0246A5642587147A00260E55 /* SpecialRequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialRequestVC.swift; sourceTree = "<group>"; };
+		0246A56625878A9000260E55 /* ScheduleCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleCells.swift; path = exploreAllumin8/Scheduling/ScheduleCells.swift; sourceTree = SOURCE_ROOT; };
 		026CBD7F2579714600398A3C /* trackScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = trackScreen.storyboard; sourceTree = "<group>"; };
 		026CBD822579718700398A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/scheduleScreen.storyboard; sourceTree = "<group>"; };
 		026CBD84257971A900398A3C /* myCasesScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = myCasesScreen.storyboard; sourceTree = SOURCE_ROOT; };
@@ -318,6 +320,7 @@
 		A8829E21257997DF00BC44E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0246A56625878A9000260E55 /* ScheduleCells.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				A8829E28257997DF00BC44E1 /* ConfirmationVC.swift in Sources */,
 				02F4E6102568C6BE00022133 /* ViewController.swift in Sources */,
 				A8829E2C257997DF00BC44E1 /* CatalogSearchVC.swift in Sources */,
+				0246A56725878A9000260E55 /* ScheduleCells.swift in Sources */,
 				0246A5652587147B00260E55 /* SpecialRequestVC.swift in Sources */,
 				02803B6D25845F9D0054FB18 /* AddCaptionVC.swift in Sources */,
 				02F4E6162568C6BE00022133 /* exploreAllumin8.xcdatamodeld in Sources */,

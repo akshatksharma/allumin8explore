@@ -222,7 +222,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="hospitalName" destination="eIu-Ya-dDO" id="7gI-Kr-7px"/>
+                                            <outlet property="hospitalNameLabel" destination="eIu-Ya-dDO" id="ZOn-6p-Q14"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

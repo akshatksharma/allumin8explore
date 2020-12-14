@@ -31,15 +31,15 @@
                                 <rect key="frame" x="0.0" y="153" width="375" height="536"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hospitalCell" rowHeight="100" id="7Q5-wa-pzp" customClass="hospitalCell" customModule="exploreAllumin8" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="55.333332061767578" width="345" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hospitalCell" rowHeight="75" id="7Q5-wa-pzp" customClass="hospitalCell" customModule="exploreAllumin8" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="55.333332061767578" width="345" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Q5-wa-pzp" id="SrG-Iw-lIL">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-h4-2eB">
-                                                    <rect key="frame" x="16.000000000000004" y="63.999999999999993" width="45.333333333333343" height="24.666666666666664"/>
+                                                    <rect key="frame" x="16.000000000000004" y="39" width="45.333333333333343" height="24.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -47,8 +47,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kbx-h4-2eB" firstAttribute="leading" secondItem="SrG-Iw-lIL" secondAttribute="leading" constant="16" id="Mmg-xD-4jj"/>
+                                                <constraint firstItem="kbx-h4-2eB" firstAttribute="top" secondItem="SrG-Iw-lIL" secondAttribute="top" constant="39" id="PMq-Ew-cXp"/>
                                                 <constraint firstAttribute="bottom" secondItem="kbx-h4-2eB" secondAttribute="bottom" constant="11.333333333333343" id="VqT-Hv-XJf"/>
-                                                <constraint firstItem="kbx-h4-2eB" firstAttribute="top" secondItem="SrG-Iw-lIL" secondAttribute="top" constant="64" id="cDM-Z6-KX3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -22,6 +22,7 @@ class SurgeryDatePickerVC: UIViewController {
         //        let startTime = startDatePicker.date
         //        let endTime = endDatePicker.date
         
+        print("yo")
         
         guard let updater = surgeryInfoUpdater else {
             fatalError("updater not provided to surgeryDatePickerVC")

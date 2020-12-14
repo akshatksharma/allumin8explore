@@ -57,6 +57,15 @@ class myCasesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, F
             cell.caseTitle.text = caseData[indexPath.row].procedure
             
             
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+            
+            if let date = caseData[indexPath.row].date?.dateValue() {
+                cell.caseDate.text = dateFormatter.string(from: date)
+            } else {
+                cell.caseDate.text = ""
+            }
+            
             return cell;
         }
             

@@ -54,7 +54,7 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
         surgeonNameLabel.text = surgeryInfo?.surgeon_name
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd,yyyy h:mm a"
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
         
         if let date = surgeryInfo?.date?.dateValue() {
             timeLabel.text = dateFormatter.string(from: date)
@@ -89,13 +89,16 @@ class ConfirmationVC: UIViewController, UpdateSpecialRequest {
         
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        guard let kitCount = surgeryInfo?.kits?.count else {return}
-        if kitCount == 2 {
-            specialRequestButton.titleLabel?.text = "Edit"
-        } else {
-            specialRequestButton.titleLabel?.text = "Add"
-        }
+//        print("viewDidAppear")
+//        guard let kitCount = surgeryInfo?.kits?.count else {return}
+//        print("kitCount = \(kitCount)")
+//        if kitCount == 2 {
+//            specialRequestButton.titleLabel?.text = "Edit"
+//        } else {
+//            specialRequestButton.titleLabel?.text = "Add"
+//        }
     }
     
     //FUNCTION THAT UPLOADS NEW OPERATION TO FIRESTORE

@@ -293,22 +293,11 @@
                     <connections>
                         <segue destination="JLG-Qc-Rwc" kind="relationship" relationship="viewControllers" id="4go-Mr-Ddg"/>
                         <segue destination="bqK-01-Sb8" kind="relationship" relationship="viewControllers" id="5gp-SW-gCI"/>
-                        <segue destination="pI9-jj-hjf" kind="relationship" relationship="viewControllers" id="Eee-No-F23"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tf-kX-UwX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4834" y="-494"/>
-        </scene>
-        <!--trackScreen-->
-        <scene sceneID="Cwn-mU-GmY">
-            <objects>
-                <viewControllerPlaceholder storyboardName="trackScreen" id="pI9-jj-hjf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="LHV-Ky-a70"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jFI-W6-987" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5709" y="-204"/>
         </scene>
         <!--scheduleScreen-->
         <scene sceneID="1i2-Bq-wti">

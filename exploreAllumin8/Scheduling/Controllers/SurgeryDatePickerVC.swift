@@ -44,6 +44,7 @@ class SurgeryDatePickerVC: UIViewController, FSCalendarDelegate, FSCalendarDataS
         
         guard let dateString = dateSelected else {
             print("date not converted")
+            displayAlert(message: "Select a date to continue")
             return
         }
         
@@ -51,6 +52,7 @@ class SurgeryDatePickerVC: UIViewController, FSCalendarDelegate, FSCalendarDataS
         dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
         guard let newDate = dateFormatter.date(from: dateString + timeString) else {
             print("date not converted to time")
+            
             return
         }
         
@@ -64,6 +66,27 @@ class SurgeryDatePickerVC: UIViewController, FSCalendarDelegate, FSCalendarDataS
         tempSurgeryInfo.date = Timestamp(date: newDate)
         
         updater.updateSurgeryInfo(newInfo: tempSurgeryInfo, nextIndex: nextVCIndex)
+    }
+    
+    func displayAlert(message: String){
+        let alert = UIAlertController(title: "Date Not Selected", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+            
+            default:
+                print("ree")
+                
+            }}))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

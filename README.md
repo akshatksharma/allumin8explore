@@ -7,8 +7,8 @@
 4. Open the project with the .xcworkspace file, not the .xcodeproj
 
 ## Login
-*email: todd@gmail.com
-*password: toddspass
+* email: todd@gmail.com
+* password: toddspass
 
 
 ## Product Description 

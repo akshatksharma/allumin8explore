@@ -22,7 +22,7 @@ class detailedPatientReview: UIViewController {
     
     
     
-    func fetchDataForPatientLabels {
-        
-    }
+//    func fetchDataForPatientLabels {
+//        
+//    }
 }

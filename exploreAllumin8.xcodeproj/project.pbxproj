@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0246A5582587027100260E55 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0246A5542587027100260E55 /* Montserrat-Regular.ttf */; };
+		0246A5592587027100260E55 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0246A5552587027100260E55 /* Montserrat-Bold.ttf */; };
+		0246A55A2587027100260E55 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0246A5562587027100260E55 /* Montserrat-Medium.ttf */; };
+		0246A55B2587027100260E55 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0246A5572587027100260E55 /* Montserrat-SemiBold.ttf */; };
 		026CBD802579714600398A3C /* trackScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD7F2579714600398A3C /* trackScreen.storyboard */; };
 		026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD812579718700398A3C /* scheduleScreen.storyboard */; };
 		026CBD85257971A900398A3C /* myCasesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026CBD84257971A900398A3C /* myCasesScreen.storyboard */; };
@@ -75,6 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0246A5542587027100260E55 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		0246A5552587027100260E55 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		0246A5562587027100260E55 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		0246A5572587027100260E55 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		026CBD7F2579714600398A3C /* trackScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = trackScreen.storyboard; sourceTree = "<group>"; };
 		026CBD822579718700398A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/scheduleScreen.storyboard; sourceTree = "<group>"; };
 		026CBD84257971A900398A3C /* myCasesScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = myCasesScreen.storyboard; sourceTree = SOURCE_ROOT; };
@@ -163,6 +171,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0246A5532587023C00260E55 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0246A5552587027100260E55 /* Montserrat-Bold.ttf */,
+				0246A5562587027100260E55 /* Montserrat-Medium.ttf */,
+				0246A5542587027100260E55 /* Montserrat-Regular.ttf */,
+				0246A5572587027100260E55 /* Montserrat-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		026CBD7E257970DF00398A3C /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +233,7 @@
 		02F4E60A2568C6BE00022133 /* exploreAllumin8 */ = {
 			isa = PBXGroup;
 			children = (
+				0246A5532587023C00260E55 /* Fonts */,
 				D3FF456C2585C4320009948B /* loginRegister */,
 				026CBD89257AA86F00398A3C /* MyCases */,
 				026CBD7E257970DF00398A3C /* storyboards */,
@@ -440,13 +460,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0246A5592587027100260E55 /* Montserrat-Bold.ttf in Resources */,
+				0246A5582587027100260E55 /* Montserrat-Regular.ttf in Resources */,
 				02F4E61B2568C6C000022133 /* LaunchScreen.storyboard in Resources */,
 				02803B6E25845F9D0054FB18 /* AddCaptionVC.xib in Resources */,
 				02F4E63F2568D64B00022133 /* GoogleService-Info.plist in Resources */,
 				026CBD802579714600398A3C /* trackScreen.storyboard in Resources */,
+				0246A55B2587027100260E55 /* Montserrat-SemiBold.ttf in Resources */,
 				026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */,
 				02F4E6182568C6C000022133 /* Assets.xcassets in Resources */,
 				02F4E6132568C6BE00022133 /* Main.storyboard in Resources */,
+				0246A55A2587027100260E55 /* Montserrat-Medium.ttf in Resources */,
 				026CBD85257971A900398A3C /* myCasesScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

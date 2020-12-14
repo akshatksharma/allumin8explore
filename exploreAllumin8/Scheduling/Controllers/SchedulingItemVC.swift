@@ -77,11 +77,11 @@ extension SchedulingItemVC: UITableViewDataSource{
         }
         
         if tableView.tag == 1 {
-             myCell.hospitalNameLabel.text = info?[indexPath.row]
+             myCell.hospitalNameLabel.text = tableData?[indexPath.row]
         }
         
         else if tableView.tag == 2 {
-                myCell.procedureNameLabel.text = info?[indexPath.row]
+                myCell.procedureNameLabel.text = tableData?[indexPath.row]
         }
     
         

@@ -38,7 +38,7 @@ All these features are backed by a Cloud Firestore database hosted on Firebase. 
  * View image by clicking on it 
  
  
- * As a final note, we wanted to put a disclaimer out there that this app was not able to fully realize Alyssa's initial vision. Due to some personal issues, Alyssa was forced to take a backseat for some time. This unfortunately mean we had to build out a slightly different product than was initially intended. We plan to come back to this project and fully flesh it out. 
+*** As a final note, we wanted to put a disclaimer out there that this app was not able to fully realize Alyssa's initial vision. Due to some personal issues, Alyssa was forced to take a backseat for some time. This unfortunately mean we had to build out a slightly different product than was initially intended. We plan to come back to this project and fully flesh it out. 
  
  
  

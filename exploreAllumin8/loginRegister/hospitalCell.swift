@@ -26,3 +26,9 @@ class hospitalCell: UITableViewCell {
     }
 
 }
+
+class patientCell: UITableViewCell {
+    
+    
+    
+}

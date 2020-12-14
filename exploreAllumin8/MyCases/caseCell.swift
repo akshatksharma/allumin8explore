@@ -12,6 +12,7 @@ class caseCell: UITableViewCell {
 
     
     @IBOutlet weak var caseTitle: UILabel!
+    @IBOutlet weak var caseDate: UILabel!
     
     
     override func awakeFromNib() {

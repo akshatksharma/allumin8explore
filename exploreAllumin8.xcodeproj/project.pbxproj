@@ -23,6 +23,7 @@
 		026CBD8B257AA8B000398A3C /* DetailedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */; };
 		02803B6D25845F9D0054FB18 /* AddCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02803B6B25845F9D0054FB18 /* AddCaptionVC.swift */; };
 		02803B6E25845F9D0054FB18 /* AddCaptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */; };
+		028F17942587B1EB00828849 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 028F17932587B1EB00828849 /* README.md */; };
 		02B682C8257AED8F00DBAC22 /* DetailedCaseViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */; };
 		02B682CB257B4C3800DBAC22 /* caseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682C9257B4C3800DBAC22 /* caseCell.swift */; };
 		02B682CC257B4C3800DBAC22 /* detailedCaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */; };
@@ -98,6 +99,7 @@
 		026CBD8A257AA8B000398A3C /* DetailedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewModel.swift; sourceTree = "<group>"; };
 		02803B6B25845F9D0054FB18 /* AddCaptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionVC.swift; sourceTree = "<group>"; };
 		02803B6C25845F9D0054FB18 /* AddCaptionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCaptionVC.xib; sourceTree = "<group>"; };
+		028F17932587B1EB00828849 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		02B682C7257AED8F00DBAC22 /* DetailedCaseViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailedCaseViewCells.swift; path = exploreAllumin8/DetailedCaseViewCells.swift; sourceTree = SOURCE_ROOT; };
 		02B682C9257B4C3800DBAC22 /* caseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = caseCell.swift; sourceTree = "<group>"; };
 		02B682CA257B4C3800DBAC22 /* detailedCaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedCaseVC.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		C947855B9BFF296A0BFEA5F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				028F17932587B1EB00828849 /* README.md */,
 				3BD2DE7ADD3DA804DD7002E8 /* Pods_exploreAllumin8.framework */,
 				F8130972BD177CF8EDBDCAE6 /* Pods_exploreAllumin8_exploreAllumin8UITests.framework */,
 				341EC8E75A417CDADE4F6A9A /* Pods_exploreAllumin8Tests.framework */,
@@ -480,6 +483,7 @@
 				0246A56225870C2E00260E55 /* OpenSans-SemiBold.ttf in Resources */,
 				0246A55B2587027100260E55 /* Montserrat-SemiBold.ttf in Resources */,
 				026CBD832579718700398A3C /* scheduleScreen.storyboard in Resources */,
+				028F17942587B1EB00828849 /* README.md in Resources */,
 				02F4E6182568C6C000022133 /* Assets.xcassets in Resources */,
 				02F4E6132568C6BE00022133 /* Main.storyboard in Resources */,
 				0246A55A2587027100260E55 /* Montserrat-Medium.ttf in Resources */,
